@@ -10,13 +10,15 @@ namespace OrderingSystem.Foods.Dto
     [AutoMapTo(typeof(Food))]
     public class FoodDto : EntityDto<int>
     {
-        public string Image { get; set; }
+        public byte[] Image { get; set; }
         public string Name { get; set; }
         public bool Availability { get; set; }
         public int Quantity { get; set; }
         public int? Size { get; set; }
         public int Price { get; set; }
+        public int CategoryId { get; set; }
         public CategoryDto Category { get; set; }
+        public int TypeId { get; set; }
         public TypeDto Type { get; set; }
     }
 }
