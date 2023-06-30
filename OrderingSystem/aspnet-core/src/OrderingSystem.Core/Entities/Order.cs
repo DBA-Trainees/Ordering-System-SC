@@ -6,6 +6,7 @@ namespace OrderingSystem.Entities
     {
        public int Quantity { get; set; }
        public int? Size { get; set; }
+       public Food Food { get; set; }
        
     }
 }
