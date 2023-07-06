@@ -22,14 +22,14 @@ export class EditDivisionModalComponent extends AppComponentBase
     implements OnInit {
     saving = false;
     division = new DivisionDto();
-    id: number;
+    id: number = null;
 
     @Output() onSave = new EventEmitter<any>();
 
 
     constructor(
         injector: Injector,
-        public _divisionServiceProxy: DivisionServiceProxy,
+        private _divisionServiceProxy: DivisionServiceProxy,
         public bsModalRef: BsModalRef
     ) {
         super(injector);

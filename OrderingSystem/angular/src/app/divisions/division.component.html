@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-6">
-                    <h1>{{ "Divisions" | localize }}</h1>
+                    <h1><strong>{{ "Divisions" | localize }}</strong></h1>
                 </div>
                 <div class="col-6 text-right">
                     <a href="javascript:;" class="btn bg-blue" (click)="create()">
@@ -51,7 +51,7 @@
                             <tr>
                                 <th>{{ "Id" | localize }}</th>
                                 <th>{{ "Name" | localize }}</th>
-                                <th style="width: 310px;">{{ "Actions" | localize }}</th>
+                                <th style="width: 170px;">{{ "Actions" | localize }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -69,17 +69,6 @@
                             >
                                 <td>{{ division.id }}</td>
                                 <td>{{ division.name }}</td>
-                                <td>
-                                    <div class="custom-control custom-checkbox">
-                                        <input
-                                                type="checkbox"
-                                                class="custom-control-input"
-                                                disabled
-                                                [checked]="division.isActive"
-                                        />
-                                        <label class="custom-control-label"></label>
-                                    </div>
-                                </td>
                                 <td>
                                     <button
                                             type="button"

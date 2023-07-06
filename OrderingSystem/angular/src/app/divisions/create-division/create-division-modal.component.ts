@@ -12,10 +12,8 @@ import {
     DivisionServiceProxy,
     CreateDivisionDto
 } from '@shared/service-proxies/service-proxies';
-import { AbpValidationError } from '@shared/components/validation/abp-validation.api';
 
 @Component({
-    //selector: 'selector-name',
     templateUrl: 'create-division-modal.component.html'
 })
 
@@ -24,6 +22,7 @@ export class CreateDivisionModalComponent extends AppComponentBase
     implements OnInit {
     saving = false;
     division = new CreateDivisionDto();
+    id: number = null;
 
     @Output() onSave = new EventEmitter<any>();
 
@@ -35,12 +34,10 @@ export class CreateDivisionModalComponent extends AppComponentBase
         super(injector);
     }
     ngOnInit(): void {
-        throw new Error('Method not implemented.');
     }
 
     save(): void {
         this.saving = true;
-
 
         this._divisionServiceProxy.create(this.division).subscribe(
             () => {

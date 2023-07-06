@@ -43,7 +43,7 @@ export class CustomersComponent extends PagedListingComponentBase<CustomerDto>{
     }
 
     protected list(
-        request: PagedRequestDto,
+        request: PagedCustomerRequestDto,
         pageNumber: number,
         finishedCallback: Function): void {
         request.keyword = this.keyword;
@@ -51,10 +51,10 @@ export class CustomersComponent extends PagedListingComponentBase<CustomerDto>{
 
         this._customerServiceProxy
             .getAll(
-                request.keyword,
-                request.skipCount,
-                request.isActive
-                request.maxResultCount
+              request.keyword,
+              request.isActive,
+              request.skipCount,
+              request.maxResultCount
             )
             .pipe(
                 finalize(() => {

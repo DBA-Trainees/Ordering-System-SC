@@ -3859,6 +3859,7 @@ export interface ICreateCategoryDto {
 }
 
 export class CreateCustomerDto implements ICreateCustomerDto {
+    id: number;
     name: string | undefined;
     division: DivisionDto[] | undefined;
 
@@ -3873,6 +3874,7 @@ export class CreateCustomerDto implements ICreateCustomerDto {
 
     init(_data?: any) {
         if (_data) {
+            this.id = _data["id"];
             this.name = _data["name"];
             if (Array.isArray(_data["division"])) {
                 this.division = [] as any;
@@ -3891,6 +3893,7 @@ export class CreateCustomerDto implements ICreateCustomerDto {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
         data["name"] = this.name;
         if (Array.isArray(this.division)) {
             data["division"] = [];
@@ -3909,6 +3912,7 @@ export class CreateCustomerDto implements ICreateCustomerDto {
 }
 
 export interface ICreateCustomerDto {
+    id: number;
     name: string | undefined;
     division: DivisionDto[] | undefined;
 }
