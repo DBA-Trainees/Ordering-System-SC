@@ -51,7 +51,7 @@
                             <tr>
                                 <th>{{ "Id" | localize }}</th>
                                 <th>{{ "Name" | localize }}</th>
-                                <th style="width: 310px;">{{ "Actions" | localize }}</th>
+                                <th style="width: 100px;">{{ "Actions" | localize }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -70,24 +70,13 @@
                                 <td>{{ customer.id }}</td>
                                 <td>{{ customer.name }}</td>
                                 <td>
-                                    <div class="custom-control custom-checkbox">
-                                        <input
-                                                type="checkbox"
-                                                class="custom-control-input"
-                                                disabled
-                                                [checked]="customer.isActive"
-                                        />
-                                        <label class="custom-control-label"></label>
-                                    </div>
-                                </td>
-                                <td>
                                     <button
                                             type="button"
                                             class="btn btn-sm bg-secondary"
                                             (click)="edit(customer.id)"
                                     >
                                         <i class="fas fa-pencil-alt"></i>
-                                        {{ "Edit" | localize }}
+                                        {{ "" | localize }}
                                     </button>
                                     <button
                                             type="button"
@@ -95,7 +84,7 @@
                                             (click)="delete(customer)"
                                     >
                                         <i class="fas fa-trash"></i>
-                                        {{ "Delete" | localize }}
+                                        {{ "" | localize }}
                                     </button>
                                 </td>
                             </tr>

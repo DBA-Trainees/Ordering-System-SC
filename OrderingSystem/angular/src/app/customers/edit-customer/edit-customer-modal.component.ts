@@ -21,13 +21,13 @@ export class EditCustomerModalComponent extends AppComponentBase
     implements OnInit {
     saving = false;
     customer = new CustomerDto();
-    id: number;
+    id: number = null;
 
     @Output() onSave = new EventEmitter<any>();
 
     constructor(
         injector: Injector,
-        public _customerServiceProxy: CustomerServiceProxy,
+        private _customerServiceProxy: CustomerServiceProxy,
         public bsModalRef: BsModalRef
     ) {
         super(injector);

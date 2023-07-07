@@ -25,7 +25,8 @@ class PagedCustomerRequestDto extends PagedRequestDto {
 
 @Component({
     selector: 'customer-component',
-    templateUrl: 'customer.component.html'
+    templateUrl: 'customer.component.html',
+    animations: [appModuleAnimation()]
 })
 
 export class CustomersComponent extends PagedListingComponentBase<CustomerDto>{
@@ -81,7 +82,7 @@ export class CustomersComponent extends PagedListingComponentBase<CustomerDto>{
         );
       }
     create(): void {
-        this.showCreateOrEditCustomerModal;
+        this.showCreateOrEditCustomerModal();
     }
 
     edit(id): void {
@@ -99,9 +100,12 @@ export class CustomersComponent extends PagedListingComponentBase<CustomerDto>{
           );
         } else {
           createOrEditCustomerModal = this._modalService.show(
-            CreateCustomerModalComponent,
+            EditCustomerModalComponent,
             {
-              class: 'modal-lg'
+              class: 'modal-lg',
+              initialState: {
+                id: id,
+              }
             }
           );
         }

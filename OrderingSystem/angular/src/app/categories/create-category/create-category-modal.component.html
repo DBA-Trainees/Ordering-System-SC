@@ -1,11 +1,11 @@
 <form
   class="form-horizontal"
   autocomplete="off"
-  #createDivisionModal="ngForm"
+  #createCategoryModal="ngForm"
   (ngSubmit)="save()"
 >
   <abp-modal-header
-    [title]="'Create new division' | localize"
+    [title]="'Create new category' | localize"
     (onCloseClick)="bsModalRef.hide()"
   ></abp-modal-header>
   <div class="modal-body">
@@ -23,7 +23,7 @@
               id="name"
               required
               maxlength="32"
-              [(ngModel)]="division.name"
+              [(ngModel)]="category.name"
               #nameModel="ngModel"
               #nameEl
             />
@@ -34,7 +34,7 @@
   </div>
   <abp-modal-footer
     [cancelDisabled]="saving"
-    [saveDisabled]="!createDivisionModal.form.valid || saving"
+    [saveDisabled]="!createCategoryModal.form.valid || saving"
     (onCancelClick)="bsModalRef.hide()"
   ></abp-modal-footer>
 </form>

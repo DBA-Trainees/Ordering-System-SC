@@ -6,10 +6,10 @@ import {
   PagedListingComponentBase,
   PagedRequestDto
 } from 'shared/paged-listing-component-base';
-import { 
+import {
   DivisionDto,
-  DivisionDtoPagedResultDto, 
-  DivisionServiceProxy 
+  DivisionDtoPagedResultDto,
+  DivisionServiceProxy
 } from '@shared/service-proxies/service-proxies';
 import { CreateDivisionModalComponent } from './create-division/create-division-modal.component';
 import { EditDivisionModalComponent } from './edit-division/edit-division-modal.component';

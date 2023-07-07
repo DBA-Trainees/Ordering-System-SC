@@ -9,38 +9,37 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { forEach as _forEach, map as _map } from 'lodash-es';
 import { AppComponentBase } from '@shared/app-component-base';
 import {
-    CustomerServiceProxy,
-    CreateCustomerDto
+    FoodServiceProxy,
+    CreateFoodDto
 } from '@shared/service-proxies/service-proxies';
-import { AbpValidationError } from '@shared/components/validation/abp-validation.api';
 
 @Component({
-    templateUrl: 'create-customer-modal.component.html'
+    templateUrl: 'create-food-modal.component.html'
 })
 
-export class CreateCustomerModalComponent extends AppComponentBase
+
+export class CreateFoodModalComponent extends AppComponentBase
     implements OnInit {
     saving = false;
-    customer = new CreateCustomerDto();
+    food = new CreateFoodDto();
     id: number = null;
 
     @Output() onSave = new EventEmitter<any>();
 
     constructor(
         injector: Injector,
-        public _customerServiceProxy: CustomerServiceProxy,
+        public _foodServiceProxy: FoodServiceProxy,
         public bsModalRef: BsModalRef
     ) {
         super(injector);
     }
-
     ngOnInit(): void {
     }
 
     save(): void {
         this.saving = true;
 
-        this._customerServiceProxy.create(this.customer).subscribe(
+        this._foodServiceProxy.create(this.food).subscribe(
             () => {
                 this.notify.info(this.l('SavedSuccessfully'));
                 this.bsModalRef.hide();

@@ -15,13 +15,18 @@ import { SharedModule } from '@shared/shared.module';
 import { HomeComponent } from '@app/home/home.component';
 import { AboutComponent } from '@app/about/about.component';
 import { DivisionsComponent } from './divisions/division.component';
-import { CustomersComponent } from './customers/customer.component';
-import { CategoriesComponent } from './categories/category.component';
-import { FoodsComponent } from './foods/food.component';
 import { CreateDivisionModalComponent } from './divisions/create-division/create-division-modal.component';
 import { EditDivisionModalComponent } from './divisions/edit-division/edit-division-modal.component';
+import { CustomersComponent } from './customers/customer.component';
 import { CreateCustomerModalComponent } from './customers/create-customer/create-customer-modal.component';
 import { EditCustomerModalComponent } from './customers/edit-customer/edit-customer-modal.component';
+import { CategoriesComponent } from './categories/category.component';
+import { CreateCategoryModalComponent } from './categories/create-category/create-category-modal.component';
+import { EditCategoryModalComponent } from './categories/edit-category/edit-category-modal.component';
+import { FoodsComponent } from './foods/food.component';
+import { CreateFoodModalComponent } from './foods/create-food/create-food-modal.component';
+import { EditFoodModalComponent } from './foods/edit-food/edit-food-modal.component';
+
 
 // tenants
 import { TenantsComponent } from '@app/tenants/tenants.component';
@@ -81,13 +86,17 @@ import { CategoryServiceProxy, CustomerServiceProxy, DivisionServiceProxy, FoodS
         SidebarMenuComponent,
         // div
         DivisionsComponent,
-        CustomersComponent,
-        CategoriesComponent,
-        FoodsComponent,
         CreateDivisionModalComponent,
         EditDivisionModalComponent,
+        CustomersComponent,
         CreateCustomerModalComponent,
-        EditCustomerModalComponent 
+        EditCustomerModalComponent,
+        CategoriesComponent,
+        CreateCategoryModalComponent,
+        EditCategoryModalComponent,
+        FoodsComponent,
+        CreateFoodModalComponent,
+        EditFoodModalComponent
         
     ],
     imports: [

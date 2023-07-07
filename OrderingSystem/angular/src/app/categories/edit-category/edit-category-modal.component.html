@@ -1,11 +1,11 @@
 <form
     class="form-horizontal"
     autocomplete="=off"
-    #editDivisionModal="ngForm"
+    #editCategoryModal="ngForm"
     (ngSubmit)="save()"
 >
     <abp-modal-header
-    [title]="'Edit division' | localize"
+    [title]="'Edit category name' | localize"
     (onCloseClick)="bsModalRef.hide()"
     >
     </abp-modal-header>
@@ -21,7 +21,7 @@
                             name="name"
                             id="name"
                             maxlength="32"
-                            [(ngModel)]="division.name"
+                            [(ngModel)]="category.name"
                             #nameModel="ngModel"
                             #nameE1
                             />
@@ -30,7 +30,7 @@
     </div> 
     <abp-modal-footer
         [cancelDisabled]="saving"
-        [saveDisabled]="!editDivisionModal.form.valid || saving"
+        [saveDisabled]="!editCategoryModal.form.valid || saving"
         (onCancelClick)="bsModalRef.hide()"
     ></abp-modal-footer>
 </form>

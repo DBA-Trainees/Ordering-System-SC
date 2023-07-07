@@ -51,7 +51,7 @@
                             <tr>
                                 <th>{{ "Id" | localize }}</th>
                                 <th>{{ "Name" | localize }}</th>
-                                <th style="width: 170px;">{{ "Actions" | localize }}</th>
+                                <th style="width: 100px;">{{ "Actions" | localize }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -76,7 +76,7 @@
                                             (click)="edit(division.id)"
                                     >
                                         <i class="fas fa-pencil-alt"></i>
-                                        {{ "Edit" | localize }}
+                                        {{ "" | localize }}
                                     </button>
                                     <button
                                             type="button"
@@ -84,7 +84,7 @@
                                             (click)="delete(division)"
                                     >
                                         <i class="fas fa-trash"></i>
-                                        {{ "Delete" | localize }}
+                                        {{ "" | localize }}
                                     </button>
                                 </td>
                             </tr>
