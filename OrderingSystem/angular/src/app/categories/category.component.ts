@@ -1,4 +1,4 @@
-import { Component, Injector, OnInit } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { appModuleAnimation } from '@shared/animations/routerTransition';
@@ -11,8 +11,7 @@ import {
     CategoryDtoPagedResultDto,
     CategoryServiceProxy
 } from '@shared/service-proxies/service-proxies';
-import { CreateCategoryModalComponent } from './create-category/create-category-modal.component';
-import { EditCategoryModalComponent } from './edit-category/edit-category-modal.component';
+import { CreateEditCategoryModalComponent } from './create-edit-category/create-edit-category-modal.component';
 
 class PagedCategoriesRequestDto extends PagedRequestDto {
     keyword: string;
@@ -20,8 +19,7 @@ class PagedCategoriesRequestDto extends PagedRequestDto {
 }
 
 @Component({
-    selector: 'category-component',
-    templateUrl: 'category.component.html',
+    templateUrl: './category.component.html',
     animations: [appModuleAnimation()]
 })
 
@@ -90,14 +88,14 @@ export class CategoriesComponent extends PagedListingComponentBase<CategoryDto>{
         let createOrEditCategoryModal: BsModalRef;
         if (!id) {
             createOrEditCategoryModal = this._modalService.show(
-                CreateCategoryModalComponent,
+                CreateEditCategoryModalComponent,
                 {
                     class: 'modal-lg',
                 }
             );
         } else {
             createOrEditCategoryModal = this._modalService.show(
-                EditCategoryModalComponent,
+                CreateEditCategoryModalComponent,
                 {
                     class: 'modal-lg',
                     initialState: {

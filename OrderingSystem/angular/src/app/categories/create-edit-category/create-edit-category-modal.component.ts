@@ -6,7 +6,7 @@ import {
     Output
 } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { forEach as _forEach, includes as _includes, map as _map } from 'lodash-es';
+import { forEach as _forEach, map as _map } from 'lodash-es';
 import { AppComponentBase } from '@shared/app-component-base';
 import {
     CategoryServiceProxy,
@@ -14,18 +14,17 @@ import {
 } from '@shared/service-proxies/service-proxies';
 
 @Component({
-    //selector: 'selector-name',
-    templateUrl: 'edit-category-modal.component.html'
+    templateUrl: 'create-edit-category-modal.component.html'
 })
 
-export class EditCategoryModalComponent extends AppComponentBase
+
+export class CreateEditCategoryModalComponent extends AppComponentBase
     implements OnInit {
     saving = false;
     category = new CategoryDto();
-    id: number = null;
+    id: number = 0;
 
     @Output() onSave = new EventEmitter<any>();
-
 
     constructor(
         injector: Injector,
@@ -34,19 +33,18 @@ export class EditCategoryModalComponent extends AppComponentBase
     ) {
         super(injector);
     }
-
-
     ngOnInit(): void {
-        this._categoryServiceProxy.get(this.id).subscribe((result) => {
-            this.category = result;
-        })
+         if(this.id){
+            this._categoryServiceProxy.get(this.id).subscribe((res) => {
+                this.category = res;
+            });
+        }
     }
 
     save(): void {
         this.saving = true;
-        this.category.id = this.id;
 
-        if(this.id !==0){
+        if(this.id != 0){
             this._categoryServiceProxy.update(this.category).subscribe(
                 () => {
                     this.notify.info(this.l('SavedSuccessfully'));
@@ -57,6 +55,17 @@ export class EditCategoryModalComponent extends AppComponentBase
                     this.saving = false;
                 }
             );
+        }else{
+            this._categoryServiceProxy.create(this.category).subscribe(
+                () => {
+                    this.notify.info(this.l('SavedSuccessfully'));
+                    this.bsModalRef.hide();
+                    this.onSave.emit();
+                },
+                () => {
+                    this.saving = false;
+                }
+            )
         }
     }
 }

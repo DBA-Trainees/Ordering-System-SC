@@ -11,8 +11,7 @@ import {
   DivisionDtoPagedResultDto,
   DivisionServiceProxy
 } from '@shared/service-proxies/service-proxies';
-import { CreateDivisionModalComponent } from './create-division/create-division-modal.component';
-import { EditDivisionModalComponent } from './edit-division/edit-division-modal.component';
+import {CreateEditDivisionModalComponent } from './create-edit-division/create-edit-division-modal.component';
 
 class PagedDivisionsRequestDto extends PagedRequestDto {
   keyword: string;
@@ -38,7 +37,7 @@ export class DivisionsComponent extends PagedListingComponentBase<DivisionDto>{
     private _divisionServiceProxy: DivisionServiceProxy,
     private _modalService: BsModalService
   ) {
-    super(injector)
+    super(injector);
   }
 
   protected list(
@@ -92,14 +91,14 @@ export class DivisionsComponent extends PagedListingComponentBase<DivisionDto>{
     let createOrEditDivisionModal: BsModalRef;
     if (!id) {
       createOrEditDivisionModal = this._modalService.show(
-        CreateDivisionModalComponent,
+        CreateEditDivisionModalComponent,
         {
           class: 'modal-lg',
         }
       );
     } else {
       createOrEditDivisionModal = this._modalService.show(
-        EditDivisionModalComponent,
+        CreateEditDivisionModalComponent,
         {
           class: 'modal-lg',
           initialState: {

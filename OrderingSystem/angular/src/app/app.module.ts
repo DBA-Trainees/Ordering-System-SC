@@ -15,8 +15,7 @@ import { SharedModule } from '@shared/shared.module';
 import { HomeComponent } from '@app/home/home.component';
 import { AboutComponent } from '@app/about/about.component';
 import { DivisionsComponent } from './divisions/division.component';
-import { CreateDivisionModalComponent } from './divisions/create-division/create-division-modal.component';
-import { EditDivisionModalComponent } from './divisions/edit-division/edit-division-modal.component';
+import { CreateEditDivisionModalComponent } from './divisions/create-edit-division/create-edit-division-modal.component';
 import { CustomersComponent } from './customers/customer.component';
 import { CreateCustomerModalComponent } from './customers/create-customer/create-customer-modal.component';
 import { EditCustomerModalComponent } from './customers/edit-customer/edit-customer-modal.component';
@@ -86,8 +85,7 @@ import { CategoryServiceProxy, CustomerServiceProxy, DivisionServiceProxy, FoodS
         SidebarMenuComponent,
         // div
         DivisionsComponent,
-        CreateDivisionModalComponent,
-        EditDivisionModalComponent,
+        CreateEditDivisionModalComponent,
         CustomersComponent,
         CreateCustomerModalComponent,
         EditCustomerModalComponent,

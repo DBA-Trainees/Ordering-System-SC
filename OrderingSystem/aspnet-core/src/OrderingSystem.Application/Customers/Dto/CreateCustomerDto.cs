@@ -8,8 +8,6 @@ namespace OrderingSystem.Customers.Dto
     [AutoMapTo(typeof(Customer))]
     public class CreateCustomerDto
     {
-        public int Id { get; set; }
         public string Name { get; set; }
-        public List<DivisionDto> Division { get; set; }
     }
 }
