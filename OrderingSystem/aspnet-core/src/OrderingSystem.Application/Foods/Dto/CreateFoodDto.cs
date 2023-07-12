@@ -6,7 +6,6 @@ namespace OrderingSystem.Foods.Dto
     [AutoMapTo(typeof(Type))]
     public class CreateFoodDto
     {
-        public int Id { get; set; }
         public byte[] Image { get; set; }
         public string ImageName { get; set; }
         public string ImageFileType { get; set; }

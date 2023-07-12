@@ -4,8 +4,8 @@ using OrderingSystem.Entities;
 
 namespace OrderingSystem.Categories.Dto
 {
-    [AutoMapFrom(typeof(Category))]
     [AutoMapTo(typeof(Category))]
+    [AutoMapFrom(typeof(Category))]
     public class CategoryDto : EntityDto<int>
     {
         public string Name { get; set; }

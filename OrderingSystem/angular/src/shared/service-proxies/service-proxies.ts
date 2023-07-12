@@ -3945,7 +3945,6 @@ export interface ICreateDivisionDto {
 }
 
 export class CreateFoodDto implements ICreateFoodDto {
-    id: number;
     image: string | undefined;
     imageName: string | undefined;
     imageFileType: string | undefined;
@@ -3968,7 +3967,6 @@ export class CreateFoodDto implements ICreateFoodDto {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
             this.image = _data["image"];
             this.imageName = _data["imageName"];
             this.imageFileType = _data["imageFileType"];
@@ -3991,7 +3989,6 @@ export class CreateFoodDto implements ICreateFoodDto {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
         data["image"] = this.image;
         data["imageName"] = this.imageName;
         data["imageFileType"] = this.imageFileType;
@@ -4014,7 +4011,6 @@ export class CreateFoodDto implements ICreateFoodDto {
 }
 
 export interface ICreateFoodDto {
-    id: number;
     image: string | undefined;
     imageName: string | undefined;
     imageFileType: string | undefined;

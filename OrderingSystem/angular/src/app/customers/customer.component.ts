@@ -1,7 +1,6 @@
 import {
     Component,
-    Injector,
-    OnInit
+    Injector
 } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
@@ -15,8 +14,7 @@ import {
     CustomerDtoPagedResultDto,
     CustomerServiceProxy
 } from '@shared/service-proxies/service-proxies';
-import { EditCustomerModalComponent } from './edit-customer/edit-customer-modal.component';
-import { CreateCustomerModalComponent } from './create-customer/create-customer-modal.component';
+import { CreateEditCustomerModalComponent } from './create-edit-customer/create-edit-customer-modal.component';
 
 class PagedCustomerRequestDto extends PagedRequestDto {
     keyword: string;
@@ -24,7 +22,6 @@ class PagedCustomerRequestDto extends PagedRequestDto {
 }
 
 @Component({
-    selector: 'customer-component',
     templateUrl: 'customer.component.html',
     animations: [appModuleAnimation()]
 })
@@ -93,14 +90,14 @@ export class CustomersComponent extends PagedListingComponentBase<CustomerDto>{
         let createOrEditCustomerModal: BsModalRef;
         if (!id) {
           createOrEditCustomerModal = this._modalService.show(
-            CreateCustomerModalComponent,
+            CreateEditCustomerModalComponent,
             {
               class: 'modal-lg',
             }
           );
         } else {
           createOrEditCustomerModal = this._modalService.show(
-            EditCustomerModalComponent,
+            CreateEditCustomerModalComponent,
             {
               class: 'modal-lg',
               initialState: {

@@ -11,8 +11,7 @@ import {
     FoodDtoPagedResultDto,
     FoodServiceProxy
 } from '@shared/service-proxies/service-proxies';
-import { CreateFoodModalComponent } from '@app/foods/create-food/create-food-modal.component';
-import { EditFoodModalComponent } from '@app/foods/edit-food/edit-food-modal.component'; 
+import { CreateEditFoodModalComponent } from '@app/foods/create-edit-food/create-edit-food-modal.component';
 
 class PagedFoodsRequestDto extends PagedRequestDto {
     keyword: string;
@@ -20,7 +19,6 @@ class PagedFoodsRequestDto extends PagedRequestDto {
 }
 
 @Component({
-    selector: 'selector-name',
     templateUrl: './food.component.html',
     animations: [appModuleAnimation()]
 })
@@ -90,14 +88,14 @@ export class FoodsComponent extends PagedListingComponentBase<FoodDto>{
         let createOrEditFoodModal: BsModalRef;
         if (!id) {
           createOrEditFoodModal = this._modalService.show(
-            CreateFoodModalComponent,
+            CreateEditFoodModalComponent,
             {
               class: 'modal-lg',
             }
           );
         } else {
           createOrEditFoodModal = this._modalService.show(
-            EditFoodModalComponent,
+            CreateEditFoodModalComponent,
             {
               class: 'modal-lg',
               initialState: {

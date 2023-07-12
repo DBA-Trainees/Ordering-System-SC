@@ -120,9 +120,9 @@
     <text name="Divisions">Divisions</text>
     <text name="CreateEditDivision">CreateEditDivision</text>
     <text name="Customers">Customers</text>
-    <text name="CreateCustomer">CreateCustomer</text>
+    <text name="Create/Edit CustomerName">Create/Edit CustomerName</text>
     <text name="Categories">Categories</text>
-    <text name="CreateEditCategory">CreateEditCategory</text>
+    <text name="CreateOrEditCategoryName">CreateOrEditCategoryName</text>
     <text name="Types">Types</text>
     <text name="CreateType">CreateType</text>
     <text name="Foods">Foods</text>

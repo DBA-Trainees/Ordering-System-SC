@@ -17,14 +17,11 @@ import { AboutComponent } from '@app/about/about.component';
 import { DivisionsComponent } from './divisions/division.component';
 import { CreateEditDivisionModalComponent } from './divisions/create-edit-division/create-edit-division-modal.component';
 import { CustomersComponent } from './customers/customer.component';
-import { CreateCustomerModalComponent } from './customers/create-customer/create-customer-modal.component';
-import { EditCustomerModalComponent } from './customers/edit-customer/edit-customer-modal.component';
+import { CreateEditCustomerModalComponent } from './customers/create-edit-customer/create-edit-customer-modal.component';
 import { CategoriesComponent } from './categories/category.component';
-import { CreateCategoryModalComponent } from './categories/create-category/create-category-modal.component';
-import { EditCategoryModalComponent } from './categories/edit-category/edit-category-modal.component';
+import { CreateEditCategoryModalComponent } from './categories/create-edit-category/create-edit-category-modal.component';
 import { FoodsComponent } from './foods/food.component';
-import { CreateFoodModalComponent } from './foods/create-food/create-food-modal.component';
-import { EditFoodModalComponent } from './foods/edit-food/edit-food-modal.component';
+import { CreateEditFoodModalComponent } from './foods/create-edit-food/create-edit-food-modal.component';
 
 
 // tenants
@@ -87,14 +84,11 @@ import { CategoryServiceProxy, CustomerServiceProxy, DivisionServiceProxy, FoodS
         DivisionsComponent,
         CreateEditDivisionModalComponent,
         CustomersComponent,
-        CreateCustomerModalComponent,
-        EditCustomerModalComponent,
+        CreateEditCustomerModalComponent,
         CategoriesComponent,
-        CreateCategoryModalComponent,
-        EditCategoryModalComponent,
+        CreateEditCategoryModalComponent,
         FoodsComponent,
-        CreateFoodModalComponent,
-        EditFoodModalComponent
+        CreateEditFoodModalComponent
         
     ],
     imports: [
