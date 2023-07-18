@@ -12,7 +12,9 @@ import {
 import {
     CustomerDto,
     CustomerDtoPagedResultDto,
-    CustomerServiceProxy
+    CustomerServiceProxy,
+    DivisionServiceProxy,
+    DivisionDto
 } from '@shared/service-proxies/service-proxies';
 import { CreateEditCustomerModalComponent } from './create-edit-customer/create-edit-customer-modal.component';
 
@@ -28,13 +30,15 @@ class PagedCustomerRequestDto extends PagedRequestDto {
 
 export class CustomersComponent extends PagedListingComponentBase<CustomerDto>{
     customers: CustomerDto[] = [];
+    divisions: DivisionDto[] = [];
     keyword = '';
     isActive: boolean | null;
-    advancedFiltersVisible = false;
-
+/*     advancedFiltersVisible = false;
+ */
     constructor(
         injector: Injector,
         private _customerServiceProxy: CustomerServiceProxy,
+        private _divisionServiceProxy: DivisionServiceProxy,
         private _modalService: BsModalService
     ) {
         super(injector)
@@ -48,7 +52,7 @@ export class CustomersComponent extends PagedListingComponentBase<CustomerDto>{
         request.isActive = this.isActive;
 
         this._customerServiceProxy
-            .getAll(
+            .getAllCustomersWithDivision(
               request.keyword,
               request.isActive,
               request.skipCount,

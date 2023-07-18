@@ -10,6 +10,7 @@ namespace OrderingSystem.Customers.Dto
     public class CustomerDto : EntityDto<int>
     {
         public string Name { get; set; }
+        public int? DivisionId { get; set; }
         public DivisionDto Division { get; set; }
     }
 }

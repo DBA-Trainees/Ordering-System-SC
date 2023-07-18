@@ -809,6 +809,77 @@ export class CustomerServiceProxy {
         }
         return _observableOf(null as any);
     }
+
+    /**
+     * @param keyword (optional) 
+     * @param isActive (optional) 
+     * @param skipCount (optional) 
+     * @param maxResultCount (optional) 
+     * @return Success
+     */
+    getAllCustomersWithDivision(keyword: string | undefined, isActive: boolean | undefined, skipCount: number | undefined, maxResultCount: number | undefined): Observable<CustomerDtoPagedResultDto> {
+        let url_ = this.baseUrl + "/api/services/app/Customer/GetAllCustomersWithDivision?";
+        if (keyword === null)
+            throw new Error("The parameter 'keyword' cannot be null.");
+        else if (keyword !== undefined)
+            url_ += "Keyword=" + encodeURIComponent("" + keyword) + "&";
+        if (isActive === null)
+            throw new Error("The parameter 'isActive' cannot be null.");
+        else if (isActive !== undefined)
+            url_ += "IsActive=" + encodeURIComponent("" + isActive) + "&";
+        if (skipCount === null)
+            throw new Error("The parameter 'skipCount' cannot be null.");
+        else if (skipCount !== undefined)
+            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&";
+        if (maxResultCount === null)
+            throw new Error("The parameter 'maxResultCount' cannot be null.");
+        else if (maxResultCount !== undefined)
+            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAllCustomersWithDivision(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAllCustomersWithDivision(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<CustomerDtoPagedResultDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<CustomerDtoPagedResultDto>;
+        }));
+    }
+
+    protected processGetAllCustomersWithDivision(response: HttpResponseBase): Observable<CustomerDtoPagedResultDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = CustomerDtoPagedResultDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
 }
 
 @Injectable()
@@ -3860,6 +3931,7 @@ export interface ICreateCategoryDto {
 
 export class CreateCustomerDto implements ICreateCustomerDto {
     name: string | undefined;
+    divisionId: number | undefined;
 
     constructor(data?: ICreateCustomerDto) {
         if (data) {
@@ -3873,6 +3945,7 @@ export class CreateCustomerDto implements ICreateCustomerDto {
     init(_data?: any) {
         if (_data) {
             this.name = _data["name"];
+            this.divisionId = _data["divisionId"];
         }
     }
 
@@ -3886,6 +3959,7 @@ export class CreateCustomerDto implements ICreateCustomerDto {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["name"] = this.name;
+        data["divisionId"] = this.divisionId;
         return data;
     }
 
@@ -3899,6 +3973,7 @@ export class CreateCustomerDto implements ICreateCustomerDto {
 
 export interface ICreateCustomerDto {
     name: string | undefined;
+    divisionId: number | undefined;
 }
 
 export class CreateDivisionDto implements ICreateDivisionDto {
@@ -4270,6 +4345,7 @@ export interface ICreateUserDto {
 export class CustomerDto implements ICustomerDto {
     id: number;
     name: string | undefined;
+    divisionId: number | undefined;
     division: DivisionDto;
 
     constructor(data?: ICustomerDto) {
@@ -4285,6 +4361,7 @@ export class CustomerDto implements ICustomerDto {
         if (_data) {
             this.id = _data["id"];
             this.name = _data["name"];
+            this.divisionId = _data["divisionId"];
             this.division = _data["division"] ? DivisionDto.fromJS(_data["division"]) : <any>undefined;
         }
     }
@@ -4300,6 +4377,7 @@ export class CustomerDto implements ICustomerDto {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
         data["name"] = this.name;
+        data["divisionId"] = this.divisionId;
         data["division"] = this.division ? this.division.toJSON() : <any>undefined;
         return data;
     }
@@ -4315,6 +4393,7 @@ export class CustomerDto implements ICustomerDto {
 export interface ICustomerDto {
     id: number;
     name: string | undefined;
+    divisionId: number | undefined;
     division: DivisionDto;
 }
 

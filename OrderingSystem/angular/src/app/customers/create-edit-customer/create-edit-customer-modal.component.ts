@@ -9,7 +9,10 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { AppComponentBase } from '@shared/app-component-base';
 import {
     CustomerServiceProxy,
-    CustomerDto
+    CustomerDto,
+    DivisionDto,
+    DivisionServiceProxy,
+    CreateCustomerDto
 } from '@shared/service-proxies/service-proxies';
 
 @Component({
@@ -19,31 +22,49 @@ import {
 export class CreateEditCustomerModalComponent extends AppComponentBase
     implements OnInit {
     saving = false;
-    customer = new CustomerDto();
+    customer = new CreateCustomerDto();
+    customers = new CustomerDto;
+    division = new DivisionDto;
+    divisions: DivisionDto[] = [];
     id: number = 0;
+    selectDivisionId : number = null;
 
     @Output() onSave = new EventEmitter<any>();
 
     constructor(
         injector: Injector,
         private _customerServiceProxy: CustomerServiceProxy,
+        private _divisionServiceProxy: DivisionServiceProxy,
         public bsModalRef: BsModalRef
     ) {
         super(injector);
     }
 
     ngOnInit(): void {
-        if(this.id){
-            this._customerServiceProxy.get(this.id).subscribe((res) => {
-                this.customer = res;
-            });
+        if (this.id != 0){
+            if(this.id){
+                this._customerServiceProxy.get(this.id).subscribe((res) => {
+                    this.customer = res;
+                    this.selectDivisionId = res.division.id;
+                })
+                this._divisionServiceProxy.getAllDivisions().subscribe((res) => {
+                    this.divisions = res;
+                });
+            }
+        }
+        else{
+            this._divisionServiceProxy.getAllDivisions().subscribe((res) => {
+                this.divisions = res;
+            })
         }
     }
 
     save(): void {
         this.saving = true;
+        this.customer.divisionId = this.selectDivisionId;
+
         if(this.id != 0){
-            this._customerServiceProxy.update(this.customer).subscribe(
+            this._customerServiceProxy.update(this.customers).subscribe(
                 () => {
                     this.notify.info(this.l('SavedSuccessfully'));
                     this.bsModalRef.hide();

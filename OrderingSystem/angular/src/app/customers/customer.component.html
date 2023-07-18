@@ -3,11 +3,11 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-6">
-                    <h1><strong>{{ "Customers" | localize }}</strong></h1>
+                    <h2><strong>{{ "Customers" | localize }}</strong></h2>
                 </div>
                 <div class="col-6 text-right">
-                    <a href="javascript:;" class="btn bg-blue" (click)="create()">
-                        <i class="fa fa-plus-square"></i>
+                    <a href="javascript:;" class="btn bg-green rounded-pill" (click)="create()">
+                        <i class="fa fa-plus"></i>
                         {{ "Create" | localize }}
                     </a>
                 </div>
@@ -25,17 +25,17 @@
                                 <div class="input-group-prepend">
                                     <button
                                             type="button"
-                                            class="btn bg-blue"
+                                            class="btn bg-green rounded-pill"
                                             (click)="getDataPage(1)"
                                     >
                                         <i class="fas fa-search"></i>
                                     </button>
                                 </div>
                                 <input
-                                        type="text"
-                                        class="form-control"
+                                        type="search"
+                                        class="form-control rounded"
                                         name="keyword"
-                                        [placeholder]="'SearchWithThreeDot' | localize"
+                                        [placeholder]="'' | localize"
                                         [(ngModel)]="keyword"
                                         (keyup.enter)="getDataPage(1)"
                                 />
@@ -51,6 +51,7 @@
                             <tr>
                                 <th>{{ "Id" | localize }}</th>
                                 <th>{{ "Name" | localize }}</th>
+                                <th>{{ "Division" | localize }}</th>
                                 <th style="width: 100px;">{{ "Actions" | localize }}</th>
                             </tr>
                             </thead>
@@ -69,6 +70,7 @@
                             >
                                 <td>{{ customer.id }}</td>
                                 <td>{{ customer.name }}</td>
+                                <td>{{ customer.division?.name }}</td>
                                 <td>
                                     <button
                                             type="button"
@@ -95,7 +97,7 @@
                 <div class="card-footer table-card-footer bg-light border-top">
                     <div class="row">
                         <div class="col-sm-4 col-12 text-sm-left text-center">
-                            <button class="btn btn-secondary" (click)="refresh()">
+                            <button class="btn btn-dark btn-sm" (click)="refresh()">
                                 <i class="fas fa-redo-alt"></i>
                             </button>
                         </div>
@@ -104,7 +106,7 @@
                                 {{ "TotalRecordsCount" | localize: totalItems }}
                             </p>
                         </div>
-                        <div class="col-sm-4 col-12">
+                        <!-- <div class="col-sm-4 col-12">
                             <div class="float-sm-right m-auto">
                                 <abp-pagination-controls
                                         id="server"
@@ -112,7 +114,7 @@
                                 >
                                 </abp-pagination-controls>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

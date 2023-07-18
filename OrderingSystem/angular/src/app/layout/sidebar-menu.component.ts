@@ -43,37 +43,37 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
 
     getMenuItems(): MenuItem[] {
         return [
-            new MenuItem(this.l('About'), '/app/about', 'fas fa-info-circle'),
-            new MenuItem(this.l('HomePage'), '/app/home', 'fas fa-home'),
+           /*  new MenuItem(this.l('About'), '/app/about', 'fas fa-info-circle'),
+            new MenuItem(this.l('HomePage'), '/app/home', 'fas fa-home'), */
             new MenuItem(
                 this.l('Roles'),
                 '/app/roles',
                 'fas fa-theater-masks',
                 'Pages.Roles'
             ),
-            new MenuItem(
+            /* new MenuItem(
                 this.l('Tenants'),
                 '/app/tenants',
                 'fas fa-building',
                 'Pages.Tenants'
-            ),
+            ), */
             new MenuItem(
                 this.l('Users'),
                 '/app/users',
-                'fas fa-users',
+                'fas fa-user-circle',
                 'Pages.Users'
             ),
             new MenuItem( //added
                 this.l('Divisions'),
                 '/app/divisions',
-                'fa fa-folder-open'
+                'fas fa-divide'
             ),
             new MenuItem( //added
                 this.l('Customers'),
                 '/app/customers',
-                'fa fa-folder-open'
+                'fas fa-user-friends'
             ),
-            new MenuItem(this.l('MultiLevelMenu'), '', 'fas fa-circle', '', [
+           /*  new MenuItem(this.l('MultiLevelMenu'), '', 'fas fa-circle', '', [
                 new MenuItem('ASP.NET Boilerplate', '', 'fas fa-dot-circle', '', [
                     new MenuItem(
                         'Home',
@@ -123,7 +123,7 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
                         'far fa-circle'
                     )
                 ])
-            ])
+            ]) */
         ];
     }
 

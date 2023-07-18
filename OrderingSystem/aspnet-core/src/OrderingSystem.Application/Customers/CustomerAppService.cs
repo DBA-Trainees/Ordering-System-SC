@@ -1,8 +1,12 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
+using Microsoft.EntityFrameworkCore;
 using OrderingSystem.Customers.Dto;
+using OrderingSystem.Divisions.Dto;
 using OrderingSystem.Entities;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace OrderingSystem.Customers
@@ -43,6 +47,15 @@ namespace OrderingSystem.Customers
         protected override Task<Customer> GetEntityByIdAsync(int id)
         {
             return base.GetEntityByIdAsync(id);
+        }
+        public async Task<PagedResultDto<CustomerDto>> GetAllCustomersWithDivision(PagedCustomerResultRequestDto input)
+        {
+            var query = await _repository.GetAll()
+                .Include(x => x.Division)
+                .Select(x => ObjectMapper.Map<CustomerDto>(x))
+                .ToListAsync();
+
+            return new PagedResultDto<CustomerDto>(query.Count, query);
         }
     }
 }

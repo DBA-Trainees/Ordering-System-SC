@@ -5,7 +5,7 @@
   (ngSubmit)="save()"
 >
   <abp-modal-header
-    [title]="'Create/Edit CustomerName' | localize"
+    [title]="'Create/Edit' | localize"
     (onCloseClick)="bsModalRef.hide()"
   ></abp-modal-header>
   <div class="modal-body">
@@ -31,6 +31,19 @@
         [control]="nameModel"
         [controlEl]="nameEl">          
         </abp-validation-summary>
+  </div>
+        <label class="col-md-3 col-form-label" for="divisionName">
+          {{ "Division" | localize }}
+        </label>
+  <div class="col-md-9" style="display: inline-flex;">
+    <select
+    [ngModel]="selectDivisionId"
+    (ngModelChange)="selectDivisionId = $event"
+    name="name" id="name" required>
+      <option *ngFor="let division of divisions" [ngValue]="division.id">
+        {{ division.name }}
+      </option>
+    </select>
   </div>
   <abp-modal-footer
     [cancelDisabled]="saving"
