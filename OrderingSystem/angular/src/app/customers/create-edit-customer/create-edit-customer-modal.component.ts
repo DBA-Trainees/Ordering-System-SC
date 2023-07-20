@@ -22,12 +22,10 @@ import {
 export class CreateEditCustomerModalComponent extends AppComponentBase
     implements OnInit {
     saving = false;
-    customer = new CreateCustomerDto();
-    customers = new CustomerDto;
-    division = new DivisionDto;
+    customers: CustomerDto = new CustomerDto();
     divisions: DivisionDto[] = [];
     id: number = 0;
-    selectDivisionId : number = null;
+    selectDivisionId: number = null;
 
     @Output() onSave = new EventEmitter<any>();
 
@@ -35,35 +33,30 @@ export class CreateEditCustomerModalComponent extends AppComponentBase
         injector: Injector,
         private _customerServiceProxy: CustomerServiceProxy,
         private _divisionServiceProxy: DivisionServiceProxy,
-        public bsModalRef: BsModalRef
+        public bsModalRef: BsModalRef 
     ) {
         super(injector);
     }
 
-    ngOnInit(): void {
-        if (this.id != 0){
-            if(this.id){
-                this._customerServiceProxy.get(this.id).subscribe((res) => {
-                    this.customer = res;
-                    this.selectDivisionId = res.division.id;
-                })
-                this._divisionServiceProxy.getAllDivisions().subscribe((res) => {
-                    this.divisions = res;
-                });
-            }
+    ngOnInit() {
+        if (this.id) {
+            this._customerServiceProxy.get(this.id).subscribe((res) => {
+                this.customers = res;
+                this.customers.name = res.name;
+                this.selectDivisionId = this.customers.divisionId;
+            });
         }
-        else{
-            this._divisionServiceProxy.getAllDivisions().subscribe((res) => {
-                this.divisions = res;
-            })
-        }
+
+        this._divisionServiceProxy.getAllDivisions().subscribe((res) => {
+            this.divisions = res;
+        });
     }
 
     save(): void {
         this.saving = true;
-        this.customer.divisionId = this.selectDivisionId;
+        this.customers.divisionId = this.selectDivisionId;
 
-        if(this.id != 0){
+        if (this.id !==0) {
             this._customerServiceProxy.update(this.customers).subscribe(
                 () => {
                     this.notify.info(this.l('SavedSuccessfully'));
@@ -74,8 +67,8 @@ export class CreateEditCustomerModalComponent extends AppComponentBase
                     this.saving = false;
                 }
             );
-        }else{
-            this._customerServiceProxy.create(this.customer).subscribe(
+        } else {
+            this._customerServiceProxy.create(this.customers).subscribe(
                 () => {
                     this.notify.info(this.l('SavedSuccessfully'));
                     this.bsModalRef.hide();
@@ -85,6 +78,6 @@ export class CreateEditCustomerModalComponent extends AppComponentBase
                     this.saving = false;
                 }
             );
-        }       
+        }
     }
 }

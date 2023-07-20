@@ -76,11 +76,11 @@ export class FoodsComponent extends PagedListingComponentBase<FoodDto>{
         );
       }
     
-      create(): void {
+      createFood(): void {
         this.showCreateOrEditFoodModal();
       }
     
-      edit(id): void {
+      editFood(id): void {
         this.showCreateOrEditFoodModal(id);
       }
     

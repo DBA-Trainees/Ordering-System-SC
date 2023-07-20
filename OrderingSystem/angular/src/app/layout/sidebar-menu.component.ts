@@ -46,6 +46,24 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
            /*  new MenuItem(this.l('About'), '/app/about', 'fas fa-info-circle'),
             new MenuItem(this.l('HomePage'), '/app/home', 'fas fa-home'), */
             new MenuItem(
+                this.l('Users'),
+                '/app/users',
+                'fas fa-user-circle',
+                'Pages.Users'
+            ),
+            new MenuItem( //added
+            this.l('Customers'),
+            '/app/customers',
+            'fas fa-users',
+            'Pages.Customers'
+            ),
+            new MenuItem( //added
+                this.l('Divisions'),
+                '/app/divisions',
+                'fa fa-university',
+                'Pages.Divisions'
+            ),
+            new MenuItem(
                 this.l('Roles'),
                 '/app/roles',
                 'fas fa-theater-masks',
@@ -57,21 +75,17 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
                 'fas fa-building',
                 'Pages.Tenants'
             ), */
-            new MenuItem(
-                this.l('Users'),
-                '/app/users',
-                'fas fa-user-circle',
-                'Pages.Users'
+            new MenuItem( //added
+                this.l('Categories'),
+                '/app/categories',
+                'fa fa-th-list',
+                'Pages.Categories'
             ),
             new MenuItem( //added
-                this.l('Divisions'),
-                '/app/divisions',
-                'fas fa-divide'
-            ),
-            new MenuItem( //added
-                this.l('Customers'),
-                '/app/customers',
-                'fas fa-user-friends'
+                this.l('Foods'),
+                '/app/foods',
+                'fa fa-cutlery',
+                'Pages.Foods'
             ),
            /*  new MenuItem(this.l('MultiLevelMenu'), '', 'fas fa-circle', '', [
                 new MenuItem('ASP.NET Boilerplate', '', 'fas fa-dot-circle', '', [

@@ -30,7 +30,7 @@ class PagedCustomerRequestDto extends PagedRequestDto {
 
 export class CustomersComponent extends PagedListingComponentBase<CustomerDto>{
     customers: CustomerDto[] = [];
-    divisions: DivisionDto[] = [];
+   
     keyword = '';
     isActive: boolean | null;
 /*     advancedFiltersVisible = false;
@@ -38,7 +38,6 @@ export class CustomersComponent extends PagedListingComponentBase<CustomerDto>{
     constructor(
         injector: Injector,
         private _customerServiceProxy: CustomerServiceProxy,
-        private _divisionServiceProxy: DivisionServiceProxy,
         private _modalService: BsModalService
     ) {
         super(injector)
@@ -77,7 +76,7 @@ export class CustomersComponent extends PagedListingComponentBase<CustomerDto>{
               this._customerServiceProxy.delete(customer.id).subscribe(() => {
                 abp.notify.success(this.l('SuccessfullyDeleted'));
                 this.refresh();
-              });
+              })
             }
           }
         );

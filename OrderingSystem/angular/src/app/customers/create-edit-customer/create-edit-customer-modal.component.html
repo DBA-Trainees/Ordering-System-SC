@@ -5,10 +5,12 @@
   (ngSubmit)="save()"
 >
   <abp-modal-header
-    [title]="'Create/Edit' | localize"
+    [title]="'Create/Edit Customer' | localize"
     (onCloseClick)="bsModalRef.hide()"
   ></abp-modal-header>
   <div class="modal-body">
+    <tabset>
+      <tab [heading]="'Customer Details' | localize" class="pt-3 px-2">
         <div class="form-group row required">
           <label class="col-md-3 col-form-label" for="name">
             {{ "Name" | localize }}
@@ -21,12 +23,14 @@
               id="name"
               required
               maxlength="32"
-              [(ngModel)]="customer.name"
+              [(ngModel)]="customers.name"
               #nameModel="ngModel"
               #nameEl
             />
           </div>
         </div>
+      </tab>
+    </tabset>
         <abp-validation-summary 
         [control]="nameModel"
         [controlEl]="nameEl">          
@@ -36,10 +40,10 @@
           {{ "Division" | localize }}
         </label>
   <div class="col-md-9" style="display: inline-flex;">
-    <select
+    <select 
     [ngModel]="selectDivisionId"
-    (ngModelChange)="selectDivisionId = $event"
-    name="name" id="name" required>
+    (ngModelChange)="selectDivisionId=$event" 
+    name="division" id="division" required style="width: 570px; height: 40px; border-radius: 5px;" data-live-search="true">
       <option *ngFor="let division of divisions" [ngValue]="division.id">
         {{ division.name }}
       </option>

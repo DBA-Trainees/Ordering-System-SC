@@ -3931,7 +3931,7 @@ export interface ICreateCategoryDto {
 
 export class CreateCustomerDto implements ICreateCustomerDto {
     name: string | undefined;
-    divisionId: number | undefined;
+    divisionId: number;
 
     constructor(data?: ICreateCustomerDto) {
         if (data) {
@@ -3973,7 +3973,7 @@ export class CreateCustomerDto implements ICreateCustomerDto {
 
 export interface ICreateCustomerDto {
     name: string | undefined;
-    divisionId: number | undefined;
+    divisionId: number;
 }
 
 export class CreateDivisionDto implements ICreateDivisionDto {
@@ -4345,7 +4345,7 @@ export interface ICreateUserDto {
 export class CustomerDto implements ICustomerDto {
     id: number;
     name: string | undefined;
-    divisionId: number | undefined;
+    divisionId: number;
     division: DivisionDto;
 
     constructor(data?: ICustomerDto) {
@@ -4393,7 +4393,7 @@ export class CustomerDto implements ICustomerDto {
 export interface ICustomerDto {
     id: number;
     name: string | undefined;
-    divisionId: number | undefined;
+    divisionId: number;
     division: DivisionDto;
 }
 

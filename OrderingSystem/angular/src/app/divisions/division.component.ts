@@ -79,11 +79,11 @@ export class DivisionsComponent extends PagedListingComponentBase<DivisionDto>{
     );
   }
 
-  create(): void {
+  createDivision(): void {
     this.showCreateOrEditDivisionModal();
   }
 
-  edit(id): void {
+  editDivision(id): void {
     this.showCreateOrEditDivisionModal(id);
   }
 

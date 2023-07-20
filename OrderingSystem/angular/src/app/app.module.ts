@@ -88,7 +88,7 @@ import { CategoryServiceProxy, CustomerServiceProxy, DivisionServiceProxy, FoodS
         CategoriesComponent,
         CreateEditCategoryModalComponent,
         FoodsComponent,
-        CreateEditFoodModalComponent
+        CreateEditFoodModalComponent,
         
     ],
     imports: [
@@ -104,7 +104,7 @@ import { CategoryServiceProxy, CustomerServiceProxy, DivisionServiceProxy, FoodS
         AppRoutingModule,
         ServiceProxyModule,
         SharedModule,
-        NgxPaginationModule
+        NgxPaginationModule,
         
     ],
     providers: [
@@ -112,6 +112,9 @@ import { CategoryServiceProxy, CustomerServiceProxy, DivisionServiceProxy, FoodS
         CustomerServiceProxy,
         CategoryServiceProxy,
         FoodServiceProxy
+    ],
+    bootstrap: [
+        AppComponent
     ]
 })
 export class AppModule {}

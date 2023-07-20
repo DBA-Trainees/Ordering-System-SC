@@ -12,7 +12,7 @@ namespace OrderingSystem.Divisions
 {
     public class DivisionAppService : AsyncCrudAppService<Division, DivisionDto, int, PagedDivisionResultRequestDto, CreateDivisionDto, DivisionDto>, IDivisionAppService
     {
-        private IRepository<Division, int> _repository;
+        private readonly IRepository<Division, int> _repository;
         public DivisionAppService(IRepository<Division, int> repository) : base(repository)
         {
             _repository = repository;
@@ -54,6 +54,10 @@ namespace OrderingSystem.Divisions
                 .ToListAsync();
 
             return query;
+        }
+        protected override IQueryable<Division> CreateFilteredQuery(PagedDivisionResultRequestDto input)
+        {
+            return base.CreateFilteredQuery(input);
         }
     }
 }

@@ -7,9 +7,9 @@
         </div>
         <div class="col-6 text-right">
           <a href="javascript:;"
-            class="btn bg-blue"
+            class="btn bg-green rounded-pill"
             (click)="createRole()">
-            <i class="fa fa-plus-square"></i>
+            <i class="fa fa-plus"></i>
             {{ "Create" | localize }}
           </a>
         </div>
@@ -26,15 +26,15 @@
               <div class="input-group">
                 <div class="input-group-prepend">
                   <button type="button"
-                    class="btn bg-blue"
+                    class="btn bg-green rounded-pill"
                     (click)="getDataPage(1)">
                     <i class="fas fa-search"></i>
                   </button>
                 </div>
                 <input type="text"
-                  class="form-control"
+                  class="form-control rounded"
                   name="keyword"
-                  [placeholder]="'SearchWithThreeDot' | localize"
+                  [placeholder]="'' | localize"
                   [(ngModel)]="keyword"
                   (keyup.enter)="getDataPage(1)" />
               </div>
@@ -49,7 +49,7 @@
                 <tr>
                   <th>{{ "RoleName" | localize }}</th>
                   <th>{{ "DisplayName" | localize }}</th>
-                  <th style="width: 200px;">{{ "Actions" | localize }}</th>
+                  <th style="width: 100px;">{{ "Actions" | localize }}</th>
                 </tr>
               </thead>
               <tbody>
@@ -70,13 +70,13 @@
                       class="btn btn-sm bg-secondary"
                       (click)="editRole(role)">
                       <i class="fas fa-pencil-alt"></i>
-                      {{ "Edit" | localize }}
+                      {{ "" | localize }}
                     </button>
                     <button type="button"
                       class="btn btn-sm bg-danger mx-2"
                       (click)="delete(role)">
                       <i class="fas fa-trash"></i>
-                      {{ "Delete" | localize }}
+                      {{ "" | localize }}
                     </button>
                   </td>
                 </tr>
@@ -87,7 +87,7 @@
         <div class="card-footer table-card-footer bg-light border-top">
           <div class="row">
             <div class="col-sm-4 col-12 text-sm-left text-center">
-              <button class="btn btn-secondary"
+              <button class="btn btn-dark btn-sm"
                 (click)="refresh()">
                 <i class="fas fa-redo-alt"></i>
               </button>
@@ -97,13 +97,13 @@
                 {{ "TotalRecordsCount" | localize: totalItems }}
               </p>
             </div>
-            <div class="col-sm-4 col-12">
+           <!--  <div class="col-sm-4 col-12">
               <div class="float-sm-right m-auto">
                 <abp-pagination-controls id="server"
                   (pageChange)="getDataPage($event)">
                 </abp-pagination-controls>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

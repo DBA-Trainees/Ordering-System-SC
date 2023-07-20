@@ -13,7 +13,7 @@ namespace OrderingSystem.Customers
 {
     public class CustomerAppService : AsyncCrudAppService<Customer, CustomerDto, int, PagedCustomerResultRequestDto, CreateCustomerDto, CustomerDto>, ICustomerAppService
     {
-        private IRepository<Customer, int> _repository;
+        private readonly IRepository<Customer, int> _repository;
         public CustomerAppService(IRepository<Customer, int> repository) : base(repository)
         {
             _repository = repository;
