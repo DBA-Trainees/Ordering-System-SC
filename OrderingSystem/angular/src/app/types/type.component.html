@@ -3,10 +3,10 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-6">
-                    <h1>{{ "Customers" | localize }}</h1>
+                    <h1>{{ "Types" | localize }}</h1>
                 </div>
                 <div class="col-6 text-right">
-                    <a href="javascript:;" class="btn bg-green rounded-pill" (click)="createCustomer()">
+                    <a href="javascript:;" class="btn bg-green rounded-pill" (click)="createType()">
                         <i class="fa fa-plus"></i>
                         {{ "Create" | localize }}
                     </a>
@@ -32,7 +32,7 @@
                                     </button>
                                 </div>
                                 <input
-                                        type="search"
+                                        type="text"
                                         class="form-control rounded"
                                         name="keyword"
                                         [placeholder]="'' | localize"
@@ -51,14 +51,13 @@
                             <tr>
                                 <th>{{ "Id" | localize }}</th>
                                 <th>{{ "Name" | localize }}</th>
-                                <th>{{ "Division" | localize }}</th>
                                 <th style="width: 100px;">{{ "Actions" | localize }}</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr
                                     *ngFor="
-                  let customer of customers
+                  let type of types
                     | paginate
                       : {
                           id: 'server',
@@ -68,14 +67,13 @@
                         }
                 "
                             >
-                                <td>{{ customer.id }}</td>
-                                <td>{{ customer.name }}</td>
-                                <td>{{ customer.division?.name }}</td>
+                                <td>{{ type.id }}</td>
+                                <td>{{ type.name }}</td>
                                 <td>
                                     <button
                                             type="button"
                                             class="btn btn-sm bg-secondary"
-                                            (click)="editCustomer(customer.id)"
+                                            (click)="editType(type.id)"
                                     >
                                         <i class="fas fa-pencil-alt"></i>
                                         {{ "" | localize }}
@@ -83,7 +81,7 @@
                                     <button
                                             type="button"
                                             class="btn btn-sm bg-danger mx-2"
-                                            (click)="delete(customer)"
+                                            (click)="delete(type)"
                                     >
                                         <i class="fas fa-trash"></i>
                                         {{ "" | localize }}
@@ -106,15 +104,6 @@
                                 {{ "TotalRecordsCount" | localize: totalItems }}
                             </p>
                         </div>
-                        <!-- <div class="col-sm-4 col-12">
-                            <div class="float-sm-right m-auto">
-                                <abp-pagination-controls
-                                        id="server"
-                                        (pageChange)="getDataPage($event)"
-                                >
-                                </abp-pagination-controls>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
             </div>

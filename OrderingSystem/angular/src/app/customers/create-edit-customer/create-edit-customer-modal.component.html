@@ -2,7 +2,7 @@
   class="form-horizontal"
   autocomplete="off"
   #createEditCustomerModal="ngForm"
-  (ngSubmit)="save()"
+  (ngSubmit)="saveCustomer()"
 >
   <abp-modal-header
     [title]="'Create/Edit Customer' | localize"
@@ -12,28 +12,28 @@
     <tabset>
       <tab [heading]="'Customer Details' | localize" class="pt-3 px-2">
         <div class="form-group row required">
-          <label class="col-md-3 col-form-label" for="name">
-            {{ "Name" | localize }}
+          <label class="col-md-3 col-form-label" for="customerName">
+            {{ "CustomerName" | localize }}
           </label>
           <div class="col-md-9">
             <input
               type="text"
               class="form-control"
-              name="name"
-              id="name"
+              name="customerName"
+              id="customerName"
               required
               maxlength="32"
               [(ngModel)]="customers.name"
-              #nameModel="ngModel"
-              #nameEl
+              #customerNameModel="ngModel"
+              #customerNameEl
             />
           </div>
         </div>
       </tab>
     </tabset>
         <abp-validation-summary 
-        [control]="nameModel"
-        [controlEl]="nameEl">          
+        [control]="customerNameModel"
+        [controlEl]="customerNameEl">          
         </abp-validation-summary>
   </div>
         <label class="col-md-3 col-form-label" for="divisionName">

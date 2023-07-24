@@ -12,9 +12,7 @@ import {
 import {
     CustomerDto,
     CustomerDtoPagedResultDto,
-    CustomerServiceProxy,
-    DivisionServiceProxy,
-    DivisionDto
+    CustomerServiceProxy
 } from '@shared/service-proxies/service-proxies';
 import { CreateEditCustomerModalComponent } from './create-edit-customer/create-edit-customer-modal.component';
 
@@ -30,7 +28,6 @@ class PagedCustomerRequestDto extends PagedRequestDto {
 
 export class CustomersComponent extends PagedListingComponentBase<CustomerDto>{
     customers: CustomerDto[] = [];
-   
     keyword = '';
     isActive: boolean | null;
 /*     advancedFiltersVisible = false;
@@ -81,11 +78,11 @@ export class CustomersComponent extends PagedListingComponentBase<CustomerDto>{
           }
         );
       }
-    create(): void {
+    createCustomer(): void {
         this.showCreateOrEditCustomerModal();
     }
 
-    edit(id): void {
+    editCustomer(id): void {
         this.showCreateOrEditCustomerModal(id);
     }
 

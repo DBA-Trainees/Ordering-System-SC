@@ -1,9 +1,11 @@
 ﻿using Abp.AutoMapper;
 using OrderingSystem.Entities;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace OrderingSystem.Foods.Dto
 {
-    [AutoMapTo(typeof(Type))]
+    [AutoMapTo(typeof(Food))]
     public class CreateFoodDto
     {
         public byte[] Image { get; set; }
@@ -13,7 +15,9 @@ namespace OrderingSystem.Foods.Dto
         public bool Availability { get; set; }
         public int Quantity { get; set; }
         public int? Size { get; set; }
-        public int Price { get; set; }
+
+        [Required]
+        public Double Price { get; set; }
         public int? CategoryId { get; set; }
         public int? TypeId { get; set; }
     }

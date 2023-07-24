@@ -1,4 +1,6 @@
 ﻿using Abp.Domain.Entities.Auditing;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace OrderingSystem.Entities
 {
@@ -11,10 +13,10 @@ namespace OrderingSystem.Entities
         public bool Availability { get; set; }
         public int Quantity { get; set; }
         public int? Size { get; set; }
-        public int Price { get; set; }
-        public Category Category { get; set; }
+        public Double Price { get; set; }
         public int? CategoryId { get; set; }
-        public Type Type { get; set; }
+        public Category Category { get; set; }
         public int? TypeId { get; set; }
+        public Type Type { get; set; }
     }
 }

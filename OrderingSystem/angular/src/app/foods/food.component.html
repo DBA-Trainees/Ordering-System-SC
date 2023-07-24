@@ -77,6 +77,15 @@
                                     >
                                         <td>{{ food.id }}</td>
                                         <td>{{ food.name }}</td>
+                                        <td>{{ food.image }}</td>
+                                        <td>{{ food.imageName }}</td>
+                                        <td>{{ food.imageFileType }}</td>
+                                        <td>{{ food.availablity }}</td>
+                                        <td>{{ food.quantity }}</td>
+                                        <td>{{ food.category?.name }}</td>
+                                        <td>{{ food.type?.name }}</td>
+                                        <td>{{ food.size }}</td>
+                                        <td>{{ food.price }}</td>
                                         <td>
                                             <button
                                                     type="button"
@@ -111,15 +120,6 @@
                             <p class="mb-0 my-2">
                                 {{ "TotalRecordsCount" | localize: totalItems }}
                             </p>
-                        </div>
-                        <div class="col-sm-4 col-12">
-                            <div class="float-sm-right m-auto">
-                                <abp-pagination-controls
-                                        id="server"
-                                        (pageChange)="getDataPage($event)"
-                                >
-                                </abp-pagination-controls>
-                            </div>
                         </div>
                     </div>
                 </div>

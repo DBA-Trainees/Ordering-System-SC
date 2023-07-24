@@ -7,44 +7,44 @@ import {
     PagedRequestDto
 } from 'shared/paged-listing-component-base';
 import {
-    CategoryDto,
-    CategoryDtoPagedResultDto,
-    CategoryServiceProxy
+    TypeDto,
+    TypeDtoPagedResultDto,
+    TypeServiceProxy
 } from '@shared/service-proxies/service-proxies';
-import { CreateEditCategoryModalComponent } from './create-edit-category/create-edit-category-modal.component';
+import { CreateEditTypeModalComponent } from './create-edit-type/create-edit-type-modal.component';
 
-class PagedCategoriesRequestDto extends PagedRequestDto {
+class PagedTypeRequestDto extends PagedRequestDto {
     keyword: string;
     isActive: boolean | null;
 }
 
 @Component({
-    templateUrl: './category.component.html',
+    templateUrl: './type.component.html',
     animations: [appModuleAnimation()]
 })
 
-export class CategoriesComponent extends PagedListingComponentBase<CategoryDto>{
-    categories: CategoryDto[] = [];
+export class TypesComponent extends PagedListingComponentBase<TypeDto>{
+    types: TypeDto[] = [];
     keyword = '';
     isActive: boolean | null;
     advancedFiltersVisible = false;
 
     constructor(
         injector: Injector,
-        private _categoryServiceProxy: CategoryServiceProxy,
+        private _typeServiceProxy: TypeServiceProxy,
         private _modalService: BsModalService
     ) {
         super(injector)
     }
 
     protected list(
-        request: PagedCategoriesRequestDto,
+        request: PagedTypeRequestDto,
         pageNumber: number,
         finishedCallback: Function): void {
         request.keyword = this.keyword;
         request.isActive = this.isActive;
 
-        this._categoryServiceProxy
+        this._typeServiceProxy
             .getAll(
                 request.keyword,
                 request.isActive,
@@ -56,18 +56,18 @@ export class CategoriesComponent extends PagedListingComponentBase<CategoryDto>{
                     finishedCallback();
                 })
             )
-            .subscribe((result: CategoryDtoPagedResultDto) => {
-                this.categories = result.items;
+            .subscribe((result: TypeDtoPagedResultDto) => {
+                this.types = result.items;
                 this.showPaging(result, pageNumber);
             });
     }
-    protected delete(category: CategoryDto): void {
+    protected delete(type: TypeDto): void {
         abp.message.confirm(
-            this.l('UserDeleteWarningMessage', category.name),
+            this.l('UserDeleteWarningMessage', type.name),
             undefined,
             (result: boolean) => {
                 if (result) {
-                    this._categoryServiceProxy.delete(category.id).subscribe(() => {
+                    this._typeServiceProxy.delete(type.id).subscribe(() => {
                         abp.notify.success(this.l('SuccessfullyDeleted'));
                         this.refresh();
                     });
@@ -76,26 +76,26 @@ export class CategoriesComponent extends PagedListingComponentBase<CategoryDto>{
         )
     };
 
-    createCategory(): void {
-        this.showCreateOrEditCategoryModal();
+    createType(): void {
+        this.showCreateOrEditTypeModal();
     }
 
-    editCategory(id): void {
-        this.showCreateOrEditCategoryModal(id);
+    editType(id): void {
+        this.showCreateOrEditTypeModal(id);
     }
 
-    private showCreateOrEditCategoryModal(id?: number): void {
-        let createOrEditCategoryModal: BsModalRef;
+    private showCreateOrEditTypeModal(id?: number): void {
+        let createOrEditTypeModal: BsModalRef;
         if (!id) {
-            createOrEditCategoryModal = this._modalService.show(
-                CreateEditCategoryModalComponent,
+            createOrEditTypeModal = this._modalService.show(
+                CreateEditTypeModalComponent,
                 {
                     class: 'modal-lg',
                 }
             );
         } else {
-            createOrEditCategoryModal = this._modalService.show(
-                CreateEditCategoryModalComponent,
+            createOrEditTypeModal = this._modalService.show(
+                CreateEditTypeModalComponent,
                 {
                     class: 'modal-lg',
                     initialState: {
@@ -105,7 +105,7 @@ export class CategoriesComponent extends PagedListingComponentBase<CategoryDto>{
             );
         }
 
-        createOrEditCategoryModal.content.onSave.subscribe(() => {
+        createOrEditTypeModal.content.onSave.subscribe(() => {
             this.refresh();
         });
     }

@@ -1,6 +1,8 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
+using Abp.Collections.Extensions;
 using Abp.Domain.Repositories;
+using Abp.Extensions;
 using Microsoft.EntityFrameworkCore;
 using OrderingSystem.Divisions.Dto;
 using OrderingSystem.Entities;
@@ -54,10 +56,6 @@ namespace OrderingSystem.Divisions
                 .ToListAsync();
 
             return query;
-        }
-        protected override IQueryable<Division> CreateFilteredQuery(PagedDivisionResultRequestDto input)
-        {
-            return base.CreateFilteredQuery(input);
         }
     }
 }

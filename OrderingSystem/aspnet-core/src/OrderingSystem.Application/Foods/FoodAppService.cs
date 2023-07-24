@@ -1,15 +1,21 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
+using Microsoft.EntityFrameworkCore;
+using OrderingSystem.Customers.Dto;
 using OrderingSystem.Entities;
 using OrderingSystem.Foods.Dto;
+using System.Collections.Generic;
+using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
+using System.Linq;
+using AutoMapper.Internal.Mappers;
 
 namespace OrderingSystem.Foods
 {
     public class FoodAppService : AsyncCrudAppService<Food, FoodDto, int, PagedFoodResultRequestDto, CreateFoodDto, FoodDto>, IFoodAppService
     {
-        private IRepository<Food, int> _repository;
+        private readonly IRepository<Food, int> _repository;
         public FoodAppService(IRepository<Food, int> repository) : base(repository)
         {
             _repository = repository;
@@ -44,5 +50,25 @@ namespace OrderingSystem.Foods
         {
             return base.GetEntityByIdAsync(id);
         }
+        public async Task<PagedResultDto<FoodDto>> GetAllFoodFromCategories(PagedFoodResultRequestDto input)
+        {
+            var query = await _repository.GetAll()
+                .Include(x => x.Category)
+                .Select(x => ObjectMapper.Map<FoodDto>(x))
+                .ToListAsync();
+
+            return new PagedResultDto<FoodDto>(query.Count, query);
+        }
+        public async Task<PagedResultDto<FoodDto>> GetAllFoodWithTypes(PagedFoodResultRequestDto input)
+        {
+            var food = await _repository.GetAll()
+            .Include(x => x.Type)
+            .Select(x => ObjectMapper.Map<FoodDto>(x))
+            .ToListAsync();
+
+            return new PagedResultDto<FoodDto>(food.Count, food);
+        }
+            
+
     }
 }

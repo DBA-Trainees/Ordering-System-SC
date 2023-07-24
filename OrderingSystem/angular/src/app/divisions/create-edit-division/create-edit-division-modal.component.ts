@@ -43,7 +43,7 @@ export class CreateEditDivisionModalComponent extends AppComponentBase
         }
     }
 
-    save(): void {
+    saveDivision(): void {
         this.saving = true;
 
         if(this.id != 0){

@@ -1,16 +1,20 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
+using Microsoft.EntityFrameworkCore;
 using OrderingSystem.Categories.Dto;
 using OrderingSystem.Entities;
 using System.Threading.Tasks;
+using System.Linq;
+using System.Collections.Generic;
+using OrderingSystem.Divisions.Dto;
 
 namespace OrderingSystem.Categories
 {
     public class CategoryAppService : AsyncCrudAppService<Category, CategoryDto, int, PagedCategoryResultRequestDto, CreateCategoryDto, CategoryDto>, ICategoryAppService
     {
-        private IRepository<Category> _categoryRepository;
-        public CategoryAppService(IRepository<Category> categoryRepository) : base(categoryRepository)
+        private readonly IRepository<Category, int> _categoryRepository;
+        public CategoryAppService(IRepository<Category, int> categoryRepository) : base(categoryRepository)
         {
             _categoryRepository = categoryRepository;
         }
@@ -44,5 +48,14 @@ namespace OrderingSystem.Categories
         {
             return base.GetEntityByIdAsync(id);
         }
+        public async Task<List<CategoryDto>> GetAllCategories()
+        {
+            var query = await _categoryRepository.GetAll()
+                .Select(x => ObjectMapper.Map<CategoryDto>(x))
+                .ToListAsync();
+
+            return query;
+        }
+
     }
 }

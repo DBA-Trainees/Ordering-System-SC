@@ -52,7 +52,7 @@ export class CreateEditCustomerModalComponent extends AppComponentBase
         });
     }
 
-    save(): void {
+    saveCustomer(): void {
         this.saving = true;
         this.customers.divisionId = this.selectDivisionId;
 

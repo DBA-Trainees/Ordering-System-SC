@@ -2,53 +2,239 @@
   class="form-horizontal" 
   autocomplete="off" 
   #createEditFoodModal="ngForm" 
-  (mgSubmit)="save()"
+  (mgSubmit)="saveFood()"
 >
-        <abp-modal-header 
-            [title]="'Create or change food order' | localize"
-            (onCloseClick)="bsModalRef.hide()"
-        ></abp-modal-header>
-    <div class="modal-body">
-        <tabset>
-            <tab [heading]="'Food Details' | localize" class="pt-3 px-2">
-                <div class="form-group row required">
-                        <label class="col-md-3 col-form-label" for="image">
-                            {{ "Image" | localize }}
-                        </label>
-                        <div class="col-md-9">
-                            <input
-                                type="image"
-                                class="form-control"
-                                name="image"
-                                id="image"
-                                required
-                                maxlength=""
-                                />
-                        </div>
-                </div>
-
-
-                <div class="form-group row required">
-                        <label class="col-md-3 col-form-label" for="name">
-                            {{ "Name" | localize }}
-                        </label>
-                            <div class="col-md-9">
-                                <input type="text" 
-                                class="form-control" 
-                                name="name" 
-                                id="name" 
-                                required 
-                                maxlength="32"
-                                [(ngModel)]="food.name" 
-                                #nameModel="ngModel" 
-                                #nameE1 />
-                                <!-- <abp-validation-summary
-                                [control]="nameModel"
-                                [controlEl]="nameEl"
-                                ></abp-validation-summary> -->
-                            </div>
-                </div>
-            </tab>
-        </tabset>
+ <abp-modal-header 
+    [title]="'Create or change food order' | localize"
+    (onCloseClick)="bsModalRef.hide()"
+ ></abp-modal-header>
+ <div class="modal-body">
+  <tabset>
+   <tab [heading]="'Food Details' | localize" class="pt-3 px-2">
+    <div class="form-group row required">
+     <label class="col-md-3 col-form-label" for="image">
+        {{ "Image" | localize }}
+     </label>
+      <div class="col-md-9">
+        <input
+            type="image"
+            class="form-control"
+            name="image"
+            id="image"
+            required
+            maxlength="32"
+            [(ngModel)]="food.image"
+            #imageModel="ngModel"
+            #imageE1
+          />
+          <abp-validation-summary
+              [control]="imageModel"
+              [controlEl]="imageE1"
+          ></abp-validation-summary>
+      </div>
     </div>
+    <div class="form-group row required">
+        <label class="col-md-3 col-form-label" for="imageName">
+          {{ "Image Name" | localize }}
+        </label>
+        <div class="col-md-9">
+          <input
+            type="text"
+            class="form-control"
+            name="imageName"
+            id="imageName"
+            required
+            maxlength="32"
+            [(ngModel)]="food.imageName"
+            #imageNameModel="ngModel"
+            #imageNameEl
+          />
+          <abp-validation-summary
+            [control]="imageNameModel"
+            [controlEl]="imageNameEl"
+          ></abp-validation-summary>
+        </div>
+      </div>
+      <div class="form-group row required">
+        <label class="col-md-3 col-form-label" for="imageFileType">
+          {{ "Image File Type" | localize }}
+        </label>
+        <div class="col-md-9">
+          <input
+            type="text"
+            class="form-control"
+            name="imageFileType"
+            id="imageFileType" 
+            required
+            maxlength="32"
+            [(ngModel)]="food.imageFileType"
+            #imageFileTypeModel="ngModel"
+            #imageFileTypeEl
+          />
+          <abp-validation-summary
+            [control]="imageFileTypeModel"
+            [controlEl]="imageFileTypeEl"
+          ></abp-validation-summary>
+        </div>
+      </div>
+    <div class="form-group row required">
+        <label class="col-md-3 col-form-label" for="name">
+            {{ "Name" | localize }}
+        </label>
+            <div class="col-md-9">
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    name="name" 
+                    id="name" 
+                    required 
+                    maxlength="32"
+                    [(ngModel)]="food.name" 
+                    #nameModel="ngModel" 
+                    #nameE1
+                    />
+                    <abp-validation-summary
+                        [control]="nameModel"
+                        [controlEl]="nameE1"
+                    ></abp-validation-summary>
+            </div>
+    </div>
+    <div class="form-group row required">
+        <label class="col-md-3 col-form-label" for="availablity">
+          {{ "Availability" | localize }}
+        </label>
+        <div class="col-md-9">
+          <input
+            type="checkbox"
+            name="availablity"
+            id="availablity" 
+            required
+            maxlength="32"
+            [(ngModel)]="food.availability"
+            #availabilityModel="ngModel"
+            #availabilityEl
+          />
+          <abp-validation-summary
+            [control]="availabilityModel"
+            [controlEl]="availabilityEl"
+          ></abp-validation-summary>
+        </div>
+    </div>
+    <div class="form-group row required">
+        <label class="col-md-3 col-form-label" for="quantity">
+          {{ "Quantity" | localize }}
+        </label>
+        <div class="col-md-9">
+          <input
+            type="number"
+            name="quantity"
+            id="quantity" 
+            required
+            maxlength="32"
+            [(ngModel)]="food.quantity"
+            #quantityModel="ngModel"
+            #quantityEl
+          />
+          <abp-validation-summary
+            [control]="quantityModel"
+            [controlEl]="quantityEl"
+          ></abp-validation-summary>
+        </div>
+    </div>
+    <div class="form-group row required">
+        <label class="col-md-3 col-form-label" for="category">
+          {{ "Food Category" | localize }}
+        </label>
+        <div class="dropdown">
+          <input
+            type="text"
+            class="form-control"
+            name="category"
+            id="category" 
+            required
+            maxlength="32"
+            [(ngModel)]="food.category"
+            #categoryModel="ngModel"
+            #categoryEl
+          />
+          <abp-validation-summary
+            [control]="categoryModel"
+            [controlEl]="categoryEl"
+          ></abp-validation-summary>
+        </div>
+    </div>
+    <div class="form-group row required">
+        <label class="col-md-3 col-form-label" for="type">
+          {{ "Food Type" | localize }}
+        </label>
+        <div class="dropdown">
+          <input
+            type="text"
+            class="form-control"
+            name="type"
+            id="type" 
+            required
+            maxlength="32"
+            [(ngModel)]="food.type"
+            #typeModel="ngModel"
+            #typeEl
+          />
+          <abp-validation-summary
+            [control]="typeModel"
+            [controlEl]="typeEl"
+          ></abp-validation-summary>
+        </div>
+    </div>
+    <div class="form-group row required">
+        <label class="col-md-3 col-form-label" for="size">
+          {{ "Size" | localize }}
+        </label>
+        <div class="col-md-9">
+          <input
+            type="text"
+            class="form-control"
+            name="size"
+            id="size" 
+            required
+            maxlength="32"
+            [(ngModel)]="food.size"
+            #sizeModel="ngModel"
+            #sizeEl
+          />
+          <abp-validation-summary
+            [control]="sizeModel"
+            [controlEl]="sizeEl"
+          ></abp-validation-summary>
+        </div>
+    </div>
+    <div class="form-group row required">
+        <label class="col-md-3 col-form-label" for="price">
+          {{ "Price" | localize }}
+        </label>
+        <div class="col-md-9">
+          <input
+            type="number"
+            class="form-control"
+            name="price"
+            id="price" 
+            required
+            maxlength="32"
+            [(ngModel)]="food.price"
+            #priceModel="ngModel"
+            #priceEl
+          />
+          <abp-validation-summary
+            [control]="priceModel"
+            [controlEl]="priceEl"
+          ></abp-validation-summary>
+        </div>
+    </div>
+   </tab>
+  </tabset>
+ </div>
+ <abp-modal-footer
+    [cancelDisabled]="saving"
+    [saveDisabled]="!createEditFoodModal.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"
+  ></abp-modal-footer>
 </form>

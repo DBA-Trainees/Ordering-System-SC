@@ -12,5 +12,6 @@
         public const string Pages_Divisions = "Pages.Divisions";
         public const string Pages_Categories = "Pages.Categories";
         public const string Pages_Foods = "Pages.Foods";
+        public const string Pages_Types = "Pages.Types";
     }
 }

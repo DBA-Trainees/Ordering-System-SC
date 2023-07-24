@@ -81,6 +81,13 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
                 'fa fa-th-list',
                 'Pages.Categories'
             ),
+            new MenuItem(
+                this.l('Types'),
+                '/app/types',
+                'fa fa-list-alt',
+                'Pages.Types'
+            
+            ),
             new MenuItem( //added
                 this.l('Foods'),
                 '/app/foods',

@@ -1,16 +1,16 @@
 <form
   class="form-horizontal"
   autocomplete="off"
-  #createEditDivisionModal="ngForm"
-  (ngSubmit)="saveDivision()"
+  #createEditTypeModal="ngForm"
+  (ngSubmit)="saveType()"
 >
   <abp-modal-header
-    [title]="'Create or edit division name' | localize"
+    [title]="'Create or edit type' | localize"
     (onCloseClick)="bsModalRef.hide()"
   ></abp-modal-header>
   <div class="modal-body">
         <div class="form-group row required">
-          <label class="col-md-3 col-form-label" for="name">
+          <label class="col-md-3 col-form-label" for="typeName">
             {{ "Name" | localize }}
           </label>
           <div class="col-md-9">
@@ -21,24 +21,20 @@
               id="name"
               required
               maxlength="32"
-              [(ngModel)]="division.name"
+              [(ngModel)]="type.name"
               #nameModel="ngModel"
               #nameEl
             />
           </div>
         </div>
-        <abp-validation-summary 
+        <abp-validation-summary
         [control]="nameModel"
-        [controlEl]="nameEl">          
-        </abp-validation-summary>
+        [controlEl]="nameEl">
+      </abp-validation-summary>
   </div>
-  <!-- <div class="modal-footer">
-    <button type="button" class="btn btn-primary">Save</button>
-    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-  </div> -->
   <abp-modal-footer
     [cancelDisabled]="saving"
-    [saveDisabled]="!createEditDivisionModal.form.valid || saving"
+    [saveDisabled]="!createEditTypeModal.form.valid || saving"
     (onCancelClick)="bsModalRef.hide()"
   ></abp-modal-footer>
 </form>

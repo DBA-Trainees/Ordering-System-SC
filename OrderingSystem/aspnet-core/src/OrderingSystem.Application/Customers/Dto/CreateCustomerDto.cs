@@ -1,7 +1,5 @@
 ﻿using Abp.AutoMapper;
-using OrderingSystem.Divisions.Dto;
 using OrderingSystem.Entities;
-using System.Collections.Generic;
 
 namespace OrderingSystem.Customers.Dto
 {

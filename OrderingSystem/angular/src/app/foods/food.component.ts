@@ -19,7 +19,7 @@ class PagedFoodsRequestDto extends PagedRequestDto {
 }
 
 @Component({
-    templateUrl: './food.component.html',
+    templateUrl: 'food.component.html',
     animations: [appModuleAnimation()]
 })
 
@@ -27,7 +27,6 @@ export class FoodsComponent extends PagedListingComponentBase<FoodDto>{
     foods: FoodDto[] = [];
     keyword = '';
     isActive: boolean | null;
-    advancedFiltersVisible = false;
 
     constructor(
         injector: Injector,

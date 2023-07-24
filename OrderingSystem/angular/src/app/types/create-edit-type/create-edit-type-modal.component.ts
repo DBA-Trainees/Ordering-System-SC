@@ -8,43 +8,43 @@ import {
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { AppComponentBase } from '@shared/app-component-base';
 import {
-    CategoryServiceProxy,
-    CategoryDto
+    TypeServiceProxy,
+    TypeDto
 } from '@shared/service-proxies/service-proxies';
 
 @Component({
-    templateUrl: 'create-edit-category-modal.component.html'
+    templateUrl: 'create-edit-type-modal.component.html'
 })
 
 
-export class CreateEditCategoryModalComponent extends AppComponentBase
+export class CreateEditTypeModalComponent extends AppComponentBase
     implements OnInit {
     saving = false;
-    category = new CategoryDto();
+    type = new TypeDto();
     id: number = 0;
 
     @Output() onSave = new EventEmitter<any>();
 
     constructor(
         injector: Injector,
-        private _categoryServiceProxy: CategoryServiceProxy,
+        private _typeServiceProxy: TypeServiceProxy,
         public bsModalRef: BsModalRef
     ) {
         super(injector);
     }
     ngOnInit(): void {
          if(this.id){
-            this._categoryServiceProxy.get(this.id).subscribe((res) => {
-                this.category = res;
+            this._typeServiceProxy.get(this.id).subscribe((res) => {
+                this.type = res;
             });
         }
     }
 
-    saveCategory(): void {
+    saveType(): void {
         this.saving = true;
 
         if(this.id != 0){
-            this._categoryServiceProxy.update(this.category).subscribe(
+            this._typeServiceProxy.update(this.type).subscribe(
                 () => {
                     this.notify.info(this.l('SavedSuccessfully'));
                     this.bsModalRef.hide();
@@ -55,7 +55,7 @@ export class CreateEditCategoryModalComponent extends AppComponentBase
                 }
             );
         }else{
-            this._categoryServiceProxy.create(this.category).subscribe(
+            this._typeServiceProxy.create(this.type).subscribe(
                 () => {
                     this.notify.info(this.l('SavedSuccessfully'));
                     this.bsModalRef.hide();
