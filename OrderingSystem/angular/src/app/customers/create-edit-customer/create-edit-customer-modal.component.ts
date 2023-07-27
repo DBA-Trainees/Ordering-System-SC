@@ -11,8 +11,7 @@ import {
     CustomerServiceProxy,
     CustomerDto,
     DivisionDto,
-    DivisionServiceProxy,
-    CreateCustomerDto
+    DivisionServiceProxy
 } from '@shared/service-proxies/service-proxies';
 
 @Component({

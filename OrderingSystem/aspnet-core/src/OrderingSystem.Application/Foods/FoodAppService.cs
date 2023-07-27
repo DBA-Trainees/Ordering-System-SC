@@ -50,25 +50,37 @@ namespace OrderingSystem.Foods
         {
             return base.GetEntityByIdAsync(id);
         }
-        public async Task<PagedResultDto<FoodDto>> GetAllFoodFromCategories(PagedFoodResultRequestDto input)
+        //public async Task<PagedResultDto<FoodDto>> GetAllFoodFromCategories(PagedFoodResultRequestDto input)
+        //{
+        //    var query = await _repository.GetAll()
+        //        .Include(x => x.Category)
+        //        .Select(x => ObjectMapper.Map<FoodDto>(x))
+        //        .ToListAsync();
+
+        //    return new PagedResultDto<FoodDto>(query.Count, query);
+        //}
+        //public async Task<PagedResultDto<FoodDto>> GetAllFoodWithTypes(PagedFoodResultRequestDto input)
+        //{
+        //    var food = await _repository.GetAll()
+        //    .Include(x => x.Type)
+        //    .Select(x => ObjectMapper.Map<FoodDto>(x))
+        //    .ToListAsync();
+
+        //    return new PagedResultDto<FoodDto>(food.Count, food);
+        //}
+
+        public async Task<PagedResultDto<FoodDto>> GetFoodWithCategoriesAndType(PagedFoodResultRequestDto input)
         {
-            var query = await _repository.GetAll()
+            var food = await _repository.GetAll()
                 .Include(x => x.Category)
+                .Include(x => x.Type)
+                .OrderByDescending(x => x.Id)
                 .Select(x => ObjectMapper.Map<FoodDto>(x))
                 .ToListAsync();
 
-            return new PagedResultDto<FoodDto>(query.Count, query);
+            return new PagedResultDto<FoodDto>(food.Count(), food);
         }
-        public async Task<PagedResultDto<FoodDto>> GetAllFoodWithTypes(PagedFoodResultRequestDto input)
-        {
-            var food = await _repository.GetAll()
-            .Include(x => x.Type)
-            .Select(x => ObjectMapper.Map<FoodDto>(x))
-            .ToListAsync();
 
-            return new PagedResultDto<FoodDto>(food.Count, food);
-        }
-            
 
     }
 }

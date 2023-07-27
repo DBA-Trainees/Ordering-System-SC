@@ -13,7 +13,7 @@
       <tab [heading]="'Customer Details' | localize" class="pt-3 px-2">
         <div class="form-group row required">
           <label class="col-md-3 col-form-label" for="customerName">
-            {{ "CustomerName" | localize }}
+            {{ "Customer Name" | localize }}
           </label>
           <div class="col-md-9">
             <input
@@ -27,31 +27,39 @@
               #customerNameModel="ngModel"
               #customerNameEl
             />
+            <abp-validation-summary 
+              [control]="customerNameModel"
+              [controlEl]="customerNameEl">          
+            </abp-validation-summary>
           </div>
         </div>
-      </tab>
-    </tabset>
-        <abp-validation-summary 
-        [control]="customerNameModel"
-        [controlEl]="customerNameEl">          
-        </abp-validation-summary>
-  </div>
-        <label class="col-md-3 col-form-label" for="divisionName">
-          {{ "Division" | localize }}
-        </label>
-  <div class="col-md-9" style="display: inline-flex;">
-    <select 
-    [ngModel]="selectDivisionId"
-    (ngModelChange)="selectDivisionId=$event" 
-    name="division" id="division" required style="width: 570px; height: 40px; border-radius: 5px;" data-live-search="true">
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="divisionName">
+        {{ "Division" | localize }}
+      </label>
+    <div 
+      class="col-md-9" 
+      style="display: inline-flex;">
+        <select 
+          [ngModel]="selectDivisionId"
+          (ngModelChange)="selectDivisionId=$event" 
+           name="division" 
+           id="division"
+           class="form-control" 
+           required
+           >
       <option *ngFor="let division of divisions" [ngValue]="division.id">
         {{ division.name }}
       </option>
-    </select>
+        </select>
+    </div>
   </div>
-  <abp-modal-footer
-    [cancelDisabled]="saving"
-    [saveDisabled]="!createEditCustomerModal.form.valid || saving"
-    (onCancelClick)="bsModalRef.hide()"
-  ></abp-modal-footer>
+  </tab>
+</tabset>
+    </div>
+        <abp-modal-footer
+          [cancelDisabled]="saving"
+          [saveDisabled]="!createEditCustomerModal.form.valid || saving"
+          (onCancelClick)="bsModalRef.hide()"
+        ></abp-modal-footer>
 </form>

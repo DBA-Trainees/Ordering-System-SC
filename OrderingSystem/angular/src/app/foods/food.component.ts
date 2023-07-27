@@ -11,7 +11,7 @@ import {
     FoodDtoPagedResultDto,
     FoodServiceProxy
 } from '@shared/service-proxies/service-proxies';
-import { CreateEditFoodModalComponent } from '@app/foods/create-edit-food/create-edit-food-modal.component';
+import { CreateEditFoodModalComponent } from './create-edit-food/create-edit-food-modal.component';
 
 class PagedFoodsRequestDto extends PagedRequestDto {
     keyword: string;
@@ -44,7 +44,7 @@ export class FoodsComponent extends PagedListingComponentBase<FoodDto>{
         request.isActive = this.isActive;
     
         this._foodServiceProxy
-          .getAll(
+          .getFoodWithCategoriesAndType(
             request.keyword,
             request.isActive,
             request.skipCount,

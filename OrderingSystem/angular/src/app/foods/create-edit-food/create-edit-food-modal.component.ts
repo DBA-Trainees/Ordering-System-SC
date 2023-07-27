@@ -30,6 +30,8 @@ export class CreateEditFoodModalComponent extends AppComponentBase
     id: number = 0;
     selectCategoryId: number = null;
     selectTypeId: number = null;
+    imageName: File;
+    img: string;
 
     @Output() onSave = new EventEmitter<any>();
 
@@ -60,13 +62,19 @@ export class CreateEditFoodModalComponent extends AppComponentBase
         });
     }
 
+    imageSelected(file) {
+        this.imageName = file.target.files[0];
+        console.log(this.imageName.name);
+        this.img = this.imageName.name
+    }
+
 
     saveFood(): void {
         this.saving = true;
         this.food.categoryId = this.selectCategoryId;
         this.food.typeId = this.selectTypeId;
 
-        if(this.id != 0){
+        if(this.id !==0){
             this._foodServiceProxy.update(this.food).subscribe(
                 () => {
                     this.notify.info(this.l('SavedSuccessfully'));

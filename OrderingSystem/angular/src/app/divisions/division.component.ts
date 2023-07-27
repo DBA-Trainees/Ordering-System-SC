@@ -64,6 +64,7 @@ export class DivisionsComponent extends PagedListingComponentBase<DivisionDto>{
         this.showPaging(result, pageNumber);
       });
   }
+  
   protected delete(division: DivisionDto): void {
     abp.message.confirm(
       this.l('UserDeleteWarningMessage', division.name),

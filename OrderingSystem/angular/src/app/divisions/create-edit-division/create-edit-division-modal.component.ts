@@ -9,7 +9,6 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { AppComponentBase } from '@shared/app-component-base';
 import {
     DivisionServiceProxy,
-    CreateDivisionDto,
     DivisionDto
 } from '@shared/service-proxies/service-proxies';
 import { appModuleAnimation } from '@shared/animations/routerTransition';
@@ -46,7 +45,7 @@ export class CreateEditDivisionModalComponent extends AppComponentBase
     saveDivision(): void {
         this.saving = true;
 
-        if(this.id != 0){
+        if(this.id !==0){
             this._divisionServiceProxy.update(this.division).subscribe(
                 () => {
                     this.notify.info(this.l('SavedSuccessfully'));
