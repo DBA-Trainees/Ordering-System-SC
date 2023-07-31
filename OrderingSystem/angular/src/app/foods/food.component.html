@@ -72,9 +72,9 @@
                                     }
                         "
                                     >
-                                        <td>{{ food.image }}</td>
+                                        <td><img [src]="'data:' + food.imageFileType + ';base64,' + food.image"></td>
                                         <td>{{ food.name }}</td>
-                                        <td>{{ food.availability.value ? "False" : "True" }}</td>
+                                        <td>{{ food.availability ? 'True' : 'False' }}</td>
                                         <td>{{ food.quantity }}</td>
                                         <td>{{ food.category?.name }}</td>
                                         <td>{{ food.type?.name }}</td>
