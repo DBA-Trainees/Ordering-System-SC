@@ -130,6 +130,8 @@
     <text name="Foods">Foods</text>
     <text name="CreateFood">CreateFood</text>
     <text name="Image">Image</text>
+    <text name="Orders">Orders</text>
+    <text name="ViewOrder">ViewOrder</text>
     
     
     

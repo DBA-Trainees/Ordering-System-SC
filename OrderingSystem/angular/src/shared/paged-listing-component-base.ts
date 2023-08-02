@@ -11,6 +11,11 @@ export class EntityDto {
 }
 
 export class PagedRequestDto {
+    // isActive(keyword: any, isActive: any, skipCount: number, maxResultCount: number) {
+    //   throw new Error('Method not implemented.');
+    // }
+    keyword: string;
+    isActive : boolean;
     skipCount: number;
     maxResultCount: number;
 }

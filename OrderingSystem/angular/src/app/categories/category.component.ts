@@ -61,9 +61,9 @@ export class CategoriesComponent extends PagedListingComponentBase<CategoryDto>{
                 this.showPaging(result, pageNumber);
             });
     }
-    protected delete(category: CategoryDto): void {
+   /*  protected delete(category: CategoryDto): void {
         abp.message.confirm(
-            this.l('UserDeleteWarningMessage', category.name),
+            this.l('CategoryDeleteWarningMessage', category.name),
             undefined,
             (result: boolean) => {
                 if (result) {
@@ -74,7 +74,27 @@ export class CategoriesComponent extends PagedListingComponentBase<CategoryDto>{
                 }
             }
         )
-    };
+    }; */
+
+    delete(category: CategoryDto): void {
+        abp.message.confirm(
+          this.l('The following records of this will be permanently erased.', category.name),
+          undefined,
+          (result: boolean) => {
+            if (result) {
+              this._categoryServiceProxy
+                .delete(category.id)
+                .pipe(
+                  finalize(() => {
+                    abp.notify.success(this.l('SuccessfullyDeleted'));
+                    this.refresh();
+                  })
+                )
+                .subscribe(() => {});
+            }
+          }
+        );
+      }
 
     createCategory(): void {
         this.showCreateOrEditCategoryModal();

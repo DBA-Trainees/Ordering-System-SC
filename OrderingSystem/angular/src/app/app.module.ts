@@ -24,6 +24,8 @@ import { FoodsComponent } from './foods/food.component';
 import { CreateEditFoodModalComponent } from './foods/create-edit-food/create-edit-food-modal.component';
 import { TypesComponent } from './types/type.component';
 import { CreateEditTypeModalComponent } from './types/create-edit-type/create-edit-type-modal.component';
+import { OrdersComponent } from './orders/order.component';
+import { CreateEditViewOrderModalComponent } from './orders/create-edit-view-order/create-edit-view-order-modal.component';
 
 // tenants
 import { TenantsComponent } from '@app/tenants/tenants.component';
@@ -49,8 +51,7 @@ import { SidebarComponent } from './layout/sidebar.component';
 import { SidebarLogoComponent } from './layout/sidebar-logo.component';
 import { SidebarUserPanelComponent } from './layout/sidebar-user-panel.component';
 import { SidebarMenuComponent } from './layout/sidebar-menu.component';
-import { CategoryServiceProxy, CustomerServiceProxy, DivisionServiceProxy, FoodServiceProxy, TypeServiceProxy } from '@shared/service-proxies/service-proxies';
-
+import { CategoryServiceProxy, CustomerServiceProxy, DivisionServiceProxy, FoodServiceProxy, TypeServiceProxy, OrderServiceProxy } from '@shared/service-proxies/service-proxies';
 
 @NgModule({
     declarations: [
@@ -92,6 +93,8 @@ import { CategoryServiceProxy, CustomerServiceProxy, DivisionServiceProxy, FoodS
         CreateEditFoodModalComponent,
         TypesComponent,
         CreateEditTypeModalComponent,
+        OrdersComponent,
+        CreateEditViewOrderModalComponent,
         
     ],
     imports: [
@@ -115,7 +118,8 @@ import { CategoryServiceProxy, CustomerServiceProxy, DivisionServiceProxy, FoodS
         CustomerServiceProxy,
         CategoryServiceProxy,
         FoodServiceProxy,
-        TypeServiceProxy
+        TypeServiceProxy,
+        OrderServiceProxy
     ],
     bootstrap: [
         AppComponent

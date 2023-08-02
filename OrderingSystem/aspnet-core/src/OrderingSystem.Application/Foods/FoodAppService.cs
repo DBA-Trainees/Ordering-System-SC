@@ -2,14 +2,13 @@
 using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
-using OrderingSystem.Customers.Dto;
 using OrderingSystem.Entities;
 using OrderingSystem.Foods.Dto;
-using System.Collections.Generic;
 using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
 using System.Linq;
-using AutoMapper.Internal.Mappers;
+using OrderingSystem.Categories.Dto;
+using System.Collections.Generic;
 
 namespace OrderingSystem.Foods
 {
@@ -49,6 +48,15 @@ namespace OrderingSystem.Foods
         protected override Task<Food> GetEntityByIdAsync(int id)
         {
             return base.GetEntityByIdAsync(id);
+        }
+
+        public async Task<List<FoodDto>> GetAllFoods()
+        {
+            var query = await _repository.GetAll()
+                .Select(x => ObjectMapper.Map<FoodDto>(x))
+                .ToListAsync();
+
+            return query;
         }
         //public async Task<PagedResultDto<FoodDto>> GetAllFoodFromCategories(PagedFoodResultRequestDto input)
         //{
