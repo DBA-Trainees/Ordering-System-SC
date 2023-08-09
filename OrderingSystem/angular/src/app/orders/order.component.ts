@@ -7,9 +7,13 @@ import {
     PagedRequestDto
 } from 'shared/paged-listing-component-base';
 import { 
+  FoodDto,
     OrderDto,
     OrderDtoPagedResultDto,
-    OrderServiceProxy
+    OrderServiceProxy,
+    FoodServiceProxy,
+    FoodDtoPagedResultDto,
+    CreateFoodDto
 } from '@shared/service-proxies/service-proxies';
 import { CreateEditViewOrderModalComponent } from './create-edit-view-order/create-edit-view-order-modal.component';
 
@@ -19,18 +23,21 @@ class PagedOrderRequestDto extends PagedRequestDto {
 }
 
 @Component({
-    templateUrl: 'order.component.html',
+    templateUrl: 'order.component.html', 
     animations: [appModuleAnimation()]
 })
 
 export class OrdersComponent extends PagedListingComponentBase<OrderDto>{
     orders: OrderDto[] = [];
+    food = new FoodDto();
+    foods: FoodDto[] = [];
     keyword = '';
     isActive: boolean | null;
 
     constructor(
         injector: Injector,
         private _orderServiceProxy: OrderServiceProxy,
+        private _foodServiceProxy: FoodServiceProxy,
         private _modalService: BsModalService
     ) {
         super(injector)
@@ -43,8 +50,8 @@ export class OrdersComponent extends PagedListingComponentBase<OrderDto>{
         request.keyword = this.keyword;
         request.isActive = this.isActive;
     
-        this._orderServiceProxy
-          .getAll(
+        this._foodServiceProxy
+          .getFoodWithCategoriesAndType(
             request.keyword,
             request.isActive,
             request.skipCount,
@@ -55,8 +62,8 @@ export class OrdersComponent extends PagedListingComponentBase<OrderDto>{
               finishedCallback();
             })
           )
-          .subscribe((result: OrderDtoPagedResultDto) => {
-            this.orders = result.items;
+          .subscribe((result: FoodDtoPagedResultDto) => {
+            this.foods = result.items;
             this.showPaging(result, pageNumber);
           });
       }

@@ -6,6 +6,8 @@ using System.Linq;
 using OrderingSystem.Entities;
 using OrderingSystem.Orders.Dto;
 using System.Threading.Tasks;
+using OrderingSystem.Foods.Dto;
+using System.Collections.Generic;
 
 namespace OrderingSystem.Orders
 {
@@ -48,14 +50,32 @@ namespace OrderingSystem.Orders
             return base.GetEntityByIdAsync(id);
         }
 
-        public async Task<PagedResultDto<OrderDto>> GetAllOrdersWithFood(PagedOrderResultRequestDto input)
+        //public async Task<PagedResultDto<OrderDto>> GetAllOrdersWithFood(PagedOrderResultRequestDto input)
+        //{
+        //    var query = await _repository.GetAll()
+        //        .Include(x => x.Food)
+        //        .Select(x => ObjectMapper.Map<OrderDto>(x))
+        //        .ToListAsync();
+
+        //    return new PagedResultDto<OrderDto>(query.Count, query);
+        //}
+        public async Task<List<OrderDto>> GetAllOrders()
+        {
+            var orders = await _repository.GetAll()
+                .Select(x => ObjectMapper.Map<OrderDto>(x))
+                .ToListAsync();
+
+            return orders;
+        }
+
+        public async Task<PagedResultDto<OrderDto>> GetFoodWithCategoriesAndType(PagedOrderResultRequestDto input)
         {
             var query = await _repository.GetAll()
                 .Include(x => x.Food)
                 .Select(x => ObjectMapper.Map<OrderDto>(x))
                 .ToListAsync();
 
-            return new PagedResultDto<OrderDto>(query.Count, query);
+            return new PagedResultDto<OrderDto>(query.Count(), query);
         }
     }
 }

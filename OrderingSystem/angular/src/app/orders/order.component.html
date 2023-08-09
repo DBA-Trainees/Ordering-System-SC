@@ -1,29 +1,75 @@
 <div [@routerTransition]>
     <section class="content-header">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <h1>{{ "Orders" | localize }}</h1>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="content px-2">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <div class="alert alert-info alert-dismissible">
-                        <h6><i class="icon fa fa-info"></i> Food available for today! </h6>
+            <section class="content px-2">
+                <div class="container-fluid">
+                    <div class="card text-center">
+                        <div class="card-header text-white" style="background-color: rgb(83, 103, 131);">
+                            <h1>Orders</h1>
+                        </div>
                     </div>
+                    <div class="card-columns">
+                        <div class="col">
+                          <div class="card text-center"
+                                    *ngFor="let food of foods | paginate : { id: 'server', itemsPerPage: pageSize, currentPage: pageNumber,  totalItems: totalItems }">
+                            <img [src]="'data:' + food.imageName + ';base64,' + food.image" class="card-img-top" object-fit="contain;">
+                            <div class="card-body">
+                              <p class="card-text" style="font-size: larger; font-style: oblique;">
+                                {{ food.name }}
+                              </p>
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        ₱{{ food.price }}<br>{{ food.category?.name }}
+                                    </p>
+                                </div>
+                                <div class="col-md-9 mx-auto">
+                                    <select name="size"
+                                            id="size"
+                                            class="form-control"
+                                            [(ngModel)]="food.size">
+                                        <option value="Small">Small</option>
+                                        <option value="Medium">Medium</option>
+                                        <option value="Large">Large</option>
+                                    </select><br>
+                                    <div class="d-grid">
+                                        <button type="button" class="btn btn-success form-control">
+                                            <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <!-- <div class="card-columns">
+                        <div class="card text-center" style="width: 18rem;"
+                                *ngFor="let food of foods | paginate : { id: 'server', itemsPerPage: pageSize, currentPage: pageNumber,  totalItems: totalItems  }">
+                                    <img [src]="'data:' + food.imageName + ';base64,' + food.image"
+                                        width="150px" object-fit="contain;" class="card-img-top">
+                            <div class="card-body mx-auto text-dark">
+                                <h5 class="card-title">{{ food.name }}</h5>
+                                    <p class="card-title mx-auto">
+                                        {{ food.price }}<br>
+                                        {{ food.category?.name }}
+                                    </p>
+                            </div>
+                                    <div class="col-md-9 mx-auto">
+                                        <select name="size"
+                                                id="size"
+                                                class="form-control"
+                                                [(ngModel)]="food.size">
+                                            <option value="Small">Small</option>
+                                            <option value="Medium">Medium</option>
+                                            <option value="Large">Large</option>
+                                        </select>
+                                    </div>
+                                <div class="card-body">
+                                    <button type="button" class="btn btn-info btn-sm form-control">Add To Cart</button>
+                                </div>
+                        </div>
+                    </div> -->
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">&emsp;</div>
-                <div class="col-md-6">
-                    <div class="input-group">
-                    </div>
-                </div>
-            </div>
+            </section>
         </div>
     </section>
 </div>

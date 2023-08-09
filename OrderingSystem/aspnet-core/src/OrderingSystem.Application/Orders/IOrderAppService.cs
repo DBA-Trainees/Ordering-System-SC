@@ -7,6 +7,7 @@ namespace OrderingSystem.Orders
 {
     public interface IOrderAppService : IAsyncCrudAppService<OrderDto, int, PagedOrderResultRequestDto, CreateOrderDto, OrderDto>
     {
-        Task<PagedResultDto<OrderDto>> GetAllOrdersWithFood(PagedOrderResultRequestDto input);
+        //Task<PagedResultDto<OrderDto>> GetAllOrdersWithFood(PagedOrderResultRequestDto input);
+        Task<PagedResultDto<OrderDto>> GetFoodWithCategoriesAndType(PagedOrderResultRequestDto input);
     }
 }

@@ -27,7 +27,6 @@ export class CategoriesComponent extends PagedListingComponentBase<CategoryDto>{
     categories: CategoryDto[] = [];
     keyword = '';
     isActive: boolean | null;
-    advancedFiltersVisible = false;
 
     constructor(
         injector: Injector,
