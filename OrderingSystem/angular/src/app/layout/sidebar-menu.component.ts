@@ -78,7 +78,7 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
             new MenuItem( //added
                 this.l('Categories'),
                 '/app/categories',
-                'fa fa-list', 
+                'fa fa-pencil fa-fw', 
                 'Pages.Categories'
             ),
             new MenuItem(
@@ -97,60 +97,71 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
             new MenuItem(
                 this.l('Orders'),
                 '/app/orders',
-                'fa fa-coffee',
+                'fa fa-cart-plus',
                 'Pages.Orders'
             ),
-           /*  new MenuItem(this.l('MultiLevelMenu'), '', 'fas fa-circle', '', [
-                new MenuItem('ASP.NET Boilerplate', '', 'fas fa-dot-circle', '', [
-                    new MenuItem(
-                        'Home',
-                        'https://aspnetboilerplate.com?ref=abptmpl',
-                        'far fa-circle'
-                    ),
-                    new MenuItem(
-                        'Templates',
-                        'https://aspnetboilerplate.com/Templates?ref=abptmpl',
-                        'far fa-circle'
-                    ),
-                    new MenuItem(
-                        'Samples',
-                        'https://aspnetboilerplate.com/Samples?ref=abptmpl',
-                        'far fa-circle'
-                    ),
-                    new MenuItem(
-                        'Documents',
-                        'https://aspnetboilerplate.com/Pages/Documents?ref=abptmpl',
-                        'far fa-circle'
-                    ),
-                ]),
-                new MenuItem('ASP.NET Zero', '', 'fas fa-dot-circle', '', [
-                    new MenuItem(
-                        'Home',
-                        'https://aspnetzero.com?ref=abptmpl',
-                        'far fa-circle'
-                    ),
-                    new MenuItem(
-                        'Features',
-                        'https://aspnetzero.com/Features?ref=abptmpl',
-                        'far fa-circle'
-                    ),
-                    new MenuItem(
-                        'Pricing',
-                        'https://aspnetzero.com/Pricing?ref=abptmpl#pricing',
-                        'far fa-circle'
-                    ),
-                    new MenuItem(
-                        'Faq',
-                        'https://aspnetzero.com/Faq?ref=abptmpl',
-                        'far fa-circle'
-                    ),
-                    new MenuItem(
-                        'Documents',
-                        'https://aspnetzero.com/Documents?ref=abptmpl',
-                        'far fa-circle'
-                    )
-                ])
-            ]) */
+            new MenuItem(
+                this.l('Carts'),
+                '/app/carts',
+                'fa fa-cart-arrow-down',
+                'Pages.Carts'
+            ),
+            new MenuItem(
+                this.l('Dashboard'),
+                '/app/dashboard',
+                ''
+            )
+            //  new MenuItem(this.l('MultiLevelMenu'), '', 'fas fa-circle', '', [
+            //     new MenuItem('ASP.NET Boilerplate', '', 'fas fa-dot-circle', '', [
+            //         new MenuItem(
+            //             'Home',
+            //             'https://aspnetboilerplate.com?ref=abptmpl',
+            //             'far fa-circle'
+            //         ),
+            //         new MenuItem(
+            //             'Templates',
+            //             'https://aspnetboilerplate.com/Templates?ref=abptmpl',
+            //             'far fa-circle'
+            //         ),
+            //         new MenuItem(
+            //             'Samples',
+            //             'https://aspnetboilerplate.com/Samples?ref=abptmpl',
+            //             'far fa-circle'
+            //         ),
+            //         new MenuItem(
+            //             'Documents',
+            //             'https://aspnetboilerplate.com/Pages/Documents?ref=abptmpl',
+            //             'far fa-circle'
+            //         ),
+            //     ]),
+            //     new MenuItem('ASP.NET Zero', '', 'fas fa-dot-circle', '', [
+            //         new MenuItem(
+            //             'Home',
+            //             'https://aspnetzero.com?ref=abptmpl',
+            //             'far fa-circle'
+            //         ),
+            //         new MenuItem(
+            //             'Features',
+            //             'https://aspnetzero.com/Features?ref=abptmpl',
+            //             'far fa-circle'
+            //         ),
+            //         new MenuItem(
+            //             'Pricing',
+            //             'https://aspnetzero.com/Pricing?ref=abptmpl#pricing',
+            //             'far fa-circle'
+            //         ),
+            //         new MenuItem(
+            //             'Faq',
+            //             'https://aspnetzero.com/Faq?ref=abptmpl',
+            //             'far fa-circle'
+            //         ),
+            //         new MenuItem(
+            //             'Documents',
+            //             'https://aspnetzero.com/Documents?ref=abptmpl',
+            //             'far fa-circle'
+            //         )
+            //     ])
+            // ]) 
         ];
     }
 

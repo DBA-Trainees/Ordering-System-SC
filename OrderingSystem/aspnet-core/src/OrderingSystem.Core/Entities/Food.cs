@@ -1,6 +1,5 @@
 ﻿using Abp.Domain.Entities.Auditing;
 using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace OrderingSystem.Entities
 {

@@ -11,7 +11,8 @@ import {
     OrderDto,
     FoodDto,
     OrderServiceProxy,
-    FoodServiceProxy
+    FoodServiceProxy,
+    CartServiceProxy
 } from '@shared/service-proxies/service-proxies';
 
 @Component({
@@ -67,7 +68,7 @@ export class CreateEditViewOrderModalComponent extends AppComponentBase
                     this.saving = false;
                 }
             );
-        }else{
+        } else {
             this._orderServiceProxy.create(this.order).subscribe(
                 () => {
                     this.notify.info(this.l('SavedSuccessfully'));

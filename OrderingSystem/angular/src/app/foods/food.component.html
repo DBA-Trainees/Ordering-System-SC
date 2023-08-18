@@ -73,14 +73,14 @@
                         "
                                     >
                                         <td><img [src]="'data:' + food.imageFileType + ';base64,' + food.image"
-                                            width="175px;" height="175px;" object-fit="contain;"></td>
-                                        <td>{{ food.name }}</td>
-                                        <td>{{ food.availability ? 'True' : 'False' }}</td>
-                                        <td>{{ food.quantity }}</td>
-                                        <td>{{ food.category?.name }}</td>
-                                        <td>{{ food.type?.name }}</td>
-                                        <td>{{ food.size }}</td>
-                                        <td>{{ food.price }}</td>
+                                            width="250px;" height="250px;" object-fit="contain;"></td>
+                                        <td><strong>{{ food.name }}</strong></td>
+                                        <td><strong>{{ food.availability ? 'True' : 'False' }}</strong></td>
+                                        <td><strong>{{ food.quantity }}</strong></td>
+                                        <td><strong>{{ food.category?.name }}</strong></td>
+                                        <td><strong>{{ food.type?.name }}</strong></td>
+                                        <td><strong>{{ food.size }}</strong></td>
+                                        <td><strong>₱{{ food.price }}</strong></td>
                                         <td>
                                             <button
                                                     type="button"

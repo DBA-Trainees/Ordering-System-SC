@@ -132,6 +132,8 @@
     <text name="Image">Image</text>
     <text name="Orders">Orders</text>
     <text name="ViewOrder">ViewOrder</text>
+    <text name="Carts">Carts</text>
+    <text name="AddedToCart">AddedToCart</text>
     
     
     

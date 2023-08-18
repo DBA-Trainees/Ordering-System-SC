@@ -17,6 +17,7 @@ namespace OrderingSystem.Authorization
             context.CreatePermission(PermissionNames.Pages_Foods, L("Foods"));
             context.CreatePermission(PermissionNames.Pages_Types, L("Types"));
             context.CreatePermission(PermissionNames.Pages_Orders, L("Orders"));
+            context.CreatePermission(PermissionNames.Pages_Carts, L("Carts"));
             context.CreatePermission(PermissionNames.Pages_Tenants, L("Tenants"), multiTenancySides: MultiTenancySides.Host);
         }
 

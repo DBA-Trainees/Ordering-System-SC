@@ -16,6 +16,12 @@ import {
     TypeServiceProxy
 } from '@shared/service-proxies/service-proxies';
 
+enum setFoodEnum {
+    Small = 'Small',
+    Medium = 'Medium',
+    Large = 'Large'
+}
+
 @Component({
     templateUrl: 'create-edit-food-modal.component.html'
 })
@@ -34,6 +40,13 @@ export class CreateEditFoodModalComponent extends AppComponentBase
     img: any;
     imageFileName: string;
     imgFileType: string;
+    setFoodSizing: string;
+    foodProportions = [
+       setFoodEnum.Small,
+       setFoodEnum.Medium,
+       setFoodEnum.Large
+    ]
+
 
     @Output() onSave = new EventEmitter<any>();
 
@@ -53,6 +66,7 @@ export class CreateEditFoodModalComponent extends AppComponentBase
                 this.food = res;
                 this.selectCategoryId = this.food.categoryId;
                 this.selectTypeId = this.food.typeId;
+                this.setFoodSizing = res.size;
             });
         }
         this._categoryServiceProxy.getAllCategories().subscribe((res) => {
@@ -89,6 +103,7 @@ export class CreateEditFoodModalComponent extends AppComponentBase
         this.saving = true;
         this.food.categoryId = this.selectCategoryId;
         this.food.typeId = this.selectTypeId;
+        this.food.size = this.setFoodSizing;
        /*  this.food.image = this.base64textString;
         this.food.imageName = this.imageFileName;
         this.food.imageFileType = this.imgFileType; */

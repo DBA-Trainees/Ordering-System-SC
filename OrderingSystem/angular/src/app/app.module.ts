@@ -26,6 +26,9 @@ import { TypesComponent } from './types/type.component';
 import { CreateEditTypeModalComponent } from './types/create-edit-type/create-edit-type-modal.component';
 import { OrdersComponent } from './orders/order.component';
 import { CreateEditViewOrderModalComponent } from './orders/create-edit-view-order/create-edit-view-order-modal.component';
+import { CartsComponent } from './carts/cart.component';
+import { CreateEditCartModalComponent } from './carts/create-edit-cart/create-edit-cart-modal.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 // tenants
 import { TenantsComponent } from '@app/tenants/tenants.component';
@@ -51,7 +54,9 @@ import { SidebarComponent } from './layout/sidebar.component';
 import { SidebarLogoComponent } from './layout/sidebar-logo.component';
 import { SidebarUserPanelComponent } from './layout/sidebar-user-panel.component';
 import { SidebarMenuComponent } from './layout/sidebar-menu.component';
-import { CategoryServiceProxy, CustomerServiceProxy, DivisionServiceProxy, FoodServiceProxy, TypeServiceProxy, OrderServiceProxy } from '@shared/service-proxies/service-proxies';
+import { CategoryServiceProxy, CustomerServiceProxy, DivisionServiceProxy, FoodServiceProxy, TypeServiceProxy, OrderServiceProxy, CartServiceProxy } from '@shared/service-proxies/service-proxies';
+
+
 
 @NgModule({
     declarations: [
@@ -95,6 +100,9 @@ import { CategoryServiceProxy, CustomerServiceProxy, DivisionServiceProxy, FoodS
         CreateEditTypeModalComponent,
         OrdersComponent,
         CreateEditViewOrderModalComponent,
+        CartsComponent,
+        CreateEditCartModalComponent,
+        DashboardComponent,
         
     ],
     imports: [
@@ -119,7 +127,8 @@ import { CategoryServiceProxy, CustomerServiceProxy, DivisionServiceProxy, FoodS
         CategoryServiceProxy,
         FoodServiceProxy,
         TypeServiceProxy,
-        OrderServiceProxy
+        OrderServiceProxy,
+        CartServiceProxy,
     ],
     bootstrap: [
         AppComponent

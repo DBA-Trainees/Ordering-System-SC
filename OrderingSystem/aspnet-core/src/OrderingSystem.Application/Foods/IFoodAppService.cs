@@ -8,7 +8,5 @@ namespace OrderingSystem.Foods
     public interface IFoodAppService : IAsyncCrudAppService<FoodDto, int, PagedFoodResultRequestDto, CreateFoodDto, FoodDto>
     {
         Task<PagedResultDto<FoodDto>> GetFoodWithCategoriesAndType(PagedFoodResultRequestDto input);
-        //Task<PagedResultDto<FoodDto>> GetAllFoodFromCategories(PagedFoodResultRequestDto input);
-        //Task<PagedResultDto<FoodDto>> GetAllFoodWithTypes(PagedFoodResultRequestDto input);
     }
 }
