@@ -25,10 +25,11 @@ import { CreateEditFoodModalComponent } from './foods/create-edit-food/create-ed
 import { TypesComponent } from './types/type.component';
 import { CreateEditTypeModalComponent } from './types/create-edit-type/create-edit-type-modal.component';
 import { OrdersComponent } from './orders/order.component';
-import { CreateEditViewOrderModalComponent } from './orders/create-edit-view-order/create-edit-view-order-modal.component';
-import { CartsComponent } from './carts/cart.component';
+// import { CreateEditViewOrderModalComponent } from './orders/view-order/view-order.component';
+// import { CartsComponent } from './carts/cart.component';
 import { CreateEditCartModalComponent } from './carts/create-edit-cart/create-edit-cart-modal.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ViewOrderComponent } from './orders/view-order/view-order.component';
 
 // tenants
 import { TenantsComponent } from '@app/tenants/tenants.component';
@@ -99,10 +100,11 @@ import { CategoryServiceProxy, CustomerServiceProxy, DivisionServiceProxy, FoodS
         TypesComponent,
         CreateEditTypeModalComponent,
         OrdersComponent,
-        CreateEditViewOrderModalComponent,
-        CartsComponent,
+        // CreateEditViewOrderModalComponent,
+        // CartsComponent,
         CreateEditCartModalComponent,
         DashboardComponent,
+        ViewOrderComponent,
         
     ],
     imports: [

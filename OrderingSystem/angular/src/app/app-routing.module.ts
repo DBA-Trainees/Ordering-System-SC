@@ -14,7 +14,7 @@ import { CategoriesComponent } from './categories/category.component';
 import { FoodsComponent } from './foods/food.component'; 
 import { TypesComponent } from './types/type.component';
 import { OrdersComponent } from './orders/order.component';
-import { CartsComponent } from './carts/cart.component';
+import { ViewOrderComponent } from './orders/view-order/view-order.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
@@ -36,7 +36,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
                     { path: 'foods', component: FoodsComponent, data:{ permission: 'Pages.Foods' }, canActivate: [AppRouteGuard] },
                     { path: 'types', component: TypesComponent, data:{ permission: 'Pages.Types' }, canActivate: [AppRouteGuard] },
                     { path: 'orders', component: OrdersComponent, data:{ permission: 'Pages.Orders' }, canActivate: [AppRouteGuard] },
-                    { path: 'carts', component: CartsComponent, data:{ permission: 'Pages.Carts' }, canActivate: [AppRouteGuard] },
+                    { path: 'carts', component: ViewOrderComponent, data:{ permission: 'Pages.Carts' }, canActivate: [AppRouteGuard] },
                     { path: 'dashboard', component: DashboardComponent, canActivate: [AppRouteGuard] }
 
                 ]

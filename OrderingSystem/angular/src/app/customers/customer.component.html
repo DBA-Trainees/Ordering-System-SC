@@ -1,6 +1,6 @@
 <div [@routerTransition]>
     <section class="content-header">
-        <div class="container-fluid">
+        <!-- <div class="container-fluid">
             <div class="row">
                 <div class="col-6">
                     <h1>{{ "Customers" | localize }}</h1>
@@ -12,7 +12,7 @@
                     </a>
                 </div>
             </div>
-        </div>
+        </div> -->
     </section>
     <section class="content px-2">
         <div class="container-fluid">
@@ -106,15 +106,9 @@
                                 {{ "TotalRecordsCount" | localize: totalItems }}
                             </p>
                         </div>
-                        <!-- <div class="col-sm-4 col-12">
-                            <div class="float-sm-right m-auto">
-                                <abp-pagination-controls
-                                        id="server"
-                                        (pageChange)="getDataPage($event)"
-                                >
-                                </abp-pagination-controls>
-                            </div>
-                        </div> -->
+                        <a href="javascript:;" class="float" (click)="createCustomer()">
+                            <i class="fa fa-plus my-float"></i>
+                        </a>
                     </div>
                 </div>
             </div>

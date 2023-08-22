@@ -109,7 +109,7 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
             new MenuItem(
                 this.l('Dashboard'),
                 '/app/dashboard',
-                ''
+                'fa fa-tachometer'
             )
             //  new MenuItem(this.l('MultiLevelMenu'), '', 'fas fa-circle', '', [
             //     new MenuItem('ASP.NET Boilerplate', '', 'fas fa-dot-circle', '', [

@@ -20,7 +20,8 @@ class PagedFoodsRequestDto extends PagedRequestDto {
 
 @Component({
     templateUrl: 'food.component.html',
-    animations: [appModuleAnimation()]
+    animations: [appModuleAnimation()],
+    styleUrls: ["./food.component.css"]
 })
 
 export class FoodsComponent extends PagedListingComponentBase<FoodDto>{

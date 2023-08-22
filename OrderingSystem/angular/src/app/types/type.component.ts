@@ -20,7 +20,8 @@ class PagedTypeRequestDto extends PagedRequestDto {
 
 @Component({
     templateUrl: './type.component.html',
-    animations: [appModuleAnimation()]
+    animations: [appModuleAnimation()],
+    styleUrls: ["./type.component.css"]
 })
 
 export class TypesComponent extends PagedListingComponentBase<TypeDto>{

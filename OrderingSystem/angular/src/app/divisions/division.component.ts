@@ -19,9 +19,9 @@ class PagedDivisionsRequestDto extends PagedRequestDto {
 }
 
 @Component({
-  selector: 'division-component',
   templateUrl: './division.component.html',
-  animations: [appModuleAnimation()]
+  animations: [appModuleAnimation()],
+  styleUrls: ["./division.component.css"]
 })
 
 

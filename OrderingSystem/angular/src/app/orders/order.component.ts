@@ -1,6 +1,5 @@
 import { Component, Injector, Output, EventEmitter } from '@angular/core';
 import { finalize } from 'rxjs/operators';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { appModuleAnimation } from '@shared/animations/routerTransition';
 import { 
     PagedListingComponentBase,
@@ -34,7 +33,7 @@ enum setFoodEnum {
 export class OrdersComponent extends PagedListingComponentBase<OrderDto>{
     id: number;
     saving = false;
-    cart = new OrderDto();
+    cart = new OrderDto;
     orders: OrderDto[] = [];
     food = new FoodDto();
     foods: FoodDto[] = [];
@@ -97,8 +96,9 @@ export class OrdersComponent extends PagedListingComponentBase<OrderDto>{
         );
       }
       
-      saveToCart(): void {
+      saveToCart(food : number): void {
         this.saving = true;
+        this.cart.foodId = food;
         
         if(this.id > 0){
           this._orderServiceProxy.update(this.cart).subscribe(
