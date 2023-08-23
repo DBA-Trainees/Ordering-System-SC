@@ -1,18 +1,5 @@
 <div [@routerTransition]>
     <section class="content-header">
-        <!-- <div class="container-fluid">
-            <div class="row">
-                <div class="col-6">
-                    <h1>{{ "Foods" | localize }}</h1>
-                </div>
-                <div class="col-6 text-right">
-                    <a href="javascript:;" class="btn bg-green rounded-pill" (click)="createFood()">
-                        <i class="fa fa-plus"></i>
-                        {{ "Create" | localize }}
-                    </a>
-                </div>
-            </div>
-        </div> -->
     </section>
     <section class="content px-2">
         <div class="container-fluid">
@@ -73,7 +60,7 @@
                         "
                                     >
                                         <td><img [src]="'data:' + food.imageFileType + ';base64,' + food.image"
-                                            width="300px;" height="300px;" object-fit="contain;"></td>
+                                            width="220px;" height="220px;" object-fit="contain;"></td>
                                         <td>{{ food.name }}</td>
                                         <td>{{ food.availability ? 'True' : 'False' }}</td>
                                         <td>{{ food.quantity }}</td>

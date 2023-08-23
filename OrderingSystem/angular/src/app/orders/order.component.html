@@ -38,90 +38,16 @@
                           id="quantity"
                           class="form-control text-center"
                           value="1"
+                          min="0"
                   >
                 </div>
                 <a href="javascript:;" class="button" (click)="saveToCart(food.id)">Add to Cart</a>
+                <!-- <a href="javascript:;" class="float" (click)="()">
+                    <i class="fa fa-plus my-float"></i>
+                </a> -->
               </div>
             </div>
         </div>
       </div>
 </section>
-
-
-<!-- <div [@routerTransition]>
-    <section class="content-header">
-        <div class="container-fluid">
-            <section class="content px-2">
-                    <div class="card-group card-columns p-1">
-                        <div class="row">
-                            <div class="col p-3">
-                                <div class="card text-center" style="width: 18rem; padding: 02.5m;"
-                                    *ngFor="let food of foods 
-                                        | paginate : { 
-                                                id: 'server', 
-                                                itemsPerPage: pageSize, 
-                                                currentPage: pageNumber,  
-                                                totalItems: totalItems 
-                                                    }">
-                                    <img [src]="'data:' + food.imageName + ';base64,' + food.image" 
-                                            class="card-img-top" 
-                                            width="300px" 
-                                            height="300px">
-                                        <div class="card-body">
-                                            <p class="card-text" style="font-size: larger; font-style: oblique;">
-                                                {{ food.name }}
-                                            </p>
-                                                <div class="card-body">
-                                                    <p class="card-text">
-                                                        ₱{{ food.price }}<br>{{ food.category?.name }}
-                                                    </p>
-                                                </div>
-                                                <div class="col-md-9 mx-auto">
-                                                    <select name="size"
-                                                            id="size"
-                                                            class="form-control text-center"
-                                                            [(ngModel)]="food.size">
-                                                                <option value="Small">Small</option>
-                                                                <option value="Medium">Medium</option>
-                                                                <option value="Large">Large</option>
-                                                    </select><br>
-                                                    <div class="d-grid">
-                                                        <div class="input-group">
-                                                            <button type="button" 
-                                                                    class="btn btn-icon btn-light" 
-                                                                    aria-describedby="inputQuantitySelector" 
-                                                                    data-bs-step="down">
-                                                                <span class="visually-hidden">-</span>
-                                                            </button>
-                                                                <input type="number" 
-                                                                        id="quantity" 
-                                                                        class="form-control text-center" 
-                                                                        value="1"
-                                                                >
-                                                            <button type="button" 
-                                                                    class="btn btn-icon btn-light" 
-                                                                    aria-describedby="inputQuantitySelector" 
-                                                                    data-bs-step="up">
-                                                                <span class="visually-hidden">+</span>
-                                                            </button>
-                                                        </div>
-                                                    </div><br>
-                                                    <div class="d-grid">
-                                                        <button type="button" class="btn btn-info form-control">
-                                                            <i class="fa fa-cart-plus"></i>
-                                                        </button>
-                                                    </div>
-                                                    <div>
-
-                                                    </div>
-                                                </div>
-                                        </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            </section>
-        </div>
-    </section>
-</div> -->
 

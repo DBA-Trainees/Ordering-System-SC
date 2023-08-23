@@ -76,13 +76,13 @@ export class ViewOrderComponent extends PagedListingComponentBase<OrderDto>{
             });
     }
 
-    protected delete(cart: CartDto): void {
+    protected delete(order: OrderDto): void {
         abp.message.confirm(
-            this.l('UserDeleteWarningMessage', cart),
+            this.l('UserDeleteWarningMessage', order),
             undefined,
             (result: boolean) => {
                 if (result) {
-                    this._cartServiceProxy.delete(cart.id).subscribe(() => {
+                    this._cartServiceProxy.delete(order.id).subscribe(() => {
                         abp.notify.success(this.l('SuccessfullyDeleted'));
                         this.refresh();
                     });
@@ -117,31 +117,5 @@ export class ViewOrderComponent extends PagedListingComponentBase<OrderDto>{
             )
         }
     }
-    // private showCreateOrEditCartModal(id?: number): void {
-    //             let createOrEditCartModal: BsModalRef;
-    //             if(!id) {
-    //                 createOrEditCartModal = this._modalService.show(
-    //                     ViewOrderComponent,
-    //                     {
-    //                         class: 'modal-lg',
-    //                     }
-    //                 );
-    //             } else {
-    //                 createOrEditCartModal = this._modalService.show(
-    //                     ViewOrderComponent,
-    //                     {
-    //                         class: 'modal-lg',
-    //                         initialState: {
-    //                             id: id,
-    //                         }
-    //                     }
-    //                 );
-    //             }
-    //             createOrEditCartModal.content.onSave.subscribe(() => {
-    //                 this.refresh();
-    //             });
-    // }
-
-
 }
 

@@ -1,5 +1,6 @@
 import { Component, Injector, Output, EventEmitter } from '@angular/core';
 import { finalize } from 'rxjs/operators';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { appModuleAnimation } from '@shared/animations/routerTransition';
 import { 
     PagedListingComponentBase,
@@ -12,6 +13,7 @@ import {
     FoodServiceProxy,
     FoodDtoPagedResultDto,
 } from '@shared/service-proxies/service-proxies';
+import { ViewOrderComponent } from './view-order/view-order.component';
 
 class PagedOrderRequestDto extends PagedRequestDto {
     keyword: string;
@@ -52,7 +54,8 @@ export class OrdersComponent extends PagedListingComponentBase<OrderDto>{
     constructor(
         injector: Injector,
         private _orderServiceProxy: OrderServiceProxy,
-        private _foodServiceProxy: FoodServiceProxy
+        private _foodServiceProxy: FoodServiceProxy,
+        private _modalService: BsModalService
     ) {
         super(injector)
     }
@@ -95,31 +98,40 @@ export class OrdersComponent extends PagedListingComponentBase<OrderDto>{
           }
         );
       }
+
+      addFood(): void {
+        this.showViewOrderModal();
+      }
       
-      saveToCart(food : number): void {
-        this.saving = true;
-        this.cart.foodId = food;
-        
-        if(this.id > 0){
-          this._orderServiceProxy.update(this.cart).subscribe(
-              () => {
-                  this.notify.info(this.l('SavedSuccessfully'));
-                  this.onSave.emit();
-              },
-              () => {
-                  this.saving = false;
-              }
-          );                
+      saveToCart(id): void {
+        this.showViewOrderModal(id);
+        // this.saving = true;
+        // this.cart.foodId = food;
+      }
+
+    private showViewOrderModal(id?: number): void {
+      let showViewOrderModal: BsModalRef;
+      if (!id) {
+        showViewOrderModal = this._modalService.show(
+          ViewOrderComponent,
+          {
+            class: 'modal-lg',
+          }
+        );
       } else {
-          this._orderServiceProxy.create(this.cart).subscribe(
-              () => {
-                  this.notify.info(this.l('AddedToCart'));
-                  this.onSave.emit();
-              },
-              () => {
-                  this.saving = false;
-              }
-          );
-      }     
+        showViewOrderModal = this._modalService.show(
+          ViewOrderComponent,
+          {
+            class: 'modal-lg',
+            initialState: {
+              id: id,
+            }
+          }
+        );
+      }
+  
+      showViewOrderModal.content.onSave.subscribe(() => {
+        this.refresh();
+      });
     }
 }

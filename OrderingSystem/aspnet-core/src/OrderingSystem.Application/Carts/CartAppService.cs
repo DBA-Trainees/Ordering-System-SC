@@ -1,19 +1,24 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
+using AutoMapper.Internal.Mappers;
 using Microsoft.EntityFrameworkCore;
 using OrderingSystem.Carts.Dto;
+using OrderingSystem.Customers.Dto;
 using OrderingSystem.Entities;
+using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace OrderingSystem.Carts
 {
     public class CartAppService : AsyncCrudAppService<Cart, CartDto, int, PagedCartResultRequestDto, CreateCartDto, CartDto>, ICartAppService
     {
         private readonly IRepository<Cart, int> _cartRepository;
-        public CartAppService(IRepository<Cart, int> cartRepository) : base(cartRepository)
+
+        public CartAppService(IRepository<Cart, int> repository) : base(repository)
         {
-            _cartRepository = cartRepository;
+
         }
 
         public override Task<CartDto> CreateAsync(CreateCartDto input)
@@ -41,9 +46,15 @@ namespace OrderingSystem.Carts
             return base.UpdateAsync(input);
         }
 
-        protected override Task<Cart> GetEntityByIdAsync(int id)
+        public async Task<PagedResultDto<CartDto>> GetAllFoodandCustomers(PagedCartResultRequestDto input)
         {
-            return base.GetEntityByIdAsync(id);
+            var query = await _cartRepository.GetAll()
+                .Include(x => x.Food)
+                .Include(x => x.Customer)
+                .Select(x => ObjectMapper.Map<CartDto>(x))
+                .ToListAsync();
+
+            return new PagedResultDto<CartDto>(query.Count(), query);
         }
     }
 }

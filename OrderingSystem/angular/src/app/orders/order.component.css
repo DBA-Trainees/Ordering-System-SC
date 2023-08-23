@@ -204,3 +204,9 @@
       flex-basis: calc(25% - 18px);
     }
   }
+
+ input::-webkit-inner-spin-button,
+ input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+ }

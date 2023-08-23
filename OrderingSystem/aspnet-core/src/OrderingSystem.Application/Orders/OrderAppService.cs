@@ -71,7 +71,8 @@ namespace OrderingSystem.Orders
         public async Task<PagedResultDto<OrderDto>> GetFoodWithCategoriesAndType(PagedOrderResultRequestDto input)
         {
             var query = await _repository.GetAll()
-                .Include(x => x.Food)
+                .Include(x => x.Cart)
+                .ThenInclude(x => x.Food)
                 .Select(x => ObjectMapper.Map<OrderDto>(x))
                 .ToListAsync();
 
