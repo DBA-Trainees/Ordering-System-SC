@@ -18,7 +18,7 @@ namespace OrderingSystem.Carts
 
         public CartAppService(IRepository<Cart, int> repository) : base(repository)
         {
-
+            _cartRepository = repository;
         }
 
         public override Task<CartDto> CreateAsync(CreateCartDto input)

@@ -27,7 +27,7 @@ import { CreateEditTypeModalComponent } from './types/create-edit-type/create-ed
 import { OrdersComponent } from './orders/order.component';
 // import { CreateEditViewOrderModalComponent } from './orders/view-order/view-order.component';
 // import { CartsComponent } from './carts/cart.component';
-import { CreateEditCartModalComponent } from './carts/create-edit-cart/create-edit-cart-modal.component';
+// import { CreateEditCartModalComponent } from './carts/create-edit-cart/create-edit-cart-modal.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ViewOrderComponent } from './orders/view-order/view-order.component';
 
@@ -102,7 +102,7 @@ import { CategoryServiceProxy, CustomerServiceProxy, DivisionServiceProxy, FoodS
         OrdersComponent,
         // CreateEditViewOrderModalComponent,
         // CartsComponent,
-        CreateEditCartModalComponent,
+        // CreateEditCartModalComponent,
         DashboardComponent,
         ViewOrderComponent,
         

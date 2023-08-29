@@ -95,13 +95,13 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
                 'Pages.Foods'
             ),
             new MenuItem(
-                this.l('Orders'),
+                this.l('Carts'),
                 '/app/orders',
                 'fa fa-cart-plus',
                 'Pages.Orders'
             ),
             new MenuItem(
-                this.l('Carts'),
+                this.l('Orders'),
                 '/app/carts',
                 'fa fa-cart-arrow-down',
                 'Pages.Carts'

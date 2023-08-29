@@ -68,7 +68,7 @@ namespace OrderingSystem.Orders
             return orders;
         }
 
-        public async Task<PagedResultDto<OrderDto>> GetFoodWithCategoriesAndType(PagedOrderResultRequestDto input)
+        public async Task<PagedResultDto<OrderDto>> GetCartsWithFood(PagedOrderResultRequestDto input)
         {
             var query = await _repository.GetAll()
                 .Include(x => x.Cart)

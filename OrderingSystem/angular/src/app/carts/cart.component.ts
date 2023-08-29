@@ -6,7 +6,6 @@
 //     PagedRequestDto
 //   } from 'shared/paged-listing-component-base';
 // import { CartDto, CartServiceProxy, CartDtoPagedResultDto } from '@shared/service-proxies/service-proxies';
-// import { CreateEditCartModalComponent } from './create-edit-cart/create-edit-cart-modal.component';
 
 //   class PagedCartsRequestDto extends PagedRequestDto {
 //     keyword: string;
@@ -38,7 +37,7 @@
 //         request.isActive = this.isActive;
 
 //         this._cartServiceProxy
-//             .getAll(
+//             .getAllFoodandCustomers(
 //                 request.keyword,
 //                 request.isActive,
 //                 request.skipCount,
@@ -68,38 +67,5 @@
 //                 }
 //             }
 //         )
-//     }
-
-//     createCart(): void {
-//         this.showCreateOrEditCartModal();
-//     }
-
-//     editCart(id): void {
-//         this.showCreateOrEditCartModal(id);
-//     }
-
-//     private showCreateOrEditCartModal(id?: number): void {
-//         let createOrEditCartModal: BsModalRef;
-//         if(!id) {
-//             createOrEditCartModal = this._modalService.show(
-//                 CreateEditCartModalComponent,
-//                 {
-//                     class: 'modal-lg',
-//                 }
-//             );
-//         } else {
-//             createOrEditCartModal = this._modalService.show(
-//                 CreateEditCartModalComponent,
-//                 {
-//                     class: 'modal-lg',
-//                     initialState: {
-//                         id: id,
-//                     }
-//                 }
-//             );
-//         }
-//         createOrEditCartModal.content.onSave.subscribe(() => {
-//             this.refresh();
-//         });
 //     }
 //   }

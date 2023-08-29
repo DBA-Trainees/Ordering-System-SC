@@ -442,6 +442,77 @@ export class CartServiceProxy {
         }
         return _observableOf(null as any);
     }
+
+    /**
+     * @param keyword (optional) 
+     * @param isActive (optional) 
+     * @param skipCount (optional) 
+     * @param maxResultCount (optional) 
+     * @return Success
+     */
+    getAllFoodandCustomers(keyword: string | undefined, isActive: boolean | undefined, skipCount: number | undefined, maxResultCount: number | undefined): Observable<CartDtoPagedResultDto> {
+        let url_ = this.baseUrl + "/api/services/app/Cart/GetAllFoodandCustomers?";
+        if (keyword === null)
+            throw new Error("The parameter 'keyword' cannot be null.");
+        else if (keyword !== undefined)
+            url_ += "Keyword=" + encodeURIComponent("" + keyword) + "&";
+        if (isActive === null)
+            throw new Error("The parameter 'isActive' cannot be null.");
+        else if (isActive !== undefined)
+            url_ += "IsActive=" + encodeURIComponent("" + isActive) + "&";
+        if (skipCount === null)
+            throw new Error("The parameter 'skipCount' cannot be null.");
+        else if (skipCount !== undefined)
+            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&";
+        if (maxResultCount === null)
+            throw new Error("The parameter 'maxResultCount' cannot be null.");
+        else if (maxResultCount !== undefined)
+            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAllFoodandCustomers(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAllFoodandCustomers(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<CartDtoPagedResultDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<CartDtoPagedResultDto>;
+        }));
+    }
+
+    protected processGetAllFoodandCustomers(response: HttpResponseBase): Observable<CartDtoPagedResultDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = CartDtoPagedResultDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
 }
 
 @Injectable()
@@ -2403,8 +2474,8 @@ export class OrderServiceProxy {
      * @param maxResultCount (optional) 
      * @return Success
      */
-    getFoodWithCategoriesAndType(keyword: string | undefined, isActive: boolean | undefined, skipCount: number | undefined, maxResultCount: number | undefined): Observable<OrderDtoPagedResultDto> {
-        let url_ = this.baseUrl + "/api/services/app/Order/GetFoodWithCategoriesAndType?";
+    getCartsWithFood(keyword: string | undefined, isActive: boolean | undefined, skipCount: number | undefined, maxResultCount: number | undefined): Observable<OrderDtoPagedResultDto> {
+        let url_ = this.baseUrl + "/api/services/app/Order/GetCartsWithFood?";
         if (keyword === null)
             throw new Error("The parameter 'keyword' cannot be null.");
         else if (keyword !== undefined)
@@ -2432,11 +2503,11 @@ export class OrderServiceProxy {
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetFoodWithCategoriesAndType(response_);
+            return this.processGetCartsWithFood(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetFoodWithCategoriesAndType(response_ as any);
+                    return this.processGetCartsWithFood(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<OrderDtoPagedResultDto>;
                 }
@@ -2445,7 +2516,7 @@ export class OrderServiceProxy {
         }));
     }
 
-    protected processGetFoodWithCategoriesAndType(response: HttpResponseBase): Observable<OrderDtoPagedResultDto> {
+    protected processGetCartsWithFood(response: HttpResponseBase): Observable<OrderDtoPagedResultDto> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -4636,11 +4707,12 @@ export class CartDto implements ICartDto {
     quantity: number;
     size: string | undefined;
     notes: string | undefined;
-    purchased: DateAndTime;
+    dateTimeAdded: moment.Moment;
     customerId: number;
     customer: CustomerDto;
     foodId: number;
     food: FoodDto;
+    amount: number | undefined;
 
     constructor(data?: ICartDto) {
         if (data) {
@@ -4657,11 +4729,12 @@ export class CartDto implements ICartDto {
             this.quantity = _data["quantity"];
             this.size = _data["size"];
             this.notes = _data["notes"];
-            this.purchased = _data["purchased"] ? DateAndTime.fromJS(_data["purchased"]) : <any>undefined;
+            this.dateTimeAdded = _data["dateTimeAdded"] ? moment(_data["dateTimeAdded"].toString()) : <any>undefined;
             this.customerId = _data["customerId"];
             this.customer = _data["customer"] ? CustomerDto.fromJS(_data["customer"]) : <any>undefined;
             this.foodId = _data["foodId"];
             this.food = _data["food"] ? FoodDto.fromJS(_data["food"]) : <any>undefined;
+            this.amount = _data["amount"];
         }
     }
 
@@ -4678,11 +4751,12 @@ export class CartDto implements ICartDto {
         data["quantity"] = this.quantity;
         data["size"] = this.size;
         data["notes"] = this.notes;
-        data["purchased"] = this.purchased ? this.purchased.toJSON() : <any>undefined;
+        data["dateTimeAdded"] = this.dateTimeAdded ? this.dateTimeAdded.toISOString() : <any>undefined;
         data["customerId"] = this.customerId;
         data["customer"] = this.customer ? this.customer.toJSON() : <any>undefined;
         data["foodId"] = this.foodId;
         data["food"] = this.food ? this.food.toJSON() : <any>undefined;
+        data["amount"] = this.amount;
         return data;
     }
 
@@ -4699,11 +4773,12 @@ export interface ICartDto {
     quantity: number;
     size: string | undefined;
     notes: string | undefined;
-    purchased: DateAndTime;
+    dateTimeAdded: moment.Moment;
     customerId: number;
     customer: CustomerDto;
     foodId: number;
     food: FoodDto;
+    amount: number | undefined;
 }
 
 export class CartDtoPagedResultDto implements ICartDtoPagedResultDto {
@@ -5000,7 +5075,8 @@ export class CreateCartDto implements ICreateCartDto {
     quantity: number;
     size: string | undefined;
     notes: string | undefined;
-    purchased: DateAndTime;
+    dateTimeAdded: moment.Moment;
+    amount: number;
     customerId: number;
     foodId: number | undefined;
 
@@ -5018,7 +5094,8 @@ export class CreateCartDto implements ICreateCartDto {
             this.quantity = _data["quantity"];
             this.size = _data["size"];
             this.notes = _data["notes"];
-            this.purchased = _data["purchased"] ? DateAndTime.fromJS(_data["purchased"]) : <any>undefined;
+            this.dateTimeAdded = _data["dateTimeAdded"] ? moment(_data["dateTimeAdded"].toString()) : <any>undefined;
+            this.amount = _data["amount"];
             this.customerId = _data["customerId"];
             this.foodId = _data["foodId"];
         }
@@ -5036,7 +5113,8 @@ export class CreateCartDto implements ICreateCartDto {
         data["quantity"] = this.quantity;
         data["size"] = this.size;
         data["notes"] = this.notes;
-        data["purchased"] = this.purchased ? this.purchased.toJSON() : <any>undefined;
+        data["dateTimeAdded"] = this.dateTimeAdded ? this.dateTimeAdded.toISOString() : <any>undefined;
+        data["amount"] = this.amount;
         data["customerId"] = this.customerId;
         data["foodId"] = this.foodId;
         return data;
@@ -5054,7 +5132,8 @@ export interface ICreateCartDto {
     quantity: number;
     size: string | undefined;
     notes: string | undefined;
-    purchased: DateAndTime;
+    dateTimeAdded: moment.Moment;
+    amount: number;
     customerId: number;
     foodId: number | undefined;
 }
@@ -5272,9 +5351,10 @@ export interface ICreateFoodDto {
 }
 
 export class CreateOrderDto implements ICreateOrderDto {
-    quantity: number;
-    size: string | undefined;
-    foodId: number;
+    notes: string | undefined;
+    ordered: moment.Moment;
+    totalAmount: number;
+    cartId: number | undefined;
 
     constructor(data?: ICreateOrderDto) {
         if (data) {
@@ -5287,9 +5367,10 @@ export class CreateOrderDto implements ICreateOrderDto {
 
     init(_data?: any) {
         if (_data) {
-            this.quantity = _data["quantity"];
-            this.size = _data["size"];
-            this.foodId = _data["foodId"];
+            this.notes = _data["notes"];
+            this.ordered = _data["ordered"] ? moment(_data["ordered"].toString()) : <any>undefined;
+            this.totalAmount = _data["totalAmount"];
+            this.cartId = _data["cartId"];
         }
     }
 
@@ -5302,9 +5383,10 @@ export class CreateOrderDto implements ICreateOrderDto {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["quantity"] = this.quantity;
-        data["size"] = this.size;
-        data["foodId"] = this.foodId;
+        data["notes"] = this.notes;
+        data["ordered"] = this.ordered ? this.ordered.toISOString() : <any>undefined;
+        data["totalAmount"] = this.totalAmount;
+        data["cartId"] = this.cartId;
         return data;
     }
 
@@ -5317,9 +5399,10 @@ export class CreateOrderDto implements ICreateOrderDto {
 }
 
 export interface ICreateOrderDto {
-    quantity: number;
-    size: string | undefined;
-    foodId: number;
+    notes: string | undefined;
+    ordered: moment.Moment;
+    totalAmount: number;
+    cartId: number | undefined;
 }
 
 export class CreateRoleDto implements ICreateRoleDto {
@@ -5674,43 +5757,6 @@ export class CustomerDtoPagedResultDto implements ICustomerDtoPagedResultDto {
 export interface ICustomerDtoPagedResultDto {
     items: CustomerDto[] | undefined;
     totalCount: number;
-}
-
-export class DateAndTime implements IDateAndTime {
-
-    constructor(data?: IDateAndTime) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-    }
-
-    static fromJS(data: any): DateAndTime {
-        data = typeof data === 'object' ? data : {};
-        let result = new DateAndTime();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        return data;
-    }
-
-    clone(): DateAndTime {
-        const json = this.toJSON();
-        let result = new DateAndTime();
-        result.init(json);
-        return result;
-    }
-}
-
-export interface IDateAndTime {
 }
 
 export class DivisionDto implements IDivisionDto {
@@ -6418,10 +6464,11 @@ export interface IIsTenantAvailableOutput {
 
 export class OrderDto implements IOrderDto {
     id: number;
-    quantity: number;
-    size: string | undefined;
-    foodId: number;
-    food: FoodDto;
+    notes: string | undefined;
+    ordered: moment.Moment;
+    totalAmount: number;
+    cartId: number;
+    cart: CartDto;
 
     constructor(data?: IOrderDto) {
         if (data) {
@@ -6435,10 +6482,11 @@ export class OrderDto implements IOrderDto {
     init(_data?: any) {
         if (_data) {
             this.id = _data["id"];
-            this.quantity = _data["quantity"];
-            this.size = _data["size"];
-            this.foodId = _data["foodId"];
-            this.food = _data["food"] ? FoodDto.fromJS(_data["food"]) : <any>undefined;
+            this.notes = _data["notes"];
+            this.ordered = _data["ordered"] ? moment(_data["ordered"].toString()) : <any>undefined;
+            this.totalAmount = _data["totalAmount"];
+            this.cartId = _data["cartId"];
+            this.cart = _data["cart"] ? CartDto.fromJS(_data["cart"]) : <any>undefined;
         }
     }
 
@@ -6452,10 +6500,11 @@ export class OrderDto implements IOrderDto {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
-        data["quantity"] = this.quantity;
-        data["size"] = this.size;
-        data["foodId"] = this.foodId;
-        data["food"] = this.food ? this.food.toJSON() : <any>undefined;
+        data["notes"] = this.notes;
+        data["ordered"] = this.ordered ? this.ordered.toISOString() : <any>undefined;
+        data["totalAmount"] = this.totalAmount;
+        data["cartId"] = this.cartId;
+        data["cart"] = this.cart ? this.cart.toJSON() : <any>undefined;
         return data;
     }
 
@@ -6469,10 +6518,11 @@ export class OrderDto implements IOrderDto {
 
 export interface IOrderDto {
     id: number;
-    quantity: number;
-    size: string | undefined;
-    foodId: number;
-    food: FoodDto;
+    notes: string | undefined;
+    ordered: moment.Moment;
+    totalAmount: number;
+    cartId: number;
+    cart: CartDto;
 }
 
 export class OrderDtoPagedResultDto implements IOrderDtoPagedResultDto {

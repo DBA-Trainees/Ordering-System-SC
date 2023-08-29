@@ -17,7 +17,7 @@ namespace OrderingSystem.Foods.Dto
         public string? Size { get; set; }
 
         [Required]
-        public Double Price { get; set; }
+        public double Price { get; set; }
         public int? CategoryId { get; set; }
         public int? TypeId { get; set; }
     }

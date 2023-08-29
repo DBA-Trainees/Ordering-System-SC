@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="wrap">
           <div class="box" *ngFor="
-          let food of foods
+          let order of orders
             | paginate
               : {
                   id: 'server',
@@ -12,7 +12,7 @@
                 }
         ">
               <div
-                class="box-top"        
+                class="box-top"   
               >
                 <img
                   [src]="'data:' + food.imageName + ';base64,' + food.image"
@@ -41,10 +41,7 @@
                           min="0"
                   >
                 </div>
-                <a href="javascript:;" class="button" (click)="saveToCart(food.id)">Add to Cart</a>
-                <!-- <a href="javascript:;" class="float" (click)="()">
-                    <i class="fa fa-plus my-float"></i>
-                </a> -->
+                <a href="javascript:;" class="button" (click)="addToCart(food.id)">Add to Cart</a>
               </div>
             </div>
         </div>

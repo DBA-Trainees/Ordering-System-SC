@@ -11,12 +11,11 @@ import {
   } from 'shared/paged-listing-component-base';
 import {
     OrderDto,
-    FoodDto,
     OrderServiceProxy,
-    FoodServiceProxy,
     CartDto,
     CartServiceProxy,
-    CartDtoPagedResultDto
+    CartDtoPagedResultDto,
+    FoodDto
 } from '@shared/service-proxies/service-proxies';
 // import { ViewOrderComponent } from './view-order/view-order.component';
 
@@ -25,8 +24,10 @@ class PagedCartsRequestDto extends PagedRequestDto {
     isActive: boolean | null;
 }
 
+
 @Component({
-    templateUrl: 'view-order.component.html'
+    templateUrl: 'view-order.component.html',
+    styleUrls: ["./view-order.component.css"]
 })
 
 
@@ -34,17 +35,19 @@ export class ViewOrderComponent extends PagedListingComponentBase<OrderDto>{
     saving = false;
     id: number;
     order = new OrderDto();
+    orders: OrderDto[] = [];
     carts: CartDto[] = [];
-    food: FoodDto[] = [];
+    food = new FoodDto();
     keyword = '';
     isActive: boolean | null;
+    selectedCartId: number = null;
+
 
     @Output() onSave = new EventEmitter<any>();
 
     constructor(
         injector: Injector,
         private _orderServiceProxy: OrderServiceProxy,
-        private _foodServiceProxy: FoodServiceProxy,
         private _cartServiceProxy: CartServiceProxy
     ) {
         super(injector);
@@ -59,7 +62,7 @@ export class ViewOrderComponent extends PagedListingComponentBase<OrderDto>{
         request.isActive = this.isActive;
 
         this._cartServiceProxy
-            .getAll(
+            .getAllFoodandCustomers(
                 request.keyword,
                 request.isActive,
                 request.skipCount,
@@ -91,9 +94,9 @@ export class ViewOrderComponent extends PagedListingComponentBase<OrderDto>{
         )
     }
 
-    saveToCart(): void {
+    checkOutCart(): void {
         this.saving = true;
-
+        this.order.cartId = this.selectedCartId;
 
         if(this.id > 0) {
             this._orderServiceProxy.update(this.order).subscribe(

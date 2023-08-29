@@ -7,11 +7,11 @@ import {
     PagedRequestDto
 } from 'shared/paged-listing-component-base';
 import { 
-    FoodDto,
     OrderDto,
     OrderServiceProxy,
-    FoodServiceProxy,
-    FoodDtoPagedResultDto,
+    CartServiceProxy,
+    OrderDtoPagedResultDto,
+    FoodDto,
 } from '@shared/service-proxies/service-proxies';
 import { ViewOrderComponent } from './view-order/view-order.component';
 
@@ -35,7 +35,7 @@ enum setFoodEnum {
 export class OrdersComponent extends PagedListingComponentBase<OrderDto>{
     id: number;
     saving = false;
-    cart = new OrderDto;
+    cart = new OrderDto();
     orders: OrderDto[] = [];
     food = new FoodDto();
     foods: FoodDto[] = [];
@@ -54,7 +54,7 @@ export class OrdersComponent extends PagedListingComponentBase<OrderDto>{
     constructor(
         injector: Injector,
         private _orderServiceProxy: OrderServiceProxy,
-        private _foodServiceProxy: FoodServiceProxy,
+        // private _cartServiceProxy: CartServiceProxy,
         private _modalService: BsModalService
     ) {
         super(injector)
@@ -67,8 +67,8 @@ export class OrdersComponent extends PagedListingComponentBase<OrderDto>{
         request.keyword = this.keyword;
         request.isActive = this.isActive;
     
-        this._foodServiceProxy
-          .getFoodWithCategoriesAndType(
+        this._orderServiceProxy
+          .getCartsWithFood(
             request.keyword,
             request.isActive,
             request.skipCount,
@@ -79,14 +79,14 @@ export class OrdersComponent extends PagedListingComponentBase<OrderDto>{
               finishedCallback();
             })
           )
-          .subscribe((result: FoodDtoPagedResultDto) => {
-            this.foods = result.items;
+          .subscribe((result: OrderDtoPagedResultDto) => {
+            this.orders = result.items;
             this.showPaging(result, pageNumber);
           });
       }
       protected delete(order: OrderDto): void {
         abp.message.confirm(
-          this.l('UserDeleteWarningMessage', order.size),
+          this.l('UserDeleteWarningMessage', order),
           undefined,
           (result: boolean) => {
             if (result) {
@@ -99,39 +99,31 @@ export class OrdersComponent extends PagedListingComponentBase<OrderDto>{
         );
       }
 
-      addFood(): void {
-        this.showViewOrderModal();
-      }
-      
-      saveToCart(id): void {
-        this.showViewOrderModal(id);
-        // this.saving = true;
-        // this.cart.foodId = food;
-      }
+    addToCart(foodId: number): void {
+      this.saving = true;
+      // this.cart.foodId = foodId;
 
-    private showViewOrderModal(id?: number): void {
-      let showViewOrderModal: BsModalRef;
-      if (!id) {
-        showViewOrderModal = this._modalService.show(
-          ViewOrderComponent,
-          {
-            class: 'modal-lg',
+      if(this.id > 0) {
+        this._orderServiceProxy.update(this.cart).subscribe(
+          () => {
+            this.notify.info(this.l('SavedSuccessfully'));
+            this.onSave.emit();
+          },
+          () => {
+            this.saving = false;
           }
         );
       } else {
-        showViewOrderModal = this._modalService.show(
-          ViewOrderComponent,
-          {
-            class: 'modal-lg',
-            initialState: {
-              id: id,
-            }
+        this._orderServiceProxy.create(this.cart).subscribe(
+          () => {
+            this.notify.info(this.l('SavedSuccessfully'));
+            this.onSave.emit();
+          },
+          () => {
+            this.saving = false;
           }
-        );
+        )
       }
-  
-      showViewOrderModal.content.onSave.subscribe(() => {
-        this.refresh();
-      });
     }
+
 }
