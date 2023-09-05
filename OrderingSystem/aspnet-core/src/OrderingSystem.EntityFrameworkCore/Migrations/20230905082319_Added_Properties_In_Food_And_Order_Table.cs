@@ -6,13 +6,21 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace OrderingSystem.Migrations
 {
     /// <inheritdoc />
-    public partial class Added_Notes_And_DateTime_in_Order_Table : Migration
+    public partial class Added_Properties_In_Food_And_Order_Table : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
                 name: "FK_Orders_Foods_FoodId",
+                table: "Orders");
+
+            migrationBuilder.DropIndex(
+                name: "IX_Orders_FoodId",
+                table: "Orders");
+
+            migrationBuilder.DropColumn(
+                name: "FoodId",
                 table: "Orders");
 
             migrationBuilder.DropColumn(
@@ -23,16 +31,6 @@ namespace OrderingSystem.Migrations
                 name: "Size",
                 table: "Orders",
                 newName: "Notes");
-
-            migrationBuilder.RenameColumn(
-                name: "FoodId",
-                table: "Orders",
-                newName: "CartId");
-
-            migrationBuilder.RenameIndex(
-                name: "IX_Orders_FoodId",
-                table: "Orders",
-                newName: "IX_Orders_CartId");
 
             migrationBuilder.AddColumn<DateTime>(
                 name: "Ordered",
@@ -47,22 +45,11 @@ namespace OrderingSystem.Migrations
                 type: "float",
                 nullable: false,
                 defaultValue: 0.0);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Orders_Carts_CartId",
-                table: "Orders",
-                column: "CartId",
-                principalTable: "Carts",
-                principalColumn: "Id");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Orders_Carts_CartId",
-                table: "Orders");
-
             migrationBuilder.DropColumn(
                 name: "Ordered",
                 table: "Orders");
@@ -76,15 +63,11 @@ namespace OrderingSystem.Migrations
                 table: "Orders",
                 newName: "Size");
 
-            migrationBuilder.RenameColumn(
-                name: "CartId",
+            migrationBuilder.AddColumn<int>(
+                name: "FoodId",
                 table: "Orders",
-                newName: "FoodId");
-
-            migrationBuilder.RenameIndex(
-                name: "IX_Orders_CartId",
-                table: "Orders",
-                newName: "IX_Orders_FoodId");
+                type: "int",
+                nullable: true);
 
             migrationBuilder.AddColumn<int>(
                 name: "Quantity",
@@ -92,6 +75,11 @@ namespace OrderingSystem.Migrations
                 type: "int",
                 nullable: false,
                 defaultValue: 0);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_FoodId",
+                table: "Orders",
+                column: "FoodId");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Orders_Foods_FoodId",

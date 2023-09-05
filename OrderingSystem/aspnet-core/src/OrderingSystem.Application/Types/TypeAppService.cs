@@ -1,6 +1,9 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
+using Abp.Collections.Extensions;
 using Abp.Domain.Repositories;
+using Abp.Extensions;
+using Abp.Linq.Extensions;
 using Microsoft.EntityFrameworkCore;
 using OrderingSystem.Entities;
 using OrderingSystem.Types.Dto;
@@ -54,6 +57,12 @@ namespace OrderingSystem.Types
                 .ToListAsync();
 
             return query;
+        }
+
+        protected override IQueryable<Type> CreateFilteredQuery(PagedTypeResultRequestDto input)
+        {
+            return Repository.GetAll()
+                .WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.Name.Contains(input.Keyword));
         }
     }
 }

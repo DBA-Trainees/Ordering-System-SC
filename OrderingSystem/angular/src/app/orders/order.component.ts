@@ -1,17 +1,23 @@
-import { Component, Injector, Output, EventEmitter } from '@angular/core';
+import { Component, Injector, Output, OnInit, EventEmitter } from '@angular/core';
 import { finalize } from 'rxjs/operators';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { appModuleAnimation } from '@shared/animations/routerTransition';
+import { Router } from '@angular/router';
 import { 
     PagedListingComponentBase,
     PagedRequestDto
 } from 'shared/paged-listing-component-base';
 import { 
     OrderDto,
+    CreateOrderDto,
     OrderServiceProxy,
-    CartServiceProxy,
     OrderDtoPagedResultDto,
+    CartDtoPagedResultDto,
     FoodDto,
+    FoodDtoPagedResultDto,
+    FoodServiceProxy,
+    CartServiceProxy,
+    CartDto,
+    CustomerDto
 } from '@shared/service-proxies/service-proxies';
 import { ViewOrderComponent } from './view-order/view-order.component';
 
@@ -20,7 +26,7 @@ class PagedOrderRequestDto extends PagedRequestDto {
     isActive: boolean | null;
 }
 
-enum setFoodEnum {
+enum setFoodSize {
   Small = 'Small',
   Medium = 'Medium',
   Large = 'Large'
@@ -35,17 +41,22 @@ enum setFoodEnum {
 export class OrdersComponent extends PagedListingComponentBase<OrderDto>{
     id: number;
     saving = false;
-    cart = new OrderDto();
+    cart = new CartDto();
+    order = new OrderDto;
     orders: OrderDto[] = [];
     food = new FoodDto();
     foods: FoodDto[] = [];
-    setFoodSizing: string;
+    customer = new CustomerDto();
+    customers: CustomerDto[] = [];
+    foodId: number = null;
+    selectCartId: number = null;
     keyword = '';
     isActive: boolean | null;
+    fixedSize: string;
     foodProportions = [
-      setFoodEnum.Small,
-      setFoodEnum.Medium,
-      setFoodEnum.Large
+      setFoodSize.Small,
+      setFoodSize.Medium,
+      setFoodSize.Large
    ]
 
    @Output() onSave = new EventEmitter<any>();
@@ -54,11 +65,13 @@ export class OrdersComponent extends PagedListingComponentBase<OrderDto>{
     constructor(
         injector: Injector,
         private _orderServiceProxy: OrderServiceProxy,
-        // private _cartServiceProxy: CartServiceProxy,
-        private _modalService: BsModalService
+        private _foodServiceProxy: FoodServiceProxy,
+        private _cartServiceProxy: CartServiceProxy,
+        private router: Router
     ) {
-        super(injector)
+        super(injector);
     }
+
 
     protected list(
         request: PagedOrderRequestDto,
@@ -67,8 +80,8 @@ export class OrdersComponent extends PagedListingComponentBase<OrderDto>{
         request.keyword = this.keyword;
         request.isActive = this.isActive;
     
-        this._orderServiceProxy
-          .getCartsWithFood(
+        this._foodServiceProxy
+          .getFoodWithCategoriesAndType(
             request.keyword,
             request.isActive,
             request.skipCount,
@@ -79,14 +92,15 @@ export class OrdersComponent extends PagedListingComponentBase<OrderDto>{
               finishedCallback();
             })
           )
-          .subscribe((result: OrderDtoPagedResultDto) => {
-            this.orders = result.items;
+          .subscribe((result: FoodDtoPagedResultDto) => {
+            this.foods = result.items;
             this.showPaging(result, pageNumber);
           });
       }
+
       protected delete(order: OrderDto): void {
         abp.message.confirm(
-          this.l('UserDeleteWarningMessage', order),
+          this.l('UserDeleteWarningMessage', order.cartId),
           undefined,
           (result: boolean) => {
             if (result) {
@@ -98,13 +112,17 @@ export class OrdersComponent extends PagedListingComponentBase<OrderDto>{
           }
         );
       }
-
-    addToCart(foodId: number): void {
+      
+    
+    addToCart(foodId: number): void {      
       this.saving = true;
-      // this.cart.foodId = foodId;
+      this.cart.foodId = foodId;
+      this.cart.customerId = this.customer.id;
+      this.cart.size = this.fixedSize;
+      
 
       if(this.id > 0) {
-        this._orderServiceProxy.update(this.cart).subscribe(
+        this._cartServiceProxy.update(this.cart).subscribe(
           () => {
             this.notify.info(this.l('SavedSuccessfully'));
             this.onSave.emit();
@@ -114,9 +132,9 @@ export class OrdersComponent extends PagedListingComponentBase<OrderDto>{
           }
         );
       } else {
-        this._orderServiceProxy.create(this.cart).subscribe(
+        this._cartServiceProxy.create(this.cart).subscribe(
           () => {
-            this.notify.info(this.l('SavedSuccessfully'));
+            this.notify.info(this.l('AddedToCart'));
             this.onSave.emit();
           },
           () => {

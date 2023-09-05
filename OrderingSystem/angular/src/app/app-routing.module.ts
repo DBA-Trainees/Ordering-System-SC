@@ -36,7 +36,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
                     { path: 'foods', component: FoodsComponent, data:{ permission: 'Pages.Foods' }, canActivate: [AppRouteGuard] },
                     { path: 'types', component: TypesComponent, data:{ permission: 'Pages.Types' }, canActivate: [AppRouteGuard] },
                     { path: 'orders', component: OrdersComponent, data:{ permission: 'Pages.Orders' }, canActivate: [AppRouteGuard] },
-                    { path: 'carts', component: ViewOrderComponent, data:{ permission: 'Pages.Carts' }, canActivate: [AppRouteGuard] },
+                    { path: 'view-order', component: ViewOrderComponent, data:{ permission: 'Pages.Carts' }, canActivate: [AppRouteGuard] },
                     { path: 'dashboard', component: DashboardComponent, canActivate: [AppRouteGuard] }
 
                 ]

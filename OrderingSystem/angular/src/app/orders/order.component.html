@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="wrap">
           <div class="box" *ngFor="
-          let order of orders
+          let food of foods
             | paginate
               : {
                   id: 'server',
@@ -27,10 +27,12 @@
                   <select name="size"
                           id="size"
                           class="form-control text-center"
-                          [(ngModel)]="food.size">
-                              <option value="Small">Small</option>
-                              <option value="Medium">Medium</option>
-                              <option value="Large">Large</option>
+                          [ngModel]="food.size"
+                          (ngModelChange)="fixedSize=$event">
+                          <option *ngFor="let order of foodProportions" [ngValue]="order">
+                            {{order}}
+                          </option>
+
                   </select>
                 </div>
                 <div class="d-grid">
@@ -41,7 +43,9 @@
                           min="0"
                   >
                 </div>
-                <a href="javascript:;" class="button" (click)="addToCart(food.id)">Add to Cart</a>
+                <a href="javascript:;" class="button" (click)="addToCart(food.id)">
+                  <i class="fa fa-shopping-cart"></i>
+                </a>
               </div>
             </div>
         </div>

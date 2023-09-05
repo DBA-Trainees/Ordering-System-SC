@@ -1,6 +1,9 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
+using Abp.Collections.Extensions;
 using Abp.Domain.Repositories;
+using Abp.Extensions;
+using Abp.Linq.Extensions;
 using Microsoft.EntityFrameworkCore;
 using OrderingSystem.Customers.Dto;
 using OrderingSystem.Entities;
@@ -50,10 +53,17 @@ namespace OrderingSystem.Customers
         {
             var query = await _repository.GetAll()
                 .Include(x => x.Division)
+                .WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.Name.Contains(input.Keyword) || x.Division.Name.Contains(input.Keyword))
                 .Select(x => ObjectMapper.Map<CustomerDto>(x))
                 .ToListAsync();
 
             return new PagedResultDto<CustomerDto>(query.Count, query);
+        }
+
+        protected override IQueryable<Customer> CreateFilteredQuery(PagedCustomerResultRequestDto input)
+        {
+            return Repository.GetAll()
+                .WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.Name.Contains(input.Keyword));
         }
     }
 }

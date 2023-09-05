@@ -1,56 +1,42 @@
-<!-- <section class="pt-5 pb-5">
+<section class="pt-5 pb-5">
     <div class="container">
       <div class="row w-100">
           <div class="col-lg-12 col-md-12 col-12">
-              <h3 class="display-5 mb-2 text-center">Shopping Cart</h3>
+              <h3 class="display-5 mb-2 text-center">Check Your Cart</h3>
               <p class="mb-5 text-center">
                   <i class="text-info font-weight-bold">3</i> items in your cart</p>
               <table id="shoppingCart" class="table table-condensed table-responsive">
                   <thead>
                       <tr>
-                          <th style="width:60%">Product</th>
-                          <th style="width:12%">Price</th>
-                          <th style="width:16%"></th>
+                          <th style="width: 25%;">Food Order(s)</th>
+                          <th style="width: 20%;">Price</th>
+                          <th style="width: 20%;">Quantity</th>
+                          <th style="width: 20%;">Size</th>
+                          <th style="width: 20%;">Notes</th>
+                          <th style="width:16%">Action</th>
                       </tr>
                   </thead>
                   <tbody>
                       <tr>
                           <td data-th="Product">
                               <div class="row">
-                                  <div class="col-md-3 text-left">
-                                      <img src="https://via.placeholder.com/250x250/5fa9f8/ffffff" alt="" class="img-fluid d-none d-md-block rounded mb-2 shadow ">
+                                  <div class="col-md-3 text-left" *ngIf="food.image">
+                                      <img [src]="'data:image/png;base64,' + food.image">
                                   </div>
                                   <div class="col-md-9 text-left mt-sm-2">
-                                      <h4>Product Name</h4>
-                                      <p class="font-weight-light">Brand &amp; Name</p>
+                                      <h4>{{food.name}}</h4>
                                   </div>
                               </div>
                           </td>
-                          <td data-th="Price">$49.00</td>
-                          <td class="actions" data-th="">
+                          <td data-th="Price">₱{{food.price}}</td>
+                          <td data-th="Quantity">{{food.quantity}}</td>
+                          <td data-th="Size">{{food.size}}</td>
+                          <td data-th="Notes">
+                            <textarea name="Notes" rows="5" cols="20" id="Notes" class="TextBox"></textarea>
+                          </td>
+                          <td class="actions">
                               <div class="text-right">
-                                  <button class="btn btn-white border-secondary bg-white btn-md mb-2">
-                                      <i class="fas fa-trash"></i>
-                                  </button>
-                              </div>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td data-th="Product">
-                              <div class="row">
-                                  <div class="col-md-3 text-left">
-                                      <img src="https://via.placeholder.com/250x250/5fa9f8/ffffff" alt="" class="img-fluid d-none d-md-block rounded mb-2 shadow ">
-                                  </div>
-                                  <div class="col-md-9 text-left mt-sm-2">
-                                      <h4>Product Name</h4>
-                                      <p class="font-weight-light">Brand &amp; Name</p>
-                                  </div>
-                              </div>
-                          </td>
-                          <td data-th="Price">$49.00</td>
-                          <td class="actions" data-th="">
-                              <div class="text-right">
-                                  <button class="btn btn-white border-secondary bg-white btn-md mb-2">
+                                  <button class="btn btn-white border-secondary bg-white btn-md mb-2" (click)="delete(order)">
                                       <i class="fas fa-trash"></i>
                                   </button>
                               </div>
@@ -60,42 +46,18 @@
               </table>
               <div class="float-right text-right">
                 <h4>Total Amount:</h4>
-                <h1>$98.00</h1>
+                <h1>₱{{order.totalAmount}}</h1>
             </div>
           </div>
       </div>
       <div class="row mt-4 d-flex align-items-center">
           <div class="col-sm-6 order-md-2 text-right">
-              <a href="catalog.html" class="btn btn-primary mb-4 btn-lg pl-5 pr-5">Checkout</a>
+              <a href="javascript:;" (click)="checkOutCart(food.id)" class="btn btn-primary mb-4 btn-lg pl-5 pr-5">Checkout</a>
           </div>
           <div class="col-sm-6 mb-3 mb-m-1 order-md-1 text-md-left">
-              <a href="catalog.html">
+              <a href="javascript:;" (click)="backToOrders()">
                   <i class="fas fa-arrow-left mr-2"></i> Continue Shopping</a>
           </div>
       </div>
   </div>
-  </section> -->
-
-<section class="content px-2">
-    <div class="d-flex justify-content-center row">
-        <div class="col-md-9">
-            <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-4 px-3 rounded"
-                >
-                <div><img [src]="'data:' + food.imageName + ';base64,' + food.image" class="rounded" width="70"></div>
-                <div class="d-flex flex-column align-items-center product-details"><span class="font-weight-bold">Basic T-shirt</span>
-                    <div class="d-flex flex-row product-desc">
-                        <div class="size mr-1"><span class="text-grey">Size:</span><span class="font-weight-bold">&nbsp;M</span></div>
-                        <div class="color"><span class="text-grey">Color:</span><span class="font-weight-bold">&nbsp;Grey</span></div>
-                    </div>
-                </div>
-                <div class="d-flex flex-row align-items-center qty"><i class="fa fa-minus text-danger"></i>
-                    <h5 class="text-grey mt-1 mr-1 ml-1">2</h5><i class="fa fa-plus text-success"></i></div>
-                <div>
-                    <h5 class="text-grey">$20.00</h5>
-                </div>
-                <div class="d-flex align-items-center"><i class="fa fa-trash mb-1 text-danger"></i></div>
-            </div>
-            <div class="d-flex flex-row align-items-center mt-3 p-2 bg-white rounded"><button class="btn btn-warning btn-block btn-lg ml-2 pay-button" type="button">Proceed to Pay</button></div>
-        </div>
-    </div>
-</section>
+  </section>

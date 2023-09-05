@@ -12,8 +12,8 @@ using OrderingSystem.EntityFrameworkCore;
 namespace OrderingSystem.Migrations
 {
     [DbContext(typeof(OrderingSystemDbContext))]
-    [Migration("20230818013329_Added_Cart")]
-    partial class Added_Cart
+    [Migration("20230905082724_Added_Cart_Table")]
+    partial class Added_Cart_Table
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -1584,14 +1584,17 @@ namespace OrderingSystem.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<double?>("Amount")
+                        .HasColumnType("float");
+
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
                     b.Property<long?>("CreatorUserId")
                         .HasColumnType("bigint");
 
-                    b.Property<int?>("CustomerId")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("DateTimeAdded")
+                        .HasColumnType("datetime2");
 
                     b.Property<long?>("DeleterUserId")
                         .HasColumnType("bigint");
@@ -1614,9 +1617,6 @@ namespace OrderingSystem.Migrations
                     b.Property<string>("Notes")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Ordered")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
@@ -1624,8 +1624,6 @@ namespace OrderingSystem.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CustomerId");
 
                     b.HasIndex("FoodId");
 
@@ -1836,9 +1834,6 @@ namespace OrderingSystem.Migrations
                     b.Property<DateTime?>("DeletionTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("FoodId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -1848,15 +1843,16 @@ namespace OrderingSystem.Migrations
                     b.Property<long?>("LastModifierUserId")
                         .HasColumnType("bigint");
 
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Size")
+                    b.Property<string>("Notes")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.Property<DateTime>("Ordered")
+                        .HasColumnType("datetime2");
 
-                    b.HasIndex("FoodId");
+                    b.Property<double>("TotalAmount")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
 
                     b.ToTable("Orders");
                 });
@@ -2182,15 +2178,9 @@ namespace OrderingSystem.Migrations
 
             modelBuilder.Entity("OrderingSystem.Entities.Cart", b =>
                 {
-                    b.HasOne("OrderingSystem.Entities.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId");
-
                     b.HasOne("OrderingSystem.Entities.Food", "Food")
                         .WithMany()
                         .HasForeignKey("FoodId");
-
-                    b.Navigation("Customer");
 
                     b.Navigation("Food");
                 });
@@ -2217,15 +2207,6 @@ namespace OrderingSystem.Migrations
                     b.Navigation("Category");
 
                     b.Navigation("Type");
-                });
-
-            modelBuilder.Entity("OrderingSystem.Entities.Order", b =>
-                {
-                    b.HasOne("OrderingSystem.Entities.Food", "Food")
-                        .WithMany()
-                        .HasForeignKey("FoodId");
-
-                    b.Navigation("Food");
                 });
 
             modelBuilder.Entity("OrderingSystem.MultiTenancy.Tenant", b =>

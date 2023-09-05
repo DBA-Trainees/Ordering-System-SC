@@ -8,6 +8,7 @@ using OrderingSystem.Orders.Dto;
 using System.Threading.Tasks;
 using OrderingSystem.Foods.Dto;
 using System.Collections.Generic;
+using System.Linq.Dynamic.Core;
 
 namespace OrderingSystem.Orders
 {
@@ -49,16 +50,6 @@ namespace OrderingSystem.Orders
         {
             return base.GetEntityByIdAsync(id);
         }
-
-        //public async Task<PagedResultDto<OrderDto>> GetAllOrdersWithFood(PagedOrderResultRequestDto input)
-        //{
-        //    var query = await _repository.GetAll()
-        //        .Include(x => x.Food)
-        //        .Select(x => ObjectMapper.Map<OrderDto>(x))
-        //        .ToListAsync();
-
-        //    return new PagedResultDto<OrderDto>(query.Count, query);
-        //}
         public async Task<List<OrderDto>> GetAllOrders()
         {
             var orders = await _repository.GetAll()
@@ -70,9 +61,12 @@ namespace OrderingSystem.Orders
 
         public async Task<PagedResultDto<OrderDto>> GetCartsWithFood(PagedOrderResultRequestDto input)
         {
+            var userCustomer = AbpSession.UserId;
+
             var query = await _repository.GetAll()
-                .Include(x => x.Cart)
-                .ThenInclude(x => x.Food)
+                //.Include(x => x.Cart)
+                //.ThenInclude(x => x.Food)
+                .Where(x => x.CreatorUserId == userCustomer)
                 .Select(x => ObjectMapper.Map<OrderDto>(x))
                 .ToListAsync();
 

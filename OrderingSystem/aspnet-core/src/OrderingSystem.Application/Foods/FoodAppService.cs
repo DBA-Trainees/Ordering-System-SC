@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Linq;
 using OrderingSystem.Categories.Dto;
 using System.Collections.Generic;
+using Abp.Linq.Extensions;
+using Abp.Extensions;
+using Abp.Collections.Extensions;
 
 namespace OrderingSystem.Foods
 {
@@ -82,13 +85,12 @@ namespace OrderingSystem.Foods
             var food = await _repository.GetAll()
                 .Include(x => x.Category)
                 .Include(x => x.Type)
+                .WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.Name.Contains(input.Keyword) || x.Category.Name.Contains(input.Keyword) || x.Type.Name.Contains(input.Keyword))
                 .OrderByDescending(x => x.Id)
                 .Select(x => ObjectMapper.Map<FoodDto>(x))
                 .ToListAsync();
 
             return new PagedResultDto<FoodDto>(food.Count(), food);
         }
-
-
     }
 }

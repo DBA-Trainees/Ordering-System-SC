@@ -50,7 +50,6 @@ namespace OrderingSystem.Carts
         {
             var query = await _cartRepository.GetAll()
                 .Include(x => x.Food)
-                .Include(x => x.Customer)
                 .Select(x => ObjectMapper.Map<CartDto>(x))
                 .ToListAsync();
 

@@ -7,7 +7,9 @@ using OrderingSystem.Entities;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Collections.Generic;
-using OrderingSystem.Divisions.Dto;
+using Abp.Collections.Extensions;
+using Abp.Extensions;
+using Abp.Linq.Extensions;
 
 namespace OrderingSystem.Categories
 {
@@ -56,6 +58,11 @@ namespace OrderingSystem.Categories
 
             return query;
         }
-
+        protected override IQueryable<Category> CreateFilteredQuery(PagedCategoryResultRequestDto input)
+        {
+            return Repository.GetAll()
+                .WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.Name.Contains(input.Keyword));
+            
+        }
     }
 }
