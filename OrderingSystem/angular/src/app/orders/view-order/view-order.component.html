@@ -1,63 +1,82 @@
-<section class="pt-5 pb-5">
-    <div class="container">
+<section class="pt-5">
+    <div class="container-fluid">
       <div class="row w-100">
-          <div class="col-lg-12 col-md-12 col-12">
-              <h3 class="display-5 mb-2 text-center">Check Your Cart</h3>
-              <p class="mb-5 text-center">
-                  <i class="text-info font-weight-bold">3</i> items in your cart</p>
-              <table id="shoppingCart" class="table table-condensed table-responsive">
-                  <thead>
-                      <tr>
-                          <th style="width: 25%;">Food Order(s)</th>
-                          <th style="width: 20%;">Price</th>
-                          <th style="width: 20%;">Quantity</th>
-                          <th style="width: 20%;">Size</th>
-                          <th style="width: 20%;">Notes</th>
-                          <th style="width:16%">Action</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <tr>
-                          <td data-th="Product">
-                              <div class="row">
-                                  <div class="col-md-3 text-left" *ngIf="food.image">
-                                      <img [src]="'data:image/png;base64,' + food.image">
-                                  </div>
-                                  <div class="col-md-9 text-left mt-sm-2">
-                                      <h4>{{food.name}}</h4>
-                                  </div>
-                              </div>
-                          </td>
-                          <td data-th="Price">₱{{food.price}}</td>
-                          <td data-th="Quantity">{{food.quantity}}</td>
-                          <td data-th="Size">{{food.size}}</td>
-                          <td data-th="Notes">
-                            <textarea name="Notes" rows="5" cols="20" id="Notes" class="TextBox"></textarea>
-                          </td>
-                          <td class="actions">
-                              <div class="text-right">
-                                  <button class="btn btn-white border-secondary bg-white btn-md mb-2" (click)="delete(order)">
-                                      <i class="fas fa-trash"></i>
-                                  </button>
-                              </div>
-                          </td>
-                      </tr>
-                  </tbody>
-              </table>
-              <div class="float-right text-right">
-                <h4>Total Amount:</h4>
-                <h1>₱{{order.totalAmount}}</h1>
-            </div>
+        <div class="col-lg-12 col-md-12 col-12">
+          <h3 class="display-5 mb-2 text-center">Check Your Cart</h3>
+          <p class="mb-5 text-center">
+          </p>
+  
+          <table id="shoppingCart" class="table table-responsive">
+            <thead>
+              <tr>
+                <th style="width: 25%">Food Order(s)</th>
+                <th style="width: 25%">Food Name</th>
+                <!-- <th style="width: 20%">Notes</th>  -->
+                <th style="width: 20%">Price</th>
+                <th style="width: 20%">Quantity</th>
+                <th style="width: 20%">Size</th>                                                                                                                                                                                          
+                <th style="width: 16%">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cart of carts">
+                <td>
+                  <div class="row">
+                    <div class="col-md-3 text-left" *ngIf="cart.food?.image">
+                      <img
+                        [src]="'data:image/png;base64,' + cart.food?.image"
+                        style="width: 100%; height: 100%"
+                      />
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <h4>{{ cart.food?.name }}</h4>
+                </td>
+                <!-- <td>
+                      <textarea
+                        required
+                        type="text"
+                        class="notes"
+                        id="notes"
+                        ></textarea>
+                </td> -->
+                <td>₱{{ cart.food?.price }}</td>
+                <td>{{cart.quantity}}</td>
+                <td>{{ cart.size }}</td>
+                <td class="actions">
+                  <div class="text-right">
+                    <button
+                      class="btn btn-white border-secondary bg-white btn-md mb-2"
+                      (click)="delete(cart)"
+                    >
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="float-right text-right">
+            <h4>Total Amount:</h4>
+            <h1>₱{{ completeAmount(carts) }}</h1>
           </div>
+        </div>
       </div>
       <div class="row mt-4 d-flex align-items-center">
-          <div class="col-sm-6 order-md-2 text-right">
-              <a href="javascript:;" (click)="checkOutCart(food.id)" class="btn btn-primary mb-4 btn-lg pl-5 pr-5">Checkout</a>
-          </div>
-          <div class="col-sm-6 mb-3 mb-m-1 order-md-1 text-md-left">
-              <a href="javascript:;" (click)="backToOrders()">
-                  <i class="fas fa-arrow-left mr-2"></i> Continue Shopping</a>
-          </div>
+        <div class="col-sm-6 order-md-2 text-right">
+          <a
+            href="javascript:;"
+            (click)="checkOutCart(order)"
+            class="btn btn-info mb-4 btn-lg pl-5 pr-5"
+            >Checkout</a
+          >
+        </div>
+        <div class="col-sm-6 mb-3 mb-m-1 order-md-1 text-md-left">
+          <a href="javascript:;" (click)="backToOrders()">
+            <i class="fas fa-arrow-left mr-2"></i>Continue ordering</a
+          >
+        </div>
       </div>
-  </div>
+    </div>
   </section>

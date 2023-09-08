@@ -110,8 +110,8 @@ namespace OrderingSystem.Roles
         {
             return Repository.GetAllIncluding(x => x.Permissions)
                 .WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.Name.Contains(input.Keyword)
-                || x.DisplayName.Contains(input.Keyword)
-                || x.Description.Contains(input.Keyword));
+                || x.DisplayName.Contains(input.Keyword));
+                //|| x.Description.Contains(input.Keyword));
         }
 
         protected override async Task<Role> GetEntityByIdAsync(int id)

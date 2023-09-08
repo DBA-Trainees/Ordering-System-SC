@@ -24,7 +24,7 @@
                   <p class="user-follow-info">{{ food.category?.name }}</p>
                 </div>
                 <div class="d-grid">
-                  <select name="size"
+                  <select 
                           id="size"
                           class="form-control text-center"
                           [ngModel]="food.size"
@@ -32,20 +32,27 @@
                           <option *ngFor="let order of foodProportions" [ngValue]="order">
                             {{order}}
                           </option>
-
                   </select>
                 </div>
-                <div class="d-grid">
-                  <input type="number"
-                          id="quantity"
-                          class="form-control text-center"
-                          value="1"
-                          min="0"
-                  >
+                <!-- <div class="quantity">
+                  <input type="number" class="form-control text-center" [(ngModel)]="cart.quantity">
+                </div> -->
+                <div class="notes">
+                  <textarea name="notes" 
+                            rows="5" 
+                            cols="60" 
+                            id="notes" 
+                            class="form-control"
+                            [(ngModel)]="notes"
+                            >
+                    </textarea>
                 </div>
-                <a href="javascript:;" class="button" (click)="addToCart(food.id)">
-                  <i class="fa fa-shopping-cart"></i>
-                </a>
+                <!-- <a href="javascript:;" class="button" (click)="addToCart(food.id)" disabled="!food.quantity" onClick="return false">
+                  <i class="cart-button">Add to Cart</i>
+                </a> -->
+                <button type="submit" class="button-cart" (click)="addToCart(food.id)" [disabled]="!food.quantity">
+                  <i class="cartButton">Add to Cart</i>
+                </button>
               </div>
             </div>
         </div>

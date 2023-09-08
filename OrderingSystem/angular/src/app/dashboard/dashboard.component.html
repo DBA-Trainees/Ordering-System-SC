@@ -1,290 +1,296 @@
-<!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<div class="container">
-    <div class="row">
-        <div class="col-md-4 col-xl-3">
-            <div class="card bg-c-blue order-card">
-                <div class="card-block">
-                    <h6 class="m-b-20">Orders Received</h6>
-                    <h2 class="text-right"><i class="fa fa-cart-plus f-left"></i><span>486</span></h2>
-                    <p class="m-b-0">Completed Orders<span class="f-right">351</span></p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-md-4 col-xl-3">
-            <div class="card bg-c-green order-card">
-                <div class="card-block">
-                    <h6 class="m-b-20">Orders Received</h6>
-                    <h2 class="text-right"><i class="fa fa-rocket f-left"></i><span>486</span></h2>
-                    <p class="m-b-0">Completed Orders<span class="f-right">351</span></p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-md-4 col-xl-3">
-            <div class="card bg-c-yellow order-card">
-                <div class="card-block">
-                    <h6 class="m-b-20">Orders Received</h6>
-                    <h2 class="text-right"><i class="fa fa-refresh f-left"></i><span>486</span></h2>
-                    <p class="m-b-0">Completed Orders<span class="f-right">351</span></p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-md-4 col-xl-3">
-            <div class="card bg-c-pink order-card">
-                <div class="card-block">
-                    <h6 class="m-b-20">Orders Received</h6>
-                    <h2 class="text-right"><i class="fa fa-credit-card f-left"></i><span>486</span></h2>
-                    <p class="m-b-0">Completed Orders<span class="f-right">351</span></p>
-                </div>
-            </div>
-        </div>
-	</div>
-</div> -->
-
-
-<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap-extended.min.css">
-<link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/fonts/simple-line-icons/style.min.css">
-<link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css">
-<link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
-<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-
-<div class="grey-bg container-fluid">
-  <section id="minimal-statistics">
-    <div class="row">
-      <div class="col-12 mt-3 mb-1">
-        <h4 class="text-uppercase">Minimal Statistics Cards</h4>
-        <p>Statistics on minimal cards.</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xl-3 col-sm-6 col-12"> 
-        <div class="card">
-          <div class="card-content">
-            <div class="card-body">
-              <div class="media d-flex">
-                <div class="align-self-center">
-                  <i class="icon-pencil primary font-large-2 float-left"></i>
-                </div>
-                <div class="media-body text-right">
-                  <h3>278</h3>
-                  <span>New Posts</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-3 col-sm-6 col-12">
-        <div class="card">
-          <div class="card-content">
-            <div class="card-body">
-              <div class="media d-flex">
-                <div class="align-self-center">
-                  <i class="icon-speech warning font-large-2 float-left"></i>
-                </div>
-                <div class="media-body text-right">
-                  <h3>156</h3>
-                  <span>New Comments</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-3 col-sm-6 col-12">
-        <div class="card">
-          <div class="card-content">
-            <div class="card-body">
-              <div class="media d-flex">
-                <div class="align-self-center">
-                  <i class="icon-graph success font-large-2 float-left"></i>
-                </div>
-                <div class="media-body text-right">
-                  <h3>64.89 %</h3>
-                  <span>Bounce Rate</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-3 col-sm-6 col-12">
-        <div class="card">
-          <div class="card-content">
-            <div class="card-body">
-              <div class="media d-flex">
-                <div class="align-self-center">
-                  <i class="icon-pointer danger font-large-2 float-left"></i>
-                </div>
-                <div class="media-body text-right">
-                  <h3>423</h3>
-                  <span>Total Visits</span>
-                </div>
-              </div>
-            </div>
-          </div>
+<div [@routerTransition]>
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <h1>{{ "Dashboard" | localize }}</h1>
         </div>
       </div>
     </div>
-  
-    <div class="row">
-      <div class="col-xl-3 col-sm-6 col-12">
-        <div class="card">
-          <div class="card-content">
-            <div class="card-body">
-              <div class="media d-flex">
-                <div class="media-body text-left">
-                  <h3 class="danger">278</h3>
-                  <span>New Projects</span>
-                </div>
-                <div class="align-self-center">
-                  <i class="icon-rocket danger font-large-2 float-right"></i>
-                </div>
-              </div>
+  </section>
+  <section class="content px-2">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="alert alert-info alert-dismissible">
+            <h6><i class="icon fa fa-info"></i> This is a sample Dashboard which doesn't show any server side data.
+              However, you can develop your own dashboard inspired by this one and its source code.</h6>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-3 col-6">
+          <div class="small-box bg-success">
+            <div class="inner">
+              <h3>8.2k+</h3>
+              <p>Stargazers</p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-star"></i>
+            </div>
+            <a href="https://github.com/aspnetboilerplate/aspnetboilerplate/stargazers"
+              class="small-box-footer"
+              target="_blank">
+              More info
+              <i class="fas fa-arrow-circle-right"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-6">
+          <div class="small-box bg-info">
+            <div class="inner">
+              <h3>140+</h3>
+              <p>Contributors</p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <a href="https://github.com/aspnetboilerplate/aspnetboilerplate/graphs/contributors"
+              class="small-box-footer"
+              target="_blank">
+              More info
+              <i class="fas fa-arrow-circle-right"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-6">
+          <div class="small-box bg-warning">
+            <div class="inner">
+              <h3>1.6k+</h3>
+              <p>Used / Dependents</p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-tools"></i>
+            </div>
+            <a href="https://github.com/aspnetboilerplate/aspnetboilerplate/network/dependents"
+              class="small-box-footer"
+              target="_blank">
+              More info
+              <i class="fas fa-arrow-circle-right"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-6">
+          <div class="small-box bg-primary">
+            <div class="inner">
+              <h3>3.1k+</h3>
+              <p>Forks</p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-code"></i>
+            </div>
+            <a href="https://github.com/aspnetboilerplate/aspnetboilerplate/network/members"
+              class="small-box-footer"
+              target="_blank">
+              More info
+              <i class="fas fa-arrow-circle-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-sm-6 col-md-3">
+          <div class="info-box">
+            <span class="info-box-icon bg-primary elevation-1">
+              <i class="fas fa-plus-circle"></i>
+            </span>
+            <div class="info-box-content">
+              <span class="info-box-text">Commits</span>
+              <span class="info-box-number">
+                6,350+
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3">
+          <div class="info-box mb-3">
+            <span class="info-box-icon bg-warning elevation-1">
+              <i class="fas fa-exclamation-triangle"></i>
+            </span>
+            <div class="info-box-content">
+              <span class="info-box-text">Issues</span>
+              <span class="info-box-number">
+                170+
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix hidden-md-up"></div>
+        <div class="col-12 col-sm-6 col-md-3">
+          <div class="info-box mb-3">
+            <span class="info-box-icon bg-info elevation-1">
+              <i class="fas fa-tag"></i>
+            </span>
+            <div class="info-box-content">
+              <span class="info-box-text">Releases</span>
+              <span class="info-box-number">
+                200+
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3">
+          <div class="info-box mb-3">
+            <span class="info-box-icon bg-success elevation-1">
+              <i class="fas fa-eye"></i>
+            </span>
+            <div class="info-box-content">
+              <span class="info-box-text">Watching by</span>
+              <span class="info-box-number">
+                810+
+              </span>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-xl-3 col-sm-6 col-12">
-        <div class="card">
-          <div class="card-content">
-            <div class="card-body">
-              <div class="media d-flex">
-                <div class="media-body text-left">
-                  <h3 class="success">156</h3>
-                  <span>New Clients</span>
-                </div>
-                <div class="align-self-center">
-                  <i class="icon-user success font-large-2 float-right"></i>
-                </div>
-              </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Open Issues</h3>
+            </div>
+            <div class="card-body table-responsive p-0">
+              <table class="table table-hover text-nowrap">
+                <thead class="bg-light">
+                  <tr>
+                    <th>Id</th>
+                    <th class="w-25">Title</th>
+                    <th class="w-25">Labels</th>
+                    <th>Date</th>
+                    <th>Opened by</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <a href="https://github.com/aspnetboilerplate/aspnetboilerplate/issues/5452"
+                        target="_blank">
+                        5452
+                      </a>
+                    </td>
+                    <td>Angular UI migration to AdminLTE 3</td>
+                    <td>
+                      <span class="badge badge-secondary mx-1">
+                        module-zero-core-template
+                      </span>
+                      <span class="badge badge-primary mx-1">
+                        feature
+                      </span>
+                    </td>
+                    <td>11 days ago</td>
+                    <td>iyilm4z</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="https://github.com/aspnetboilerplate/aspnetboilerplate/issues/5391"
+                        target="_blank">
+                        5391
+                      </a>
+                    </td>
+                    <td>
+                      AbpCacheBase should lock the same object for sync and
+                      async
+                    </td>
+                    <td>
+                      <span class="badge badge-danger mx-1">
+                        bug
+                      </span>
+                      <span class="badge badge-success mx-1">
+                        pull request candidate
+                      </span>
+                    </td>
+                    <td>26 days ago</td>
+                    <td>acjh</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="https://github.com/aspnetboilerplate/aspnetboilerplate/issues/5390"
+                        target="_blank">
+                        5390
+                      </a>
+                    </td>
+                    <td>AbpCache sliding/absolute expire time</td>
+                    <td>
+                      <span class="badge badge-warning mx-1">
+                        breaking-change
+                      </span>
+                      <span class="badge badge-info mx-1">enhancement</span>
+                    </td>
+                    <td>27 days ago</td>
+                    <td>ryancyq</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
       </div>
-  
-      <div class="col-xl-3 col-sm-6 col-12">
-        <div class="card">
-          <div class="card-content">
-            <div class="card-body">
-              <div class="media d-flex">
-                <div class="media-body text-left">
-                  <h3 class="warning">64.89 %</h3>
-                  <span>Conversion Rate</span>
-                </div>
-                <div class="align-self-center">
-                  <i class="icon-pie-chart warning font-large-2 float-right"></i>
-                </div>
-              </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Closed Pull Requests</h3>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-3 col-sm-6 col-12">
-        <div class="card">
-          <div class="card-content">
-            <div class="card-body">
-              <div class="media d-flex">
-                <div class="media-body text-left">
-                  <h3 class="primary">423</h3>
-                  <span>Support Tickets</span>
-                </div>
-                <div class="align-self-center">
-                  <i class="icon-support primary font-large-2 float-right"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  
-    <div class="row">
-      <div class="col-xl-3 col-sm-6 col-12">
-        <div class="card">
-          <div class="card-content">
-            <div class="card-body">
-              <div class="media d-flex">
-                <div class="media-body text-left">
-                  <h3 class="primary">278</h3>
-                  <span>New Posts</span>
-                </div>
-                <div class="align-self-center">
-                  <i class="icon-book-open primary font-large-2 float-right"></i>
-                </div>
-              </div>
-              <div class="progress mt-1 mb-0" style="height: 7px;">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-3 col-sm-6 col-12">
-        <div class="card">
-          <div class="card-content">
-            <div class="card-body">
-              <div class="media d-flex">
-                <div class="media-body text-left">
-                  <h3 class="warning">156</h3>
-                  <span>New Comments</span>
-                </div>
-                <div class="align-self-center">
-                  <i class="icon-bubbles warning font-large-2 float-right"></i>
-                </div>
-              </div>
-              <div class="progress mt-1 mb-0" style="height: 7px;">
-                <div class="progress-bar bg-warning" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-  
-      <div class="col-xl-3 col-sm-6 col-12">
-        <div class="card">
-          <div class="card-content">
-            <div class="card-body">
-              <div class="media d-flex">
-                <div class="media-body text-left">
-                  <h3 class="success">64.89 %</h3>
-                  <span>Bounce Rate</span>
-                </div>
-                <div class="align-self-center">
-                  <i class="icon-cup success font-large-2 float-right"></i>
-                </div>
-              </div>
-              <div class="progress mt-1 mb-0" style="height: 7px;">
-                <div class="progress-bar bg-success" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-3 col-sm-6 col-12">
-        <div class="card">
-          <div class="card-content">
-            <div class="card-body">
-              <div class="media d-flex">
-                <div class="media-body text-left">
-                  <h3 class="danger">423</h3>
-                  <span>Total Visits</span>
-                </div>
-                <div class="align-self-center">
-                  <i class="icon-direction danger font-large-2 float-right"></i>
-                </div>
-              </div>
-              <div class="progress mt-1 mb-0" style="height: 7px;">
-                <div class="progress-bar bg-danger" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+            <div class="card-body table-responsive p-0">
+              <table class="table table-hover text-nowrap">
+                <thead class="bg-light">
+                  <tr>
+                    <th>Id</th>
+                    <th class="w-25">Title</th>
+                    <th class="w-25">Milestone</th>
+                    <th>Date</th>
+                    <th>Made by</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <a href="https://github.com/aspnetboilerplate/aspnetboilerplate/pull/5430"
+                        target="_blank">
+                        5430
+                      </a>
+                    </td>
+                    <td>
+                      Added Dynamic-Parameter-System doc to documentation menu
+                    </td>
+                    <td>v5.6</td>
+                    <td>18 days ago</td>
+                    <td>maliming</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="https://github.com/aspnetboilerplate/aspnetboilerplate/pull/5362"
+                        target="_blank">
+                        5362
+                      </a>
+                    </td>
+                    <td>
+                      Dynamic Parameter Module
+                    </td>
+                    <td>v5.4</td>
+                    <td>25 days ago</td>
+                    <td>demirmusa</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="https://github.com/aspnetboilerplate/aspnetboilerplate/pull/4924"
+                        target="_blank">
+                        4924
+                      </a>
+                    </td>
+                    <td>
+                      ASP.NET Core 3.0 Upgrade
+                    </td>
+                    <td>v5.0</td>
+                    <td>Oct 15</td>
+                    <td>ismcagdas</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-  
-  
+</div>

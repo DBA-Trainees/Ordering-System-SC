@@ -1,123 +1,135 @@
+import { Component, Injector, Output, EventEmitter } from "@angular/core";
+import { Router } from "@angular/router";
+import { appModuleAnimation } from "@shared/animations/routerTransition";
 import {
-    Component,
-    Injector,
-    Output,
-    OnInit,
-    EventEmitter
-} from '@angular/core';
-import { Router } from '@angular/router';
-import { finalize } from 'rxjs/operators';
-import { appModuleAnimation } from '@shared/animations/routerTransition';
-import { AppComponentBase } from '@shared/app-component-base';
+  OrderDto,
+  OrderServiceProxy,
+  CartServiceProxy,
+  FoodDto,
+  FoodServiceProxy,
+  CartDtoPagedResultDto,
+  CartDto,
+} from "@shared/service-proxies/service-proxies";
 import {
-    OrderDto,
-    OrderServiceProxy,
-    CartDto,
-    CartServiceProxy,
-    CartDtoPagedResultDto,
-    FoodDto,
-    FoodServiceProxy
-} from '@shared/service-proxies/service-proxies';
+  PagedListingComponentBase,
+  PagedRequestDto,
+} from "@shared/paged-listing-component-base";
+import { finalize } from "rxjs/operators";
+import * as moment from "moment";
+
+class PagedCartRequestDto extends PagedRequestDto {
+  keyword: string;
+  isActive: boolean | null;
+}
 
 enum foodSize {
-    Small = 'Small',
-    Medium = 'Medium',
-    Large = 'Large'
+  Small = "Small",
+  Medium = "Medium",
+  Large = "Large",
 }
-
 
 @Component({
-    templateUrl: 'view-order.component.html',
-    animations: [appModuleAnimation()],
-    styleUrls: ["./view-order.component.css"]
+  templateUrl: "view-order.component.html",
+  animations: [appModuleAnimation()],
+  styleUrls: ["./view-order.component.css"],
 })
+export class ViewOrderComponent extends PagedListingComponentBase<CartDto> {
+  keyword = "";
+  isActive: boolean | null;
+  saving = false;
+  id: number;
+  cart = new CartDto();
+  carts: CartDto[] = [];
+  order = new OrderDto();
+  food = new FoodDto();
+  selectedCartId: number = null;
+  setSize: string;
+  notes: string;
+  sum: number = 1;
+  cost: number;
+  foodCateg = [foodSize.Small, foodSize.Medium, foodSize.Large];
+  dateToday: Date = new Date();
 
+  @Output() onSave = new EventEmitter<any>();
 
-export class ViewOrderComponent extends AppComponentBase implements OnInit {
-    saving = false;
-    id: number;
-    order = new OrderDto();
-    food = new FoodDto();
-    selectedCartId: number = null;
-    setSize: string;
-    notes: string;
-    sum: number = 1;
-    cost: number;
-    foodCateg = [
-        foodSize.Small,
-        foodSize.Medium,
-        foodSize.Large
-    ]
+  constructor(
+    injector: Injector,
+    private _orderServiceProxy: OrderServiceProxy,
+    private _foodServiceProxy: FoodServiceProxy,
+    private _cartServiceProxy: CartServiceProxy,
+    private router: Router
+  ) {
+    super(injector);
+  }
 
+  protected list(
+    request: PagedCartRequestDto,
+    pageNumber: number,
+    finishedCallback: Function
+  ): void {
+    request.keyword = this.keyword;
+    request.isActive = this.isActive;
 
-    @Output() onSave = new EventEmitter<any>();
+    this._cartServiceProxy
+      .getCartsFromOrderList(
+        request.keyword,
+        request.isActive,
+        request.skipCount,
+        request.maxResultCount
+      )
+      .pipe(
+        finalize(() => {
+          finishedCallback();
+        })
+      )
+      .subscribe((result: CartDtoPagedResultDto) => {
+        this.carts = result.items;
+        this.showPaging(result, pageNumber);
+        this.refresh();
+      });
+  }
 
-    constructor(
-        injector: Injector,
-        private _orderServiceProxy: OrderServiceProxy,
-        private _foodServiceProxy: FoodServiceProxy,
-        private _cartServiceProxy: CartServiceProxy,
-        private router: Router
-    ) {
-        super(injector);
-    }
-
-
-    ngOnInit(): void {
-        
-    }
-
-    protected delete(order: OrderDto): void {
-        abp.message.confirm(
-          this.l('UserDeleteWarningMessage', order.cartId),
-          undefined,
-          (result: boolean) => {
-            if (result) {
-              this._orderServiceProxy.delete(order.id).subscribe(() => {
-                abp.notify.success(this.l('SuccessfullyDeleted'));
-              });
-            }
-          }
-        );
-      }
-
-    
-    backToOrders() : void {
-        this.router.navigate(["./app/orders"]);
-    }
-    
-
-    checkOutCart(cartId: number): void {
-        this.saving = true;
-        this.order.cartId = this.selectedCartId;
-        this.order.cart.quantity = this.sum;
-        this.order.cart.size = this.setSize;
-        this.order.totalAmount = this.cost;
-        this.order.notes = this.notes;
-
-        if(this.id > 0) {
-            this._orderServiceProxy.update(this.order).subscribe(
-                () => {
-                    this.notify.info(this.l('SavedSuccessfully'));
-                    this.onSave.emit();
-                    this.router.navigate(["./app/orders"]);
-                },
-                () => {
-                    this.saving = false;
-                }
-            );
-        } else {
-            this._orderServiceProxy.create(this.order).subscribe(
-                () => {
-                    this.notify.info(this.l('SavedSuccessfully'));
-                    this.onSave.emit();
-                    this.router.navigate(["./app/orders"]);
-                },
-                () => {
-                    this.saving = false;
-                }
-            )
+  protected delete(cart: CartDto): void {
+    abp.message.confirm(
+      this.l("DeleteWarningMessage", cart.food.name),
+      undefined,
+      (result: boolean) => {
+        if (result) {
+          this._cartServiceProxy.delete(cart.id).subscribe(() => {
+            abp.notify.success(this.l("SuccessfullyDeleted"));
+            this.refresh();
+          });
         }
-    }
-}
+      }
+    );
+  }
 
+  completeAmount(cart: CartDto[]) {
+    return cart.reduce(
+      (total, cart) => total + cart.food.price * cart.quantity,
+      0
+    );
+  }
+
+  backToOrders(): void {
+    this.router.navigate(["./app/orders"]);
+  }
+
+  checkOutCart(order: OrderDto): void {
+    this.saving = true;
+    order.ordered = moment(this.dateToday);
+    order.cartId = this.cart.id;
+    order.totalAmount = this.cart.food.price * this.cart.quantity;
+
+    this._orderServiceProxy.create(order).subscribe(
+      () => {
+        this.notify.info(this.l("SavedSuccessfully"));
+        this.onSave.emit();
+        this.router.navigate(["./app/orders"]);
+      },
+      () => {
+        this.saving = false;
+      }
+    );
+  }
+}

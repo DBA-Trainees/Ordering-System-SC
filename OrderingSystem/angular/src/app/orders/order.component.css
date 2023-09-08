@@ -54,6 +54,11 @@
     text-decoration: none;
     color: inherit;
   }
+
+  .cart-button{
+    font-style: normal;
+    font-size: large;
+  }
   
   .wrap {
     display: flex;
@@ -121,7 +126,7 @@
   }
   
   .button:hover {
-    background: var(--orange);
+    background: var(--teal);
   }
   
   .fill-one {
@@ -205,9 +210,10 @@
       flex-basis: calc(25% - 18px);
     }
   }
-
+/* 
  input::-webkit-inner-spin-button,
  input::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
- }
+
+ } */

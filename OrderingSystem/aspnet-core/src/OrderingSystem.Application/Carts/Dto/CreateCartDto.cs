@@ -12,7 +12,7 @@ namespace OrderingSystem.Carts.Dto
         public int Quantity { get; set; }
         public string? Size { get; set; }
         public string? Notes { get; set; }
-        public DateTime DateTimeAdded { get; set; }
+        public DateTime? DateTimeAdded { get; set; }
         public double Amount { get; set; }
 
         [Required]

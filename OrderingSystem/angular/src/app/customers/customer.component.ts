@@ -67,7 +67,7 @@ export class CustomersComponent extends PagedListingComponentBase<CustomerDto>{
     }
     protected delete(customer: CustomerDto): void {
         abp.message.confirm(
-          this.l('UserDeleteWarningMessage', customer.name),
+          this.l('DeleteWarningMessage', customer.name),
           undefined,
           (result: boolean) => {
             if (result) {

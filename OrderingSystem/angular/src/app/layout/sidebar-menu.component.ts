@@ -1,4 +1,4 @@
-import {Component, Injector, OnInit} from '@angular/core';
+import {Component, HostBinding, Injector, OnInit} from '@angular/core';
 import {AppComponentBase} from '@shared/app-component-base';
 import {
     Router,
@@ -20,6 +20,7 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
     activatedMenuItems: MenuItem[] = [];
     routerEvents: BehaviorSubject<RouterEvent> = new BehaviorSubject(undefined);
     homeRoute = '/app/about';
+    userRole = localStorage.getItem('role') as "admin" | "vendor" | "customer";
 
     constructor(injector: Injector, private router: Router) {
         super(injector);
@@ -45,6 +46,11 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
         return [
            /*  new MenuItem(this.l('About'), '/app/about', 'fas fa-info-circle'),
             new MenuItem(this.l('HomePage'), '/app/home', 'fas fa-home'), */
+            // new MenuItem(
+            //     this.l('Dashboard'),
+            //     '/app/dashboard',
+            //     'fa fa-tachometer'
+            // ),
             new MenuItem(
                 this.l('Users'),
                 '/app/users',
@@ -106,11 +112,6 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
                 'fa fa-cart-arrow-down',
                 'Pages.Carts'
             ),
-            new MenuItem(
-                this.l('Dashboard'),
-                '/app/dashboard',
-                'fa fa-tachometer'
-            )
             //  new MenuItem(this.l('MultiLevelMenu'), '', 'fas fa-circle', '', [
             //     new MenuItem('ASP.NET Boilerplate', '', 'fas fa-dot-circle', '', [
             //         new MenuItem(

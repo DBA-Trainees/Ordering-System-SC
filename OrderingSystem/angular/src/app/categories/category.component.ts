@@ -78,7 +78,7 @@ export class CategoriesComponent extends PagedListingComponentBase<CategoryDto>{
 
     delete(category: CategoryDto): void {
         abp.message.confirm(
-          this.l('The following records of this will be permanently erased.', category.name),
+          this.l('DeleteWarningMessage', category.name),
           undefined,
           (result: boolean) => {
             if (result) {

@@ -133,6 +133,9 @@
     <text name="ViewOrder">ViewOrder</text>
     <text name="Carts">Carts</text>
     <text name="AddedToCart">AddedToCart</text>
+    <text name="CheckYourCart">CheckYourCart</text>
+    <text name="DeleteWarningMessage">{0} will be deleted.</text>
+
     
     
     

@@ -64,7 +64,7 @@ export class TypesComponent extends PagedListingComponentBase<TypeDto>{
     }
     protected delete(type: TypeDto): void {
         abp.message.confirm(
-            this.l('UserDeleteWarningMessage', type.name),
+            this.l('DeleteWarningMessage', type.name),
             undefined,
             (result: boolean) => {
                 if (result) {

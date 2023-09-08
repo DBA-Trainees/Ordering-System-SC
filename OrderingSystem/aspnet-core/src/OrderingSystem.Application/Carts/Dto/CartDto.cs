@@ -12,10 +12,11 @@ namespace OrderingSystem.Carts.Dto
     [AutoMapFrom(typeof(Cart))]
     public class CartDto : EntityDto<int>
     {
+        public int Id { get; set; }
         public int Quantity { get; set; }
         public string? Size { get; set; }
         public string? Notes { get; set; }
-        public DateTime DateTimeAdded { get; set; }
+        public DateTime? DateTimeAdded { get; set; }
         public int CustomerId { get; set; }
         public CustomerDto Customer { get; set; }
         public int FoodId { get; set; }

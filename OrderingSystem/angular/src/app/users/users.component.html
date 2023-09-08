@@ -1,18 +1,12 @@
 <div [@routerTransition]>
     <section class="content-header">
-        <!-- <div class="container-fluid">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-6">
                     <h1>{{ "Users" | localize }}</h1>
                 </div>
-                <div class="col-6 text-right">
-                    <a href="javascript:;" class="btn bg-green rounded-pill" (click)="createUser()">
-                        <i class="fa fa-plus"></i>
-                        {{ "Create" | localize }}
-                    </a>
-                </div>
             </div>
-        </div> -->
+        </div>
     </section>
     <section class="content px-2">
         <div class="container-fluid">
@@ -22,10 +16,15 @@
                         <div class="col-md-6">&emsp;</div>
                         <div class="col-md-6">
                             <div class="input-group">
+                                <div class="col-6 text-right">
+                                    <a href="javascript:;" class="btn bg-info" (click)="createUser()">
+                                        {{ "Create" | localize }}
+                                    </a>
+                                </div>
                                 <div class="input-group-prepend">
                                     <button
                                             type="button"
-                                            class="btn bg-green rounded-pill"
+                                            class="btn bg-info rounded"
                                             (click)="getDataPage(1)"
                                     >
                                         <i class="fas fa-search"></i>
@@ -33,16 +32,15 @@
                                 </div>
                                 <input
                                         type="text"
-                                        class="form-control"
+                                        class="form-control rounded"
                                         name="keyword"
-                                        [placeholder]="'' | localize"
                                         [(ngModel)]="keyword"
                                         (keyup.enter)="getDataPage(1)"
                                 />
                                 <div class="input-group-append">
                                     <button
                                             type="button"
-                                            class="btn btn-default bg-green"
+                                            class="btn btn-default rounded"
                                             (click)="advancedFiltersVisible = !advancedFiltersVisible"
                                     >
                                         <i
@@ -167,7 +165,7 @@
                                     <div class="custom-control custom-checkbox">
                                         <input
                                                 type="checkbox"
-                                                class="custom-control-input"
+                                                class="custom-control-input bg-info"
                                                 disabled
                                                 [checked]="user.isActive"
                                         />
@@ -226,9 +224,6 @@
                                 </abp-pagination-controls>
                             </div>
                         </div> -->
-                        <a href="javascript:;" class="float" (click)="createUser()">
-                            <i class="fa fa-plus my-float"></i>
-                        </a>
                     </div>
                 </div>
             </div>

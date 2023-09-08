@@ -67,7 +67,7 @@ export class DivisionsComponent extends PagedListingComponentBase<DivisionDto>{
   
   protected delete(division: DivisionDto): void {
     abp.message.confirm(
-      this.l('UserDeleteWarningMessage', division.name),
+      this.l('DeleteWarningMessage', division.name),
       undefined,
       (result: boolean) => {
         if (result) {

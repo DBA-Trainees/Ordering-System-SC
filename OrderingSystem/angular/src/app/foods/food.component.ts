@@ -63,7 +63,7 @@ export class FoodsComponent extends PagedListingComponentBase<FoodDto>{
       }
       protected delete(food: FoodDto): void {
         abp.message.confirm(
-          this.l('UserDeleteWarningMessage', food.name),
+          this.l('DeleteWarningMessage', food.name),
           undefined,
           (result: boolean) => {
             if (result) {

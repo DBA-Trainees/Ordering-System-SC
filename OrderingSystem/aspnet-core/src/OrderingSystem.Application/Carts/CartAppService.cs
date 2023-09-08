@@ -9,6 +9,7 @@ using OrderingSystem.Entities;
 using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
 using System.Linq;
+using OrderingSystem.Orders.Dto;
 
 namespace OrderingSystem.Carts
 {
@@ -54,6 +55,37 @@ namespace OrderingSystem.Carts
                 .ToListAsync();
 
             return new PagedResultDto<CartDto>(query.Count(), query);
+        }
+        public async Task<PagedResultDto<CartDto>> GetCartsFromOrderList(PagedCartResultRequestDto input)
+        {
+            var query = await _cartRepository.GetAll()
+                .Include(x => x.Food)
+                .Select(x => ObjectMapper.Map<CartDto>(x))
+                .ToListAsync();
+
+            return new PagedResultDto<CartDto>(query.Count(), query);
+        }
+        public async Task<CartDto> UpdateExistingCartTable(CartDto input)
+        {
+            var user = AbpSession.UserId;
+            var cart = ObjectMapper.Map<Cart>(input);
+            var cartExistingId = await _cartRepository.GetAll()
+                .AsNoTracking()
+
+                .Where(x => x.FoodId == input.FoodId && x.CreatorUserId == user).FirstOrDefaultAsync();
+
+            if (cartExistingId == null)
+            {
+                await _cartRepository.InsertAsync(cart);
+                return ObjectMapper.Map<CartDto>(cart);
+            }
+            else
+            {
+                cartExistingId.Quantity += input.Quantity;
+                await _cartRepository.UpdateAsync(cartExistingId);
+                return ObjectMapper.Map<CartDto>(cartExistingId);
+            }
+
         }
     }
 }
