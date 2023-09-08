@@ -117,8 +117,9 @@
     <text name="ResetPasswordStepOneInfo">1. Enter your administrator password</text>
     <text name="ResetPasswordStepTwoInfo">2. Copy this random password so you can send it to the user</text>
     <text name="UsersActivation">Users activation</text>
-    
-    
+
+
+    <text name="OrderingSystem">OrderingSystem</text>
     <text name="Divisions">Divisions</text>
     <text name="CreateEditDivision">CreateEditDivision</text>
     <text name="Customers">Customers</text>

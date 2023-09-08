@@ -119,7 +119,7 @@ export class ViewOrderComponent extends PagedListingComponentBase<CartDto> {
     this.saving = true;
     order.ordered = moment(this.dateToday);
     order.cartId = this.cart.id;
-    order.totalAmount = this.cart.food.price * this.cart.quantity;
+    // order.totalAmount = this.cart.food.price * this.cart.quantity;
 
     this._orderServiceProxy.create(order).subscribe(
       () => {

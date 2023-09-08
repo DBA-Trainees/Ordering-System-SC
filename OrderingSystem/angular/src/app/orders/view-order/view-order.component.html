@@ -47,7 +47,7 @@
                 <td class="actions">
                   <div class="text-right">
                     <button
-                      class="btn btn-white border-secondary bg-white btn-md mb-2"
+                      class="btn btn-sm bg-danger mx-2"
                       (click)="delete(cart)"
                     >
                       <i class="fas fa-trash"></i>
@@ -65,12 +65,15 @@
       </div>
       <div class="row mt-4 d-flex align-items-center">
         <div class="col-sm-6 order-md-2 text-right">
-          <a
+          <!-- <a
             href="javascript:;"
             (click)="checkOutCart(order)"
             class="btn btn-info mb-4 btn-lg pl-5 pr-5"
             >Checkout</a
-          >
+          > -->
+          <button type="button" class="btn btn-lg btn-info" (click)="checkOutCart(order)">
+            Checkout
+          </button>
         </div>
         <div class="col-sm-6 mb-3 mb-m-1 order-md-1 text-md-left">
           <a href="javascript:;" (click)="backToOrders()">
