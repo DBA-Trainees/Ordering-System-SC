@@ -47,7 +47,7 @@
     <text name="Users" value="Users" />
     <text name="IsActive" value="Is active" />
     <text name="FullName" value="Full name" />
-    <text name="CreateNewUser" value="Create new user" />
+    <text name="CreateNewUser" value="Create New User" />
     <text name="Yes" value="Yes" />
     <text name="No" value="No" />
     <text name="Optional" value="Optional" />
@@ -71,7 +71,7 @@
     <text name="CouldNotValidateExternalUser">Could not validate external user</text>
     <text name="EditRole">Edit role</text>
     <text name="EditTenant">Edit tenant</text>
-    <text name="EditUser">Edit user</text>
+    <text name="EditUser">Edit User</text>
     <text name="TenantIdIsNotActive{0}">TenantId {0} is not active</text>
     <text name="UnknownTenantId{0}">Unknown tenantId {0}</text>
     <text name="ThisFieldIsRequired">This field is required</text>
@@ -119,22 +119,23 @@
     <text name="UsersActivation">Users activation</text>
 
 
-    <text name="OrderingSystem">OrderingSystem</text>
+    <text name="OrderingSystem">Ordering System</text>
     <text name="Divisions">Divisions</text>
-    <text name="CreateEditDivision">CreateEditDivision</text>
+    <text name="CreateDivision">Create New Division</text>
+    <text name="EditDivision">Edit Division</text>
     <text name="Customers">Customers</text>
     <text name="Create/Edit CustomerName">Create/Edit CustomerName</text>
     <text name="Categories">Categories</text>
     <text name="CreateOrEditCategoryName">CreateOrEditCategoryName</text>
     <text name="Types">Types</text>
-    <text name="CreateType">CreateType</text>
+    <text name="CreateType">Create Type</text>
     <text name="Foods">Foods</text>
-    <text name="CreateFood">CreateFood</text>
+    <text name="CreateFood">Create Food</text>
     <text name="Orders">Orders</text>
     <text name="ViewOrder">ViewOrder</text>
     <text name="Carts">Carts</text>
-    <text name="AddedToCart">AddedToCart</text>
-    <text name="CheckYourCart">CheckYourCart</text>
+    <text name="AddedToCart">Added To Cart</text>
+    <text name="CheckYourCart">Check Your Cart</text>
     <text name="DeleteWarningMessage">{0} will be deleted.</text>
 
     

@@ -14,7 +14,7 @@ import { CategoriesComponent } from './categories/category.component';
 import { FoodsComponent } from './foods/food.component'; 
 import { TypesComponent } from './types/type.component';
 import { OrdersComponent } from './orders/order.component';
-import { ViewOrderComponent } from './orders/view-order/view-order.component';
+import { ViewOrderComponent } from './orders/check-order/view-order.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({

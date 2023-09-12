@@ -161,7 +161,7 @@ namespace OrderingSystem.Users
         protected override IQueryable<User> CreateFilteredQuery(PagedUserResultRequestDto input)
         {
             return Repository.GetAllIncluding(x => x.Roles)
-                .WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.UserName.Contains(input.Keyword) || x.Name.Contains(input.Keyword))
+                .WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.UserName.Contains(input.Keyword) || x.Name.Contains(input.Keyword) || x.EmailAddress.Contains(input.Keyword))
                 .WhereIf(input.IsActive.HasValue, x => x.IsActive == input.IsActive);
         }
 

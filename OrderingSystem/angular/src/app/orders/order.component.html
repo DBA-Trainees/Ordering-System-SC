@@ -1,4 +1,4 @@
-<section class="content px-2">
+<!-- <section class="content px-2">
     <div class="container-fluid">
         <div class="wrap">
           <div class="box" *ngFor="
@@ -34,9 +34,9 @@
                           </option>
                   </select>
                 </div>
-                <!-- <div class="quantity">
+                <div class="quantity">
                   <input type="number" class="form-control text-center" [(ngModel)]="cart.quantity">
-                </div> -->
+                </div>
                 <div class="notes">
                   <textarea name="notes" 
                             rows="5" 
@@ -47,9 +47,9 @@
                             >
                     </textarea>
                 </div>
-                <!-- <a href="javascript:;" class="button" (click)="addToCart(food.id)" disabled="!food.quantity" onClick="return false">
+                <a href="javascript:;" class="button" (click)="addToCart(food.id)" disabled="!food.quantity" onClick="return false">
                   <i class="cart-button">Add to Cart</i>
-                </a> -->
+                </a>
                 <button type="submit" class="button-cart" (click)="addToCart(food.id)" [disabled]="!food.quantity">
                   <i class="cartButton">Add to Cart</i>
                 </button>
@@ -58,4 +58,32 @@
         </div>
       </div>
 </section>
+ -->
 
+<section class="content px-2">
+  <div class='container-fluid'>
+    <div class="wrap">
+      <div class="box" *ngFor="
+          let food of foods
+            | paginate
+              : {
+                  id: 'server',
+                  itemsPerPage: pageSize,
+                  currentPage: pageNumber,
+                  totalItems: totalItems
+                }
+        ">
+        <div class="box-top">
+        <img [src]="'data:' + food.imageName + ';base64,' + food.image"
+        class="box-image"/>
+            <div class="title-flex">
+                <h5 class="card-title font-weight-bold">{{ food.name }}</h5>
+                <p class="card-text">₱{{ food.price }}</p>
+                <p class="card-text">{{ food.category?.name }}</p>
+            </div>
+                <a href="javascript:;" class="btn details px-auto">View Details</a>
+        </div>
+    </div>
+  </div>
+  </div>
+</section>

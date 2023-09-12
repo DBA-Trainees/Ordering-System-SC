@@ -72,5 +72,6 @@ namespace OrderingSystem.Orders
 
             return new PagedResultDto<OrderDto>(query.Count(), query);
         }
+
     }
 }

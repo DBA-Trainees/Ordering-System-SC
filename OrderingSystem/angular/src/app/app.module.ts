@@ -26,7 +26,7 @@ import { TypesComponent } from './types/type.component';
 import { CreateEditTypeModalComponent } from './types/create-edit-type/create-edit-type-modal.component';
 import { OrdersComponent } from './orders/order.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ViewOrderComponent } from './orders/view-order/view-order.component';
+import { ViewOrderComponent } from './orders/check-order/view-order.component';
 
 // tenants
 import { TenantsComponent } from '@app/tenants/tenants.component';

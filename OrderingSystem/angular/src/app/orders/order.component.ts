@@ -25,7 +25,7 @@ import {
   CartDto,
   CustomerDto,
 } from "@shared/service-proxies/service-proxies";
-import { ViewOrderComponent } from "./view-order/view-order.component";
+import { ViewOrderComponent } from "./check-order/view-order.component";
 import * as moment from "moment";
 
 class PagedOrderRequestDto extends PagedRequestDto {
