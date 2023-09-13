@@ -22,6 +22,7 @@ export class CreateEditTypeModalComponent extends AppComponentBase
     saving = false;
     type = new TypeDto();
     id: number = 0;
+    checkUpdate = false;
 
     @Output() onSave = new EventEmitter<any>();
 
@@ -34,6 +35,7 @@ export class CreateEditTypeModalComponent extends AppComponentBase
     }
     ngOnInit(): void {
          if(this.id){
+            this.checkUpdate = true;
             this._typeServiceProxy.get(this.id).subscribe((res) => {
                 this.type = res;
             });
@@ -52,6 +54,7 @@ export class CreateEditTypeModalComponent extends AppComponentBase
                 },
                 () => {
                     this.saving = false;
+                    this.checkUpdate = false;
                 }
             );
         }else{

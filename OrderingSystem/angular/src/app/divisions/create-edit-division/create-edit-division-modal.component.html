@@ -4,8 +4,12 @@
   #createEditDivisionModal="ngForm"
   (ngSubmit)="saveDivision()"
 >
-  <abp-modal-header
+  <abp-modal-header *ngIf="checkUpdate==false"
     [title]="'CreateDivision' | localize"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+  <abp-modal-header *ngIf="checkUpdate==true"
+    [title]="'EditDivision' | localize"
     (onCloseClick)="bsModalRef.hide()"
   ></abp-modal-header>
   <div class="modal-body">

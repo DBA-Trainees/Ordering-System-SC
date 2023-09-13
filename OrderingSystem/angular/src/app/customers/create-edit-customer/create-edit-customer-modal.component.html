@@ -4,8 +4,12 @@
   #createEditCustomerModal="ngForm"
   (ngSubmit)="saveCustomer()"
 >
-  <abp-modal-header
-    [title]="'Create/Edit Customer' | localize"
+  <abp-modal-header *ngIf="checkUpdate==false"
+    [title]="'Create New Customer' | localize"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+  <abp-modal-header *ngIf="checkUpdate==true"
+    [title]="'Edit Customer' | localize"
     (onCloseClick)="bsModalRef.hide()"
   ></abp-modal-header>
   <div class="modal-body">

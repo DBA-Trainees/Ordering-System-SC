@@ -22,6 +22,8 @@ export class CreateEditCategoryModalComponent extends AppComponentBase
     saving = false;
     category = new CategoryDto();
     id: number = 0;
+    checkUpdate = false;
+    
 
     @Output() onSave = new EventEmitter<any>();
 
@@ -34,6 +36,7 @@ export class CreateEditCategoryModalComponent extends AppComponentBase
     }
     ngOnInit(): void {
          if(this.id){
+            this.checkUpdate = true;
             this._categoryServiceProxy.get(this.id).subscribe((res) => {
                 this.category = res;
             });
@@ -52,6 +55,7 @@ export class CreateEditCategoryModalComponent extends AppComponentBase
                 },
                 () => {
                     this.saving = false;
+                    this.checkUpdate = false;
                 }
             );
         }else{

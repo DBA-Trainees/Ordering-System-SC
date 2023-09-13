@@ -25,7 +25,7 @@ import {
   CartDto,
   CustomerDto,
 } from "@shared/service-proxies/service-proxies";
-import { ViewOrderComponent } from "./check-order/view-order.component";
+import { CheckOrderComponent } from "./check-order/check-order.component";
 import * as moment from "moment";
 
 class PagedOrderRequestDto extends PagedRequestDto {
@@ -63,6 +63,7 @@ export class OrdersComponent extends PagedListingComponentBase<OrderDto> {
   notes: string;
   foodProportions = [setFoodSize.Small, setFoodSize.Medium, setFoodSize.Large];
   dateToday: Date = new Date();
+
 
 
   @Output() onSave = new EventEmitter<any>();
@@ -127,6 +128,10 @@ export class OrdersComponent extends PagedListingComponentBase<OrderDto> {
       () => {
         this.saving = false;
     })
+  }
+
+  foodIdSave(food: FoodDto): void {
+    sessionStorage.setItem('id', food.id.toString());
   }
 
   addToCart(foodId: number): void {

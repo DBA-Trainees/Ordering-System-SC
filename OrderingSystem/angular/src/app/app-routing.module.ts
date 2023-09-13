@@ -14,7 +14,8 @@ import { CategoriesComponent } from './categories/category.component';
 import { FoodsComponent } from './foods/food.component'; 
 import { TypesComponent } from './types/type.component';
 import { OrdersComponent } from './orders/order.component';
-import { ViewOrderComponent } from './orders/check-order/view-order.component';
+import { CheckOrderComponent } from './orders/check-order/check-order.component';
+import { ViewDetailsComponent } from './orders/view-details/view-details-dialog.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
@@ -36,7 +37,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
                     { path: 'foods', component: FoodsComponent, data:{ permission: 'Pages.Foods' }, canActivate: [AppRouteGuard] },
                     { path: 'types', component: TypesComponent, data:{ permission: 'Pages.Types' }, canActivate: [AppRouteGuard] },
                     { path: 'orders', component: OrdersComponent, data:{ permission: 'Pages.Orders' }, canActivate: [AppRouteGuard] },
-                    { path: 'view-order', component: ViewOrderComponent, data:{ permission: 'Pages.Carts' }, canActivate: [AppRouteGuard] },
+                    { path: 'check-order', component: CheckOrderComponent, data:{ permission: 'Pages.Carts' }, canActivate: [AppRouteGuard] },
+                    { path: 'view-details', component: ViewDetailsComponent, data:{ permission: 'Pages.Orders' }, canActivate: [AppRouteGuard] },
                     { path: 'dashboard', component: DashboardComponent, canActivate: [AppRouteGuard] }
 
                 ]

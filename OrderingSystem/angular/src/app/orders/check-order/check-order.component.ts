@@ -29,11 +29,11 @@ enum foodSize {
 }
 
 @Component({
-  templateUrl: "view-order.component.html",
+  templateUrl: "check-order.component.html",
   animations: [appModuleAnimation()],
-  styleUrls: ["./view-order.component.css"],
+  styleUrls: ["./check-order.component.css"],
 })
-export class ViewOrderComponent extends PagedListingComponentBase<CartDto> {
+export class CheckOrderComponent extends PagedListingComponentBase<CartDto> {
   keyword = "";
   isActive: boolean | null;
   saving = false;

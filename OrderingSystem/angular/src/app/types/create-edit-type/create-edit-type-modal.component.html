@@ -4,8 +4,12 @@
   #createEditTypeModal="ngForm"
   (ngSubmit)="saveType()"
 >
-  <abp-modal-header
-    [title]="'Create or edit type' | localize"
+  <abp-modal-header *ngIf="checkUpdate==false"
+    [title]="'Create New Type' | localize"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+  <abp-modal-header *ngIf="checkUpdate==true"
+    [title]="'Edit Type' | localize"
     (onCloseClick)="bsModalRef.hide()"
   ></abp-modal-header>
   <div class="modal-body">

@@ -12,6 +12,7 @@ import {
     FoodServiceProxy
 } from '@shared/service-proxies/service-proxies';
 import { CreateEditFoodModalComponent } from './create-edit-food/create-edit-food-modal.component';
+import { CheckOrderComponent } from '@app/orders/check-order/check-order.component';
 
 class PagedFoodsRequestDto extends PagedRequestDto {
     keyword: string;

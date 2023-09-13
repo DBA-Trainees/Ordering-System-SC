@@ -25,6 +25,7 @@ export class CreateEditCustomerModalComponent extends AppComponentBase
     divisions: DivisionDto[] = [];
     id: number = 0;
     selectDivisionId: number = null;
+    checkUpdate = false;
 
     @Output() onSave = new EventEmitter<any>();
 
@@ -39,6 +40,7 @@ export class CreateEditCustomerModalComponent extends AppComponentBase
 
     ngOnInit() {
         if (this.id) {
+            this.checkUpdate = true;
             this._customerServiceProxy.get(this.id).subscribe((res) => {
                 this.customers = res;
                 this.customers.name = res.name;
@@ -64,6 +66,7 @@ export class CreateEditCustomerModalComponent extends AppComponentBase
                 },
                 () => {
                     this.saving = false;
+                    this.checkUpdate = false;
                 }
             );
         } else {

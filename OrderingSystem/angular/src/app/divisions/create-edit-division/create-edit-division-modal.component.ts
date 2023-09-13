@@ -24,6 +24,7 @@ export class CreateEditDivisionModalComponent extends AppComponentBase
     saving = false;
     division = new DivisionDto();
     id: number = 0;
+    checkUpdate = false;
 
     @Output() onSave = new EventEmitter<any>();
 
@@ -36,6 +37,7 @@ export class CreateEditDivisionModalComponent extends AppComponentBase
     }
     ngOnInit() {
         if(this.id){
+            this.checkUpdate = true;
             this._divisionServiceProxy.get(this.id).subscribe((res) => {
                 this.division = res;
             });
@@ -54,6 +56,7 @@ export class CreateEditDivisionModalComponent extends AppComponentBase
                 },
                 () => {
                     this.saving = false;
+                    this.checkUpdate = false;
                 }
             );
         }else{

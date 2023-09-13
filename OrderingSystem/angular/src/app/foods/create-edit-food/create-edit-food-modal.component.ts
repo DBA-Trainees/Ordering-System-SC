@@ -23,7 +23,7 @@ enum setFoodEnum {
 }
 
 @Component({
-    templateUrl: 'create-edit-food-modal.component.html'
+    templateUrl: 'create-edit-food-modal.component.html',
 })
 
 
@@ -46,6 +46,7 @@ export class CreateEditFoodModalComponent extends AppComponentBase
        setFoodEnum.Medium,
        setFoodEnum.Large
     ]
+    checkUpdate = false;
 
 
     @Output() onSave = new EventEmitter<any>();
@@ -62,6 +63,7 @@ export class CreateEditFoodModalComponent extends AppComponentBase
 
     ngOnInit() {
         if(this.id){
+            this.checkUpdate = true;
             this._foodServiceProxy.get(this.id).subscribe((res) => {
                 this.food = res;
                 this.selectCategoryId = this.food.categoryId;
@@ -114,9 +116,11 @@ export class CreateEditFoodModalComponent extends AppComponentBase
                     this.notify.info(this.l('SavedSuccessfully'));
                     this.bsModalRef.hide();
                     this.onSave.emit();
+
                 },
                 () => {
                     this.saving = false;
+                    this.checkUpdate = false;
                 }
             );
         }else{
@@ -130,6 +134,6 @@ export class CreateEditFoodModalComponent extends AppComponentBase
                     this.saving = false;
                 }
             );
-        }       
-    }
+        }
+    } 
 }

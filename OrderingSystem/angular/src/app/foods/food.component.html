@@ -55,7 +55,7 @@
                                     <th>{{ "Type" | localize }}</th>
                                     <th>{{ "Size" | localize }}</th>
                                     <th>{{ "Price" | localize }}</th>
-                                    <th style="width: 100px;">{{ "Actions" | localize }}</th>
+                                    <th style="width: 110px;">{{ "Actions" | localize }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -71,16 +71,16 @@
                                     }
                         "
                                     >
-                                        <td><img [src]="'data:' + food.imageFileType + ';base64,' + food.image"
-                                            width="220px;" height="220px;" object-fit="contain;"></td>
-                                        <td>{{ food.name }}</td>
-                                        <td>{{ food.availability ? 'Yes' : 'No' }}</td>
-                                        <td>{{ food.quantity }}</td>
-                                        <td>{{ food.category?.name }}</td>
-                                        <td>{{ food.type?.name }}</td>
-                                        <td>{{ food.size }}</td>
-                                        <td>₱{{ food.price }}</td>
-                                        <td>
+                                        <td class="td-img"><img [src]="'data:' + food.imageFileType + ';base64,' + food.image"
+                                            width="200px;" height="200px;" object-fit="contain;"></td>
+                                        <td class="td-name">{{ food.name }}</td>
+                                        <td class="td-availability">{{ food.availability ? 'Yes' : 'No' }}</td>
+                                        <td class="td-qty">{{ food.quantity }}</td>
+                                        <td class="td-cat">{{ food.category?.name }}</td>
+                                        <td class="td-type">{{ food.type?.name }}</td>
+                                        <td class="td-size">{{ food.size }}</td>
+                                        <td class="td-price">₱{{ food.price }}</td>
+                                        <td class="td-actions">
                                             <button
                                                     type="button"
                                                     class="btn btn-sm btn-secondary"

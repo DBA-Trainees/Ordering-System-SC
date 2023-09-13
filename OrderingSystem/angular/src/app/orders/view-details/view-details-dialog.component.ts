@@ -1,12 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injector, OnInit, EventEmitter, Output } from '@angular/core';
+import { AppComponentBase } from '@shared/app-component-base';
+import { OrderServiceProxy, FoodServiceProxy, OrderDto, CreateOrderDto } from '@shared/service-proxies/service-proxies';
+
     
-    @Component({
-        selector: 'selector-name',
-        templateUrl: 'name.component.html'
-    })
+@Component({
+  templateUrl: 'view-details-dialog.component.html'
+})
     
-    export class NameComponent implements OnInit {
-        constructor() { }
+export class ViewDetailsComponent extends AppComponentBase
+    implements OnInit {
+    saving = false;
+    order = new OrderDto;
     
-        ngOnInit() { }
+
+
+
+    @Output() onSave = new EventEmitter<any>();
+
+
+    constructor(
+        injector: Injector,
+        private _orderServiceProxy: OrderServiceProxy,
+        private _foodServiceProxy: FoodServiceProxy
+    ) {
+        super(injector);
+     }
+    
+    ngOnInit(): void {
+
+     }
+
+    saveDetails(): void {
+        this.saving = true;
+
     }
+}

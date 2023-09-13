@@ -15,10 +15,12 @@ namespace OrderingSystem.Orders
     public class OrderAppService : AsyncCrudAppService<Order, OrderDto, int, PagedOrderResultRequestDto, CreateOrderDto, OrderDto>, IOrderAppService
     {
         private readonly IRepository<Order, int> _repository;
+        private readonly IRepository<Food, int> _foodRepository;
 
-        public OrderAppService(IRepository<Order, int> repository) : base(repository)
+        public OrderAppService(IRepository<Order, int> repository, IRepository<Food, int> foodRepository) : base(repository)
         {
             _repository = repository;
+            _foodRepository = foodRepository;
         }
 
         public override Task<OrderDto> CreateAsync(CreateOrderDto input)
