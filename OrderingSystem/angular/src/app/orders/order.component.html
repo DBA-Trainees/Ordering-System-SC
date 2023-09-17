@@ -47,18 +47,18 @@
                             >
                     </textarea>
                 </div>
-                <a href="javascript:;" class="button" (click)="addToCart(food.id)" disabled="!food.quantity" onClick="return false">
+                <a href="javascript:;" class="button" (click)="viewDeets(food.id)" disabled="!food.quantity" onClick="return false">
                   <i class="cart-button">Add to Cart</i>
                 </a>
-                <button type="submit" class="button-cart" (click)="addToCart(food.id)" [disabled]="!food.quantity">
+                <button type="submit" class="button-cart" (click)="viewDeets(food.id)" [disabled]="!food.quantity">
                   <i class="cartButton">Add to Cart</i>
                 </button>
               </div>
             </div>
         </div>
       </div>
-</section>
- -->
+</section> -->
+ 
 
 <section class="content px-2">
   <div class='container-fluid'>
@@ -81,7 +81,7 @@
                 <p class="card-text">₱{{ food.price }}</p>
                 <p class="card-text">{{ food.category?.name }}</p>
             </div>
-                <a href="javascript:;" class="btn details px-auto">View Details</a>
+            <button class="button" name="addToCart" (click)="foodIdSave(food)">View Details</button>
         </div>
     </div>
   </div>

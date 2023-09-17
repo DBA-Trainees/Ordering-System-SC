@@ -27,7 +27,7 @@
     <text name="Surname" value="Surname" />
     <text name="EmailAddress" value="Email address" />
     <text name="Tenants" value="Tenants" />
-    <text name="SavedSuccessfully" value="Saved successfully" />
+    <text name="SavedSuccessfully" value="Saved Successfully!" />
     <text name="CreateNewTenant" value="Create new tenant" />
     <text name="AdminEmailAddress" value="Admin email address" />
     <text name="AdminPassword" value="Admin password" />
@@ -91,7 +91,7 @@
     <text name="On">On</text>
     <text name="Off">Off</text>
     <text name="AreYouSureWantToDelete">Are you sure want to delete {0}?</text>
-    <text name="SuccessfullyDeleted">Successfully deleted</text>
+    <text name="SuccessfullyDeleted">Successfully Deleted</text>
     <text name="StartTyping">Start Typing</text>
     <text name="Skins">Skins</text>
     <text name="Settings">Settings</text>

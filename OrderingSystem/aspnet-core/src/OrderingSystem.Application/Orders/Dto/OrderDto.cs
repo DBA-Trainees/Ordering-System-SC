@@ -11,6 +11,8 @@ namespace OrderingSystem.Orders.Dto
     [AutoMapFrom(typeof(Order))]
     public class OrderDto : EntityDto<int>
     {
+        public string? Size { get; set; }
+        public int Quantity { get; set; }
         public string? Notes { get; set; }
         public DateTime Ordered { get; set; }
         public double TotalAmount { get; set; }

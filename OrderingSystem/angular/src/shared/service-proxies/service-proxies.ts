@@ -5478,10 +5478,14 @@ export interface ICreateFoodDto {
 }
 
 export class CreateOrderDto implements ICreateOrderDto {
+    id: number;
+    size: string | undefined;
+    quantity: number;
     notes: string | undefined;
     ordered: moment.Moment;
     totalAmount: number;
     cartId: number | undefined;
+    createOrderDtos: CreateOrderDto[] | undefined;
 
     constructor(data?: ICreateOrderDto) {
         if (data) {
@@ -5494,10 +5498,18 @@ export class CreateOrderDto implements ICreateOrderDto {
 
     init(_data?: any) {
         if (_data) {
+            this.id = _data["id"];
+            this.size = _data["size"];
+            this.quantity = _data["quantity"];
             this.notes = _data["notes"];
             this.ordered = _data["ordered"] ? moment(_data["ordered"].toString()) : <any>undefined;
             this.totalAmount = _data["totalAmount"];
             this.cartId = _data["cartId"];
+            if (Array.isArray(_data["createOrderDtos"])) {
+                this.createOrderDtos = [] as any;
+                for (let item of _data["createOrderDtos"])
+                    this.createOrderDtos.push(CreateOrderDto.fromJS(item));
+            }
         }
     }
 
@@ -5510,10 +5522,18 @@ export class CreateOrderDto implements ICreateOrderDto {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["size"] = this.size;
+        data["quantity"] = this.quantity;
         data["notes"] = this.notes;
         data["ordered"] = this.ordered ? this.ordered.toISOString() : <any>undefined;
         data["totalAmount"] = this.totalAmount;
         data["cartId"] = this.cartId;
+        if (Array.isArray(this.createOrderDtos)) {
+            data["createOrderDtos"] = [];
+            for (let item of this.createOrderDtos)
+                data["createOrderDtos"].push(item.toJSON());
+        }
         return data;
     }
 
@@ -5526,10 +5546,14 @@ export class CreateOrderDto implements ICreateOrderDto {
 }
 
 export interface ICreateOrderDto {
+    id: number;
+    size: string | undefined;
+    quantity: number;
     notes: string | undefined;
     ordered: moment.Moment;
     totalAmount: number;
     cartId: number | undefined;
+    createOrderDtos: CreateOrderDto[] | undefined;
 }
 
 export class CreateRoleDto implements ICreateRoleDto {
@@ -6591,6 +6615,8 @@ export interface IIsTenantAvailableOutput {
 
 export class OrderDto implements IOrderDto {
     id: number;
+    size: string | undefined;
+    quantity: number;
     notes: string | undefined;
     ordered: moment.Moment;
     totalAmount: number;
@@ -6609,6 +6635,8 @@ export class OrderDto implements IOrderDto {
     init(_data?: any) {
         if (_data) {
             this.id = _data["id"];
+            this.size = _data["size"];
+            this.quantity = _data["quantity"];
             this.notes = _data["notes"];
             this.ordered = _data["ordered"] ? moment(_data["ordered"].toString()) : <any>undefined;
             this.totalAmount = _data["totalAmount"];
@@ -6627,6 +6655,8 @@ export class OrderDto implements IOrderDto {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
+        data["size"] = this.size;
+        data["quantity"] = this.quantity;
         data["notes"] = this.notes;
         data["ordered"] = this.ordered ? this.ordered.toISOString() : <any>undefined;
         data["totalAmount"] = this.totalAmount;
@@ -6645,6 +6675,8 @@ export class OrderDto implements IOrderDto {
 
 export interface IOrderDto {
     id: number;
+    size: string | undefined;
+    quantity: number;
     notes: string | undefined;
     ordered: moment.Moment;
     totalAmount: number;

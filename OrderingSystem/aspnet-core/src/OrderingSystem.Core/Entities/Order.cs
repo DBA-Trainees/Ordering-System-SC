@@ -8,7 +8,9 @@ namespace OrderingSystem.Entities
         public string? Notes { get; set; }
         public DateTime Ordered { get; set; }
         public double TotalAmount { get; set; }
-        //public int? CartId { get; set; } 
-        //public Cart Cart { get; set; }
+        public string? Size { get; set; }
+        public int Quantity { get; set; }
+        public int? CartId { get; set; }
+        public Cart Cart { get; set; }
     }
 }

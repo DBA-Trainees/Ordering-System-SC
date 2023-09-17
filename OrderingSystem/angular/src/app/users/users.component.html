@@ -16,15 +16,10 @@
                         <div class="col-md-6">&emsp;</div>
                         <div class="col-md-6">
                             <div class="input-group">
-                                <div class="col-6 text-right">
-                                    <a href="javascript:;" class="btn bg-info" (click)="createUser()">
-                                        {{ "Create" | localize }}
-                                    </a>
-                                </div>
                                 <div class="input-group-prepend">
                                     <button
                                             type="button"
-                                            class="btn bg-info rounded"
+                                            class="btn btn-outline-success rounded"
                                             (click)="getDataPage(1)"
                                     >
                                         <i class="fas fa-search"></i>
@@ -142,7 +137,7 @@
                                 <th>{{ "FullName" | localize }}</th>
                                 <th>{{ "EmailAddress" | localize }}</th>
                                 <th>{{ "IsActive" | localize }}</th>
-                                <th style="width: 130px;">{{ "Actions" | localize }}</th>
+                                <th style="width: 150px;">{{ "Actions" | localize }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -229,4 +224,9 @@
             </div>
         </div>
     </section>
+    <div class="col-6 text-right">
+        <a href="javascript:;" class="btnUser" (click)="createUser()">
+            {{ "Create" | localize }}
+        </a>
+    </div>
 </div>

@@ -7,15 +7,16 @@ import {
   CartServiceProxy,
   FoodDto,
   FoodServiceProxy,
-  CartDtoPagedResultDto,
   CartDto,
+  OrderDtoPagedResultDto,
+  CartDtoPagedResultDto,
+  CreateOrderDto,
 } from "@shared/service-proxies/service-proxies";
 import {
   PagedListingComponentBase,
   PagedRequestDto,
 } from "@shared/paged-listing-component-base";
 import { finalize } from "rxjs/operators";
-import * as moment from "moment";
 
 class PagedCartRequestDto extends PagedRequestDto {
   keyword: string;
@@ -29,7 +30,7 @@ enum foodSize {
 }
 
 @Component({
-  templateUrl: "check-order.component.html",
+  templateUrl: "./check-order.component.html",
   animations: [appModuleAnimation()],
   styleUrls: ["./check-order.component.css"],
 })
@@ -40,7 +41,9 @@ export class CheckOrderComponent extends PagedListingComponentBase<CartDto> {
   id: number;
   cart = new CartDto();
   carts: CartDto[] = [];
-  order = new OrderDto();
+  order: OrderDto[] = [];
+  createOrder= new CreateOrderDto();
+  orders = new OrderDto;
   food = new FoodDto();
   selectedCartId: number = null;
   setSize: string;
@@ -106,7 +109,7 @@ export class CheckOrderComponent extends PagedListingComponentBase<CartDto> {
 
   completeAmount(cart: CartDto[]) {
     return cart.reduce(
-      (total, cart) => total + cart.food.price * cart.quantity,
+      (total, cart) => total + cart.amount,
       0
     );
   }
@@ -115,13 +118,18 @@ export class CheckOrderComponent extends PagedListingComponentBase<CartDto> {
     this.router.navigate(["./app/orders"]);
   }
 
-  checkOutCart(order: OrderDto): void {
+  checkOutCart(cart: CartDto): void {
     this.saving = true;
-    order.ordered = moment(this.dateToday);
-    order.cartId = this.cart.id;
+    this.cart.id = cart.id;
+    this.cart.quantity = cart.quantity;
+    this.cart.size = cart.size;
+    // order.ordered = moment(this.dateToday);
+    // order.cartId = this.cart.id;
+    // order.size = this.setSize;
+    // order.quantity = this.
     // order.totalAmount = this.cart.food.price * this.cart.quantity;
 
-    this._orderServiceProxy.create(order).subscribe(
+    this._orderServiceProxy.create(this.createOrder).subscribe(
       () => {
         this.notify.info(this.l("SavedSuccessfully"));
         this.onSave.emit();

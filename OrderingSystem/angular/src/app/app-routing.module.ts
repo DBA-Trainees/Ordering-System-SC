@@ -17,6 +17,7 @@ import { OrdersComponent } from './orders/order.component';
 import { CheckOrderComponent } from './orders/check-order/check-order.component';
 import { ViewDetailsComponent } from './orders/view-details/view-details-dialog.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { PurchaseHistoryComponent } from './foods/purchase-history/purchase-history.component';
 
 @NgModule({
     imports: [
@@ -39,8 +40,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
                     { path: 'orders', component: OrdersComponent, data:{ permission: 'Pages.Orders' }, canActivate: [AppRouteGuard] },
                     { path: 'check-order', component: CheckOrderComponent, data:{ permission: 'Pages.Carts' }, canActivate: [AppRouteGuard] },
                     { path: 'view-details', component: ViewDetailsComponent, data:{ permission: 'Pages.Orders' }, canActivate: [AppRouteGuard] },
-                    { path: 'dashboard', component: DashboardComponent, canActivate: [AppRouteGuard] }
-
+                    { path: 'dashboard', component: DashboardComponent, canActivate: [AppRouteGuard] },
+                    { path: 'purchase-history', component: PurchaseHistoryComponent, data: { permission: 'Pages.Foods' }, canActivate: [AppRouteGuard] }
                 ]
             }
         ])

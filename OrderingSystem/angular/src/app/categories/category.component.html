@@ -16,15 +16,10 @@
                         <div class="col-md-6">&emsp;</div>
                         <div class="col-md-6">
                             <div class="input-group">
-                                <div class="col-6 text-right">
-                                    <a href="javascript:;" class="btn bg-info" (click)="createCategory()">
-                                        {{ "Create" | localize }}
-                                    </a>
-                                </div>
                                 <div class="input-group-prepend">
                                     <button
                                             type="button"
-                                            class="btn bg-info rounded"
+                                            class="btn btn-outline-success rounded"
                                             (click)="getDataPage(1)"
                                     >
                                         <i class="fas fa-search"></i>
@@ -107,4 +102,9 @@
             </div>
         </div>
     </section>
+    <div class="col-6 text-right">
+        <a href="javascript:;" class="btnCreate" (click)="createCategory()">
+            {{ "Create" | localize }}
+        </a>
+    </div>
 </div>

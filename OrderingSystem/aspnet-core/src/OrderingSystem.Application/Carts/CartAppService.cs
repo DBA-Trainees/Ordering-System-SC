@@ -60,6 +60,7 @@ namespace OrderingSystem.Carts
         {
             var query = await _cartRepository.GetAll()
                 .Include(x => x.Food)
+                .OrderByDescending(x => x.DateTimeAdded)
                 .Select(x => ObjectMapper.Map<CartDto>(x))
                 .ToListAsync();
 

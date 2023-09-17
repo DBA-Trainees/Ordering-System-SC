@@ -2,7 +2,6 @@ import {
   Component,
   Injector,
   Output,
-  OnInit,
   EventEmitter,
 } from "@angular/core";
 import { finalize } from "rxjs/operators";
@@ -14,10 +13,7 @@ import {
 } from "shared/paged-listing-component-base";
 import {
   OrderDto,
-  CreateOrderDto,
   OrderServiceProxy,
-  OrderDtoPagedResultDto,
-  CartDtoPagedResultDto,
   FoodDto,
   FoodDtoPagedResultDto,
   FoodServiceProxy,
@@ -25,7 +21,6 @@ import {
   CartDto,
   CustomerDto,
 } from "@shared/service-proxies/service-proxies";
-import { CheckOrderComponent } from "./check-order/check-order.component";
 import * as moment from "moment";
 
 class PagedOrderRequestDto extends PagedRequestDto {
@@ -132,27 +127,20 @@ export class OrdersComponent extends PagedListingComponentBase<OrderDto> {
 
   foodIdSave(food: FoodDto): void {
     sessionStorage.setItem('id', food.id.toString());
+    this.router.navigate(["./app/view-details"]);
   }
 
-  addToCart(foodId: number): void {
-    this.saving = true;
-    this.cart.foodId = foodId;
-    this.cart.customerId = this.customer.id;
-    this.cart.size = this.fixedSize;
-    this.cart.quantity = this.qty;
-    this.cart.notes = this.notes;
-    this.cart.dateTimeAdded = moment(this.dateToday);
-    this.cart.amount = this.qty * this.food.price;
 
-    this._cartServiceProxy.updateExistingCartTable(this.cart).subscribe(
-      () => {
-        this.notify.info(this.l("SavedSuccessfully"));
-        this.onSave.emit();
-        this.router.navigate(["./app/orders"]);
-      },
-      () => {
-        this.saving = false;
-      }
-    );
-  }
+  // viewDeets(foodId: number): void {
+  //   this.saving = true;
+  //   this.cart.foodId = foodId;
+  //   this.cart.customerId = this.customer.id;
+  //   this.cart.size = this.fixedSize;
+  //   this.cart.quantity = this.qty;
+  //   this.cart.notes = this.notes;
+  //   this.cart.dateTimeAdded = moment(this.dateToday);
+  //   this.cart.amount = this.qty * this.food.price;
+
+  //   this.router.navigate(["./app/view-details"]);
+  // }
 }

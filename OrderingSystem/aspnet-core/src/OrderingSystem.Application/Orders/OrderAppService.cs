@@ -23,9 +23,22 @@ namespace OrderingSystem.Orders
             _foodRepository = foodRepository;
         }
 
-        public override Task<OrderDto> CreateAsync(CreateOrderDto input)
+        public override async Task<OrderDto> CreateAsync(CreateOrderDto input)
         {
-            return base.CreateAsync(input);
+           
+            var proceedOrder = new Order();
+            proceedOrder.Id = input.Id;
+
+            foreach(var o in input.CreateOrderDtos)
+            {
+                proceedOrder = ObjectMapper.Map<Order>(input);
+                proceedOrder.Id = o.Id;
+
+                await _repository.InsertAsync(proceedOrder);
+            }
+
+            return base.MapToEntityDto(proceedOrder);
+
         }
 
         public override Task DeleteAsync(EntityDto<int> input)
@@ -66,8 +79,8 @@ namespace OrderingSystem.Orders
             var userCustomer = AbpSession.UserId;
 
             var query = await _repository.GetAll()
-                //.Include(x => x.Cart)
-                //.ThenInclude(x => x.Food)
+                .Include(x => x.Cart)
+                .ThenInclude(x => x.Food)
                 .Where(x => x.CreatorUserId == userCustomer)
                 .Select(x => ObjectMapper.Map<OrderDto>(x))
                 .ToListAsync();

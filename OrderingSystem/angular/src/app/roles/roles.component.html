@@ -16,14 +16,9 @@
             <div class="col-md-6">&emsp;</div>
             <div class="col-md-6">
               <div class="input-group">
-                <div class="col-6 text-right">
-                  <a href="javascript:;" class="btn bg-info" (click)="createRole()">
-                      {{ "Create" | localize }}
-                  </a>
-              </div>
                 <div class="input-group-prepend">
                   <button type="button"
-                    class="btn bg-info rounded"
+                    class="btn btn-outline-success rounded"
                     (click)="getDataPage(1)">
                     <i class="fas fa-search"></i>
                   </button>
@@ -46,7 +41,7 @@
                 <tr>
                   <th>{{ "RoleName" | localize }}</th>
                   <th>{{ "DisplayName" | localize }}</th>
-                  <th style="width: 100px;">{{ "Actions" | localize }}</th>
+                  <th style="width: 110px;">{{ "Actions" | localize }}</th>
                 </tr>
               </thead>
               <tbody>
@@ -83,12 +78,12 @@
         </div>
         <div class="card-footer table-card-footer bg-light border-top">
           <div class="row">
-            <div class="col-sm-4 col-12 text-sm-left text-center">
+            <!-- <div class="col-sm-4 col-12 text-sm-left text-center">
               <button class="btn btn-dark btn-sm"
                 (click)="refresh()">
                 <i class="fas fa-redo-alt"></i>
               </button>
-            </div>
+            </div> -->
             <div class="col-sm-4 col-12 text-center">
               <p class="mb-0 my-2">
                 {{ "TotalRecordsCount" | localize: totalItems }}
@@ -99,4 +94,9 @@
       </div>
     </div>
   </section>
+  <div class="col-6 text-right">
+    <a href="javascript:;" class="btnRoles" (click)="createRole()">
+        {{ "Create" | localize }}
+    </a>
+</div>
 </div>
