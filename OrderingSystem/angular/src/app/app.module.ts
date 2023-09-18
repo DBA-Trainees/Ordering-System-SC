@@ -29,6 +29,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CheckOrderComponent } from './orders/check-order/check-order.component';
 import { ViewDetailsComponent } from './orders/view-details/view-details-dialog.component';
 import { PurchaseHistoryComponent } from './foods/purchase-history/purchase-history.component';
+import { OrderHistoryComponent } from './orders/order-history/order-history.component';
 
 // tenants
 import { TenantsComponent } from '@app/tenants/tenants.component';
@@ -103,6 +104,7 @@ import { CategoryServiceProxy, CustomerServiceProxy, DivisionServiceProxy, FoodS
         CheckOrderComponent,
         ViewDetailsComponent,
         PurchaseHistoryComponent,
+        OrderHistoryComponent,
         
     ],
     imports: [

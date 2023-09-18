@@ -11,6 +11,7 @@ import {
   OrderDtoPagedResultDto,
   CartDtoPagedResultDto,
   CreateOrderDto,
+  CreateCartDto,
 } from "@shared/service-proxies/service-proxies";
 import {
   PagedListingComponentBase,
@@ -118,16 +119,9 @@ export class CheckOrderComponent extends PagedListingComponentBase<CartDto> {
     this.router.navigate(["./app/orders"]);
   }
 
-  checkOutCart(cart: CartDto): void {
+  checkOutCart(createOrder: CreateCartDto): void {
     this.saving = true;
-    this.cart.id = cart.id;
-    this.cart.quantity = cart.quantity;
-    this.cart.size = cart.size;
-    // order.ordered = moment(this.dateToday);
-    // order.cartId = this.cart.id;
-    // order.size = this.setSize;
-    // order.quantity = this.
-    // order.totalAmount = this.cart.food.price * this.cart.quantity;
+    this.createOrder.id = this.cart.id;
 
     this._orderServiceProxy.create(this.createOrder).subscribe(
       () => {

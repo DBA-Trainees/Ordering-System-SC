@@ -23,23 +23,6 @@ namespace OrderingSystem.Orders
             _foodRepository = foodRepository;
         }
 
-        public override async Task<OrderDto> CreateAsync(CreateOrderDto input)
-        {
-           
-            var proceedOrder = new Order();
-            proceedOrder.Id = input.Id;
-
-            foreach(var o in input.CreateOrderDtos)
-            {
-                proceedOrder = ObjectMapper.Map<Order>(input);
-                proceedOrder.Id = o.Id;
-
-                await _repository.InsertAsync(proceedOrder);
-            }
-
-            return base.MapToEntityDto(proceedOrder);
-
-        }
 
         public override Task DeleteAsync(EntityDto<int> input)
         {

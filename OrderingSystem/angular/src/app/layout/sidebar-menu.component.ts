@@ -101,16 +101,28 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
                 'Pages.Foods'
             ),
             new MenuItem(
-                this.l('Orders'),
+                this.l('Cart'),
                 '/app/orders',
                 'fa fa-cart-plus',
                 'Pages.Orders'
             ),
             new MenuItem(
-                this.l('Cart'),
+                this.l('Orders'),
                 '/app/check-order',
                 'fa fa-cart-arrow-down',
                 'Pages.Carts'
+            ),
+            new MenuItem(
+                this.l('Order History'),
+                '/app/order-history',
+                'fa fa-history',
+                'Pages.Carts'
+            ),
+            new MenuItem(
+                this.l('Purchase History'),
+                '/app/purchase-history',
+                'fa fa-history',
+                'Pages.Foods'
             ),
             //  new MenuItem(this.l('MultiLevelMenu'), '', 'fas fa-circle', '', [
             //     new MenuItem('ASP.NET Boilerplate', '', 'fas fa-dot-circle', '', [

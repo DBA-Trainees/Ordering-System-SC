@@ -84,25 +84,25 @@
                     </div>
                 </div>
                 <div class="card-footer table-card-footer bg-light border-top">
+                    <div class="col-6 text-right">
+                        <a href="javascript:;" class="btnDiv" (click)="createDivision()">
+                            {{ "Create" | localize }}
+                        </a>
+                    </div>
                     <div class="row">
                         <!-- <div class="col-sm-4 col-12 text-sm-left text-center">
                             <button class="btn btn-dark btn-sm" (click)="refresh()">
                                 <i class="fas fa-redo-alt"></i>
                             </button>
                         </div> -->
-                        <div class="col-sm-4 col-12 text-center">
+                        <!-- <div class="col-sm-4 col-12 text-center">
                             <p class="mb-0 my-2">
                                 {{ "TotalRecordsCount" | localize: totalItems }}
                             </p>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <div class="col-6 text-right">
-        <a href="javascript:;" class="btnDiv" (click)="createDivision()">
-            {{ "Create" | localize }}
-        </a>
-    </div>
 </div>
